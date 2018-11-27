@@ -1,0 +1,918 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE1D21A662A0007DC72B /* AppDelegate.m */; };
+		3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2521A662A1007DC72B /* Assets.xcassets */; };
+		3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2721A662A1007DC72B /* LaunchScreen.storyboard */; };
+		3B96DE2C21A662A1007DC72B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE2B21A662A1007DC72B /* main.m */; };
+		3B96DE3621A662A1007DC72B /* WZYX_CustomerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE3521A662A1007DC72B /* WZYX_CustomerTests.m */; };
+		3B96DE4121A662A1007DC72B /* WZYX_CustomerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE4021A662A1007DC72B /* WZYX_CustomerUITests.m */; };
+		3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE8B21A6A630007DC72B /* WZLoginTableViewCell.m */; };
+		3B96DE9321A6B6A2007DC72B /* WZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE9221A6B6A2007DC72B /* WZLoginViewController.m */; };
+		3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE9821A6DA42007DC72B /* WZRegisterViewController.m */; };
+		3B96DE9F21A6E0DA007DC72B /* WZLoginTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE9E21A6E0DA007DC72B /* WZLoginTableView.m */; };
+		3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEA421A6E39B007DC72B /* WZLoginNavigationController.m */; };
+		3B96DEAE21A7E8B8007DC72B /* UIButton+WZCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEAD21A7E8B8007DC72B /* UIButton+WZCountDownButton.m */; };
+		3B96DEB221A7FB27007DC72B /* WZDataFormatChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEB121A7FB27007DC72B /* WZDataFormatChecker.m */; };
+		3B96DEB621A94440007DC72B /* WZLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEB521A94440007DC72B /* WZLogin.m */; };
+		3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DECD21AA94A5007DC72B /* WZResetPasswordViewController.m */; };
+		3B96DED121AA9553007DC72B /* WZModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DED021AA9553007DC72B /* WZModifyPasswordViewController.m */; };
+		3B96DEDF21AC07CC007DC72B /* WZMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEDE21AC07CC007DC72B /* WZMainTabBarController.m */; };
+		3B96DEE521AC09BE007DC72B /* WZMineNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEE421AC09BE007DC72B /* WZMineNavigationController.m */; };
+		3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEE621AC0B3A007DC72B /* WZMineTableViewController.m */; };
+		3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEEB21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m */; };
+		3B96DEEF21AC17C0007DC72B /* WZMyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEED21AC17C0007DC72B /* WZMyProfileTableViewController.m */; };
+		3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEF121AC1D7D007DC72B /* WZNameTableViewController.m */; };
+		3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEF421AC22DD007DC72B /* WZTextFieldTableViewCell.m */; };
+		3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEF721AC251B007DC72B /* WZGenderTableViewController.m */; };
+		3B96DEFB21AC270A007DC72B /* WZAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEF921AC270A007DC72B /* WZAvatarViewController.m */; };
+		3B96DEFF21AC281A007DC72B /* WZCitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DEFE21AC281A007DC72B /* WZCitiesTableViewController.m */; };
+		3B96DF0321AC289A007DC72B /* WZCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF0121AC289A007DC72B /* WZCityInfo.m */; };
+		3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DF0421AC2A5A007DC72B /* cities.plist */; };
+		3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */; };
+		4410F969BE01C12EE4B287EC /* libPods-WZYX-CustomerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */; };
+		55458D95B0F617FAEFF3F2F0 /* libPods-WZYX-CustomerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */; };
+		CDDCAF79B2D05B4069998630 /* libPods-WZYX-Customer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 574557591493654341966A29 /* libPods-WZYX-Customer.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B96DE3221A662A1007DC72B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B96DE1121A662A0007DC72B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B96DE1821A662A0007DC72B;
+			remoteInfo = "WZYX-Customer";
+		};
+		3B96DE3D21A662A1007DC72B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B96DE1121A662A0007DC72B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B96DE1821A662A0007DC72B;
+			remoteInfo = "WZYX-Customer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerUITests/Pods-WZYX-CustomerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B96DE1921A662A0007DC72B /* WZYX-Customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WZYX-Customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B96DE1C21A662A0007DC72B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3B96DE1D21A662A0007DC72B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3B96DE2521A662A1007DC72B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B96DE2821A662A1007DC72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B96DE2A21A662A1007DC72B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B96DE2B21A662A1007DC72B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B96DE3121A662A1007DC72B /* WZYX-CustomerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WZYX-CustomerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B96DE3521A662A1007DC72B /* WZYX_CustomerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZYX_CustomerTests.m; sourceTree = "<group>"; };
+		3B96DE3721A662A1007DC72B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B96DE3C21A662A1007DC72B /* WZYX-CustomerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WZYX-CustomerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B96DE4021A662A1007DC72B /* WZYX_CustomerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZYX_CustomerUITests.m; sourceTree = "<group>"; };
+		3B96DE4221A662A1007DC72B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B96DE8A21A6A630007DC72B /* WZLoginTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZLoginTableViewCell.h; sourceTree = "<group>"; };
+		3B96DE8B21A6A630007DC72B /* WZLoginTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLoginTableViewCell.m; sourceTree = "<group>"; };
+		3B96DE9121A6B6A2007DC72B /* WZLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZLoginViewController.h; sourceTree = "<group>"; };
+		3B96DE9221A6B6A2007DC72B /* WZLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLoginViewController.m; sourceTree = "<group>"; };
+		3B96DE9721A6DA42007DC72B /* WZRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZRegisterViewController.h; sourceTree = "<group>"; };
+		3B96DE9821A6DA42007DC72B /* WZRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZRegisterViewController.m; sourceTree = "<group>"; };
+		3B96DE9D21A6E0DA007DC72B /* WZLoginTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZLoginTableView.h; sourceTree = "<group>"; };
+		3B96DE9E21A6E0DA007DC72B /* WZLoginTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLoginTableView.m; sourceTree = "<group>"; };
+		3B96DEA321A6E39B007DC72B /* WZLoginNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZLoginNavigationController.h; sourceTree = "<group>"; };
+		3B96DEA421A6E39B007DC72B /* WZLoginNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLoginNavigationController.m; sourceTree = "<group>"; };
+		3B96DEAC21A7E8B8007DC72B /* UIButton+WZCountDownButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+WZCountDownButton.h"; sourceTree = "<group>"; };
+		3B96DEAD21A7E8B8007DC72B /* UIButton+WZCountDownButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WZCountDownButton.m"; sourceTree = "<group>"; };
+		3B96DEB021A7FB27007DC72B /* WZDataFormatChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZDataFormatChecker.h; sourceTree = "<group>"; };
+		3B96DEB121A7FB27007DC72B /* WZDataFormatChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZDataFormatChecker.m; sourceTree = "<group>"; };
+		3B96DEB421A94440007DC72B /* WZLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZLogin.h; sourceTree = "<group>"; };
+		3B96DEB521A94440007DC72B /* WZLogin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZLogin.m; sourceTree = "<group>"; };
+		3B96DECC21AA94A5007DC72B /* WZResetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZResetPasswordViewController.h; sourceTree = "<group>"; };
+		3B96DECD21AA94A5007DC72B /* WZResetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZResetPasswordViewController.m; sourceTree = "<group>"; };
+		3B96DECF21AA9553007DC72B /* WZModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZModifyPasswordViewController.h; sourceTree = "<group>"; };
+		3B96DED021AA9553007DC72B /* WZModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZModifyPasswordViewController.m; sourceTree = "<group>"; };
+		3B96DEDD21AC07CC007DC72B /* WZMainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZMainTabBarController.h; sourceTree = "<group>"; };
+		3B96DEDE21AC07CC007DC72B /* WZMainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZMainTabBarController.m; sourceTree = "<group>"; };
+		3B96DEE321AC09BE007DC72B /* WZMineNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZMineNavigationController.h; sourceTree = "<group>"; };
+		3B96DEE421AC09BE007DC72B /* WZMineNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZMineNavigationController.m; sourceTree = "<group>"; };
+		3B96DEE621AC0B3A007DC72B /* WZMineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZMineTableViewController.m; sourceTree = "<group>"; };
+		3B96DEE721AC0B3A007DC72B /* WZMineTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZMineTableViewController.h; sourceTree = "<group>"; };
+		3B96DEEA21AC0DF7007DC72B /* WZUserPortraitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUserPortraitTableViewCell.h; sourceTree = "<group>"; };
+		3B96DEEB21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUserPortraitTableViewCell.m; sourceTree = "<group>"; };
+		3B96DEED21AC17C0007DC72B /* WZMyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZMyProfileTableViewController.m; sourceTree = "<group>"; };
+		3B96DEEE21AC17C0007DC72B /* WZMyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZMyProfileTableViewController.h; sourceTree = "<group>"; };
+		3B96DEF021AC1D7D007DC72B /* WZNameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZNameTableViewController.h; sourceTree = "<group>"; };
+		3B96DEF121AC1D7D007DC72B /* WZNameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZNameTableViewController.m; sourceTree = "<group>"; };
+		3B96DEF321AC22DD007DC72B /* WZTextFieldTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		3B96DEF421AC22DD007DC72B /* WZTextFieldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		3B96DEF621AC251B007DC72B /* WZGenderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZGenderTableViewController.h; sourceTree = "<group>"; };
+		3B96DEF721AC251B007DC72B /* WZGenderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZGenderTableViewController.m; sourceTree = "<group>"; };
+		3B96DEF921AC270A007DC72B /* WZAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZAvatarViewController.m; sourceTree = "<group>"; };
+		3B96DEFA21AC270A007DC72B /* WZAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZAvatarViewController.h; sourceTree = "<group>"; };
+		3B96DEFD21AC281A007DC72B /* WZCitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZCitiesTableViewController.h; sourceTree = "<group>"; };
+		3B96DEFE21AC281A007DC72B /* WZCitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZCitiesTableViewController.m; sourceTree = "<group>"; };
+		3B96DF0121AC289A007DC72B /* WZCityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZCityInfo.m; sourceTree = "<group>"; };
+		3B96DF0221AC289A007DC72B /* WZCityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZCityInfo.h; sourceTree = "<group>"; };
+		3B96DF0421AC2A5A007DC72B /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
+		3B96DF0621AC3ED9007DC72B /* WZSubmitButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSubmitButtonTableViewCell.h; sourceTree = "<group>"; };
+		3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSubmitButtonTableViewCell.m; sourceTree = "<group>"; };
+		516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		528167EA6683A41A180B57B0 /* Pods-WZYX-Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-Customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer.release.xcconfig"; sourceTree = "<group>"; };
+		574557591493654341966A29 /* libPods-WZYX-Customer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-Customer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E380F36AD565DD665781C5D /* Pods-WZYX-CustomerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerTests/Pods-WZYX-CustomerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		96A8348338BD5C23D5F55BFD /* Pods-WZYX-CustomerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerTests/Pods-WZYX-CustomerTests.release.xcconfig"; sourceTree = "<group>"; };
+		A77D0A73DB6714918701E1FB /* Pods-WZYX-Customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-Customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer.debug.xcconfig"; sourceTree = "<group>"; };
+		B37D9404D650D33414637002 /* Pods-WZYX-CustomerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerUITests/Pods-WZYX-CustomerUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B96DE1621A662A0007DC72B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDDCAF79B2D05B4069998630 /* libPods-WZYX-Customer.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE2E21A662A1007DC72B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55458D95B0F617FAEFF3F2F0 /* libPods-WZYX-CustomerTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE3921A662A1007DC72B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4410F969BE01C12EE4B287EC /* libPods-WZYX-CustomerUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AFE1139CD29D5C0EF37FDDD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A77D0A73DB6714918701E1FB /* Pods-WZYX-Customer.debug.xcconfig */,
+				528167EA6683A41A180B57B0 /* Pods-WZYX-Customer.release.xcconfig */,
+				5E380F36AD565DD665781C5D /* Pods-WZYX-CustomerTests.debug.xcconfig */,
+				96A8348338BD5C23D5F55BFD /* Pods-WZYX-CustomerTests.release.xcconfig */,
+				30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */,
+				B37D9404D650D33414637002 /* Pods-WZYX-CustomerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3B96DE1021A662A0007DC72B = {
+			isa = PBXGroup;
+			children = (
+				3B96DE1B21A662A0007DC72B /* WZYX-Customer */,
+				3B96DE3421A662A1007DC72B /* WZYX-CustomerTests */,
+				3B96DE3F21A662A1007DC72B /* WZYX-CustomerUITests */,
+				3B96DE1A21A662A0007DC72B /* Products */,
+				2AFE1139CD29D5C0EF37FDDD /* Pods */,
+				51A8055BF4A288C3BF34EF20 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3B96DE1A21A662A0007DC72B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DE1921A662A0007DC72B /* WZYX-Customer.app */,
+				3B96DE3121A662A1007DC72B /* WZYX-CustomerTests.xctest */,
+				3B96DE3C21A662A1007DC72B /* WZYX-CustomerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B96DE1B21A662A0007DC72B /* WZYX-Customer */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEDC21AC0737007DC72B /* Features */,
+				3B96DEAF21A7FAD7007DC72B /* Utilities */,
+				3B96DEAB21A7E84A007DC72B /* Categories */,
+				3B96DEFC21AC27E8007DC72B /* Resources */,
+				3B96DEDB21AC06C3007DC72B /* AppEntry */,
+			);
+			path = "WZYX-Customer";
+			sourceTree = "<group>";
+		};
+		3B96DE3421A662A1007DC72B /* WZYX-CustomerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DE3521A662A1007DC72B /* WZYX_CustomerTests.m */,
+				3B96DE3721A662A1007DC72B /* Info.plist */,
+			);
+			path = "WZYX-CustomerTests";
+			sourceTree = "<group>";
+		};
+		3B96DE3F21A662A1007DC72B /* WZYX-CustomerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DE4021A662A1007DC72B /* WZYX_CustomerUITests.m */,
+				3B96DE4221A662A1007DC72B /* Info.plist */,
+			);
+			path = "WZYX-CustomerUITests";
+			sourceTree = "<group>";
+		};
+		3B96DE8D21A6B638007DC72B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEB321A94429007DC72B /* Models */,
+				3B96DEA621A6E48C007DC72B /* Views */,
+				3B96DEA721A6E49A007DC72B /* Controllers */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3B96DEA621A6E48C007DC72B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DE9D21A6E0DA007DC72B /* WZLoginTableView.h */,
+				3B96DE9E21A6E0DA007DC72B /* WZLoginTableView.m */,
+				3B96DE8A21A6A630007DC72B /* WZLoginTableViewCell.h */,
+				3B96DE8B21A6A630007DC72B /* WZLoginTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B96DEA721A6E49A007DC72B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEA321A6E39B007DC72B /* WZLoginNavigationController.h */,
+				3B96DEA421A6E39B007DC72B /* WZLoginNavigationController.m */,
+				3B96DE9121A6B6A2007DC72B /* WZLoginViewController.h */,
+				3B96DE9221A6B6A2007DC72B /* WZLoginViewController.m */,
+				3B96DE9721A6DA42007DC72B /* WZRegisterViewController.h */,
+				3B96DE9821A6DA42007DC72B /* WZRegisterViewController.m */,
+				3B96DECC21AA94A5007DC72B /* WZResetPasswordViewController.h */,
+				3B96DECD21AA94A5007DC72B /* WZResetPasswordViewController.m */,
+				3B96DECF21AA9553007DC72B /* WZModifyPasswordViewController.h */,
+				3B96DED021AA9553007DC72B /* WZModifyPasswordViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3B96DEAB21A7E84A007DC72B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEAC21A7E8B8007DC72B /* UIButton+WZCountDownButton.h */,
+				3B96DEAD21A7E8B8007DC72B /* UIButton+WZCountDownButton.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		3B96DEAF21A7FAD7007DC72B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEB021A7FB27007DC72B /* WZDataFormatChecker.h */,
+				3B96DEB121A7FB27007DC72B /* WZDataFormatChecker.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3B96DEB321A94429007DC72B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEB421A94440007DC72B /* WZLogin.h */,
+				3B96DEB521A94440007DC72B /* WZLogin.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B96DED921AC0655007DC72B /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF0021AC286B007DC72B /* Models */,
+				3B96DEE921AC0D02007DC72B /* Views */,
+				3B96DEDA21AC065E007DC72B /* Controllers */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		3B96DEDA21AC065E007DC72B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEE321AC09BE007DC72B /* WZMineNavigationController.h */,
+				3B96DEE421AC09BE007DC72B /* WZMineNavigationController.m */,
+				3B96DEE721AC0B3A007DC72B /* WZMineTableViewController.h */,
+				3B96DEE621AC0B3A007DC72B /* WZMineTableViewController.m */,
+				3B96DEEE21AC17C0007DC72B /* WZMyProfileTableViewController.h */,
+				3B96DEED21AC17C0007DC72B /* WZMyProfileTableViewController.m */,
+				3B96DEFA21AC270A007DC72B /* WZAvatarViewController.h */,
+				3B96DEF921AC270A007DC72B /* WZAvatarViewController.m */,
+				3B96DEF021AC1D7D007DC72B /* WZNameTableViewController.h */,
+				3B96DEF121AC1D7D007DC72B /* WZNameTableViewController.m */,
+				3B96DEF621AC251B007DC72B /* WZGenderTableViewController.h */,
+				3B96DEF721AC251B007DC72B /* WZGenderTableViewController.m */,
+				3B96DEFD21AC281A007DC72B /* WZCitiesTableViewController.h */,
+				3B96DEFE21AC281A007DC72B /* WZCitiesTableViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3B96DEDB21AC06C3007DC72B /* AppEntry */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DE1C21A662A0007DC72B /* AppDelegate.h */,
+				3B96DE1D21A662A0007DC72B /* AppDelegate.m */,
+				3B96DEDD21AC07CC007DC72B /* WZMainTabBarController.h */,
+				3B96DEDE21AC07CC007DC72B /* WZMainTabBarController.m */,
+				3B96DE2521A662A1007DC72B /* Assets.xcassets */,
+				3B96DE2721A662A1007DC72B /* LaunchScreen.storyboard */,
+				3B96DE2A21A662A1007DC72B /* Info.plist */,
+				3B96DE2B21A662A1007DC72B /* main.m */,
+			);
+			name = AppEntry;
+			sourceTree = "<group>";
+		};
+		3B96DEDC21AC0737007DC72B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DED921AC0655007DC72B /* Mine */,
+				3B96DE8D21A6B638007DC72B /* Login */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		3B96DEE921AC0D02007DC72B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DEEA21AC0DF7007DC72B /* WZUserPortraitTableViewCell.h */,
+				3B96DEEB21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m */,
+				3B96DEF321AC22DD007DC72B /* WZTextFieldTableViewCell.h */,
+				3B96DEF421AC22DD007DC72B /* WZTextFieldTableViewCell.m */,
+				3B96DF0621AC3ED9007DC72B /* WZSubmitButtonTableViewCell.h */,
+				3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B96DEFC21AC27E8007DC72B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF0421AC2A5A007DC72B /* cities.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3B96DF0021AC286B007DC72B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF0221AC289A007DC72B /* WZCityInfo.h */,
+				3B96DF0121AC289A007DC72B /* WZCityInfo.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		51A8055BF4A288C3BF34EF20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				574557591493654341966A29 /* libPods-WZYX-Customer.a */,
+				1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */,
+				516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B96DE1821A662A0007DC72B /* WZYX-Customer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B96DE4521A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-Customer" */;
+			buildPhases = (
+				80A08E858856583C14071AD1 /* [CP] Check Pods Manifest.lock */,
+				3B96DE1521A662A0007DC72B /* Sources */,
+				3B96DE1621A662A0007DC72B /* Frameworks */,
+				3B96DE1721A662A0007DC72B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WZYX-Customer";
+			productName = "WZYX-Customer";
+			productReference = 3B96DE1921A662A0007DC72B /* WZYX-Customer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B96DE3021A662A1007DC72B /* WZYX-CustomerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B96DE4821A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-CustomerTests" */;
+			buildPhases = (
+				941A6F18E718B9DB8F468D48 /* [CP] Check Pods Manifest.lock */,
+				3B96DE2D21A662A1007DC72B /* Sources */,
+				3B96DE2E21A662A1007DC72B /* Frameworks */,
+				3B96DE2F21A662A1007DC72B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B96DE3321A662A1007DC72B /* PBXTargetDependency */,
+			);
+			name = "WZYX-CustomerTests";
+			productName = "WZYX-CustomerTests";
+			productReference = 3B96DE3121A662A1007DC72B /* WZYX-CustomerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B96DE3B21A662A1007DC72B /* WZYX-CustomerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B96DE4B21A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-CustomerUITests" */;
+			buildPhases = (
+				023C5F66657895E5C4AA5C6C /* [CP] Check Pods Manifest.lock */,
+				3B96DE3821A662A1007DC72B /* Sources */,
+				3B96DE3921A662A1007DC72B /* Frameworks */,
+				3B96DE3A21A662A1007DC72B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B96DE3E21A662A1007DC72B /* PBXTargetDependency */,
+			);
+			name = "WZYX-CustomerUITests";
+			productName = "WZYX-CustomerUITests";
+			productReference = 3B96DE3C21A662A1007DC72B /* WZYX-CustomerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B96DE1121A662A0007DC72B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = WZYX;
+				TargetAttributes = {
+					3B96DE1821A662A0007DC72B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3B96DE3021A662A1007DC72B = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3B96DE1821A662A0007DC72B;
+					};
+					3B96DE3B21A662A1007DC72B = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3B96DE1821A662A0007DC72B;
+					};
+				};
+			};
+			buildConfigurationList = 3B96DE1421A662A0007DC72B /* Build configuration list for PBXProject "WZYX-Customer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B96DE1021A662A0007DC72B;
+			productRefGroup = 3B96DE1A21A662A0007DC72B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B96DE1821A662A0007DC72B /* WZYX-Customer */,
+				3B96DE3021A662A1007DC72B /* WZYX-CustomerTests */,
+				3B96DE3B21A662A1007DC72B /* WZYX-CustomerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B96DE1721A662A0007DC72B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */,
+				3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */,
+				3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE2F21A662A1007DC72B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE3A21A662A1007DC72B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		023C5F66657895E5C4AA5C6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WZYX-CustomerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80A08E858856583C14071AD1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WZYX-Customer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		941A6F18E718B9DB8F468D48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WZYX-CustomerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B96DE1521A662A0007DC72B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */,
+				3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */,
+				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
+				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
+				3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */,
+				3B96DEFF21AC281A007DC72B /* WZCitiesTableViewController.m in Sources */,
+				3B96DF0321AC289A007DC72B /* WZCityInfo.m in Sources */,
+				3B96DE9F21A6E0DA007DC72B /* WZLoginTableView.m in Sources */,
+				3B96DEDF21AC07CC007DC72B /* WZMainTabBarController.m in Sources */,
+				3B96DEB221A7FB27007DC72B /* WZDataFormatChecker.m in Sources */,
+				3B96DEEF21AC17C0007DC72B /* WZMyProfileTableViewController.m in Sources */,
+				3B96DEE521AC09BE007DC72B /* WZMineNavigationController.m in Sources */,
+				3B96DE2C21A662A1007DC72B /* main.m in Sources */,
+				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
+				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,
+				3B96DEAE21A7E8B8007DC72B /* UIButton+WZCountDownButton.m in Sources */,
+				3B96DED121AA9553007DC72B /* WZModifyPasswordViewController.m in Sources */,
+				3B96DEB621A94440007DC72B /* WZLogin.m in Sources */,
+				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
+				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
+				3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */,
+				3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */,
+				3B96DEFB21AC270A007DC72B /* WZAvatarViewController.m in Sources */,
+				3B96DE9321A6B6A2007DC72B /* WZLoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE2D21A662A1007DC72B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B96DE3621A662A1007DC72B /* WZYX_CustomerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B96DE3821A662A1007DC72B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B96DE4121A662A1007DC72B /* WZYX_CustomerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B96DE3321A662A1007DC72B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B96DE1821A662A0007DC72B /* WZYX-Customer */;
+			targetProxy = 3B96DE3221A662A1007DC72B /* PBXContainerItemProxy */;
+		};
+		3B96DE3E21A662A1007DC72B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B96DE1821A662A0007DC72B /* WZYX-Customer */;
+			targetProxy = 3B96DE3D21A662A1007DC72B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B96DE2721A662A1007DC72B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B96DE2821A662A1007DC72B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B96DE4321A662A1007DC72B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3B96DE4421A662A1007DC72B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B96DE4621A662A1007DC72B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A77D0A73DB6714918701E1FB /* Pods-WZYX-Customer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-Customer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-Customer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B96DE4721A662A1007DC72B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 528167EA6683A41A180B57B0 /* Pods-WZYX-Customer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-Customer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-Customer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3B96DE4921A662A1007DC72B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E380F36AD565DD665781C5D /* Pods-WZYX-CustomerTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-CustomerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-CustomerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WZYX-Customer.app/WZYX-Customer";
+			};
+			name = Debug;
+		};
+		3B96DE4A21A662A1007DC72B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96A8348338BD5C23D5F55BFD /* Pods-WZYX-CustomerTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-CustomerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-CustomerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WZYX-Customer.app/WZYX-Customer";
+			};
+			name = Release;
+		};
+		3B96DE4C21A662A1007DC72B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-CustomerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-CustomerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "WZYX-Customer";
+			};
+			name = Debug;
+		};
+		3B96DE4D21A662A1007DC72B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B37D9404D650D33414637002 /* Pods-WZYX-CustomerUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "WZYX-CustomerUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "WZYX.WZYX-CustomerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "WZYX-Customer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B96DE1421A662A0007DC72B /* Build configuration list for PBXProject "WZYX-Customer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B96DE4321A662A1007DC72B /* Debug */,
+				3B96DE4421A662A1007DC72B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B96DE4521A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-Customer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B96DE4621A662A1007DC72B /* Debug */,
+				3B96DE4721A662A1007DC72B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B96DE4821A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-CustomerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B96DE4921A662A1007DC72B /* Debug */,
+				3B96DE4A21A662A1007DC72B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B96DE4B21A662A1007DC72B /* Build configuration list for PBXNativeTarget "WZYX-CustomerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B96DE4C21A662A1007DC72B /* Debug */,
+				3B96DE4D21A662A1007DC72B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3B96DE1121A662A0007DC72B /* Project object */;
+}

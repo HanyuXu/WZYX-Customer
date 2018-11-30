@@ -81,11 +81,10 @@
     UIImage *newImage = [self scaleToSize:newPhoto size:kWZAvatorViewNewImageSize];
     NSDictionary *params = @{@"authToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"]};
     [WZUserInfo uploadImage:newImage withParamters:params success:^{
-        self.imageView.image = newPhoto;
         NSNumber *userId = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
         NSString *fileName = [NSString stringWithFormat:@"userimage%lu",userId.integerValue];
         [WZUserInfo saveImage:newImage withName:fileName];
-        NSLog(@"Success");
+        self.imageView.image = newPhoto;
     } failure:^(NSString * _Nonnull msg) {
         NSLog(@"fail");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];

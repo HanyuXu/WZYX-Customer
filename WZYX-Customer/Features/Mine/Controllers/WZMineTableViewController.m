@@ -122,7 +122,7 @@
 }
 
 - (void) shouldReloadData:(NSNotification *) notification {
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 @end

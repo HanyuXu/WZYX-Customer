@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarItem.title = @"我的";
+    self.tabBarItem.image = [UIImage imageNamed:@"Setting"];
+    self.tabBarItem.selectedImage = [UIImage imageNamed:@"Setting"];
 }
 
 @end

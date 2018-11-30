@@ -148,6 +148,7 @@
         [WZLogin loginWithPhoneNumber:self.phoneNumberTextField.text password:self.passwordTextField.text success:^{
             [self.progressHUD hideAnimated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
         } failure:^(NSString *userInfo) {
             [self.progressHUD hideAnimated:YES];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];

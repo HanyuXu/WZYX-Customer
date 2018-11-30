@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WZAvatarViewController : UIViewController
+@interface WZAvatarViewController : UIViewController  <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIImageView *imageView;
 

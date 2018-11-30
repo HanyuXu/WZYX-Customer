@@ -16,10 +16,27 @@
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber, @"password" : password};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/login" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+        NSDictionary *userInfo = (NSDictionary *)(responseDictionary[@"data"]);
         if ([responseDictionary[@"status"] intValue] == 0) {
+            NSString *gender, *userName;
+            if (userInfo[@"gender"] == [NSNull null]) { // strange 
+                gender = @"未设定";
+            } else {
+                gender = ([userInfo[@"gender"] intValue] == 0) ? @"男" : @"女";
+            }
+            if (userInfo[@"userName"] == nil) {
+                userName = [NSString stringWithFormat:@"用户%@",userInfo[@"userId"]];
+            } else {
+                userName = userInfo[@"userName"];
+            }
+            NSNumber *userId = [NSNumber numberWithInteger:[userInfo[@"userId"] intValue]];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:phoneNumber forKey:@"phoneNumber"];
             [userDefaults setObject:responseDictionary[@"msg"] forKey:@"authToken"];
+            [userDefaults setObject:gender forKey:@"gender"];
+            [userDefaults  setObject:userId forKey:@"userId"];
+            [userDefaults setObject:userName forKey:@"userName"];
+            
             successBlock();
         } else {
             failureBlock(responseDictionary[@"msg"]);

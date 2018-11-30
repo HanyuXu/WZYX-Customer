@@ -9,6 +9,7 @@
 #import "WZNameTableViewController.h"
 #import "WZUserPortraitTableViewCell.h"
 #import "WZTextFieldTableViewCell.h"
+#import "WZUserInfo.h"
 
 @interface WZNameTableViewController ()
 
@@ -22,25 +23,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(setNameButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    UIBarButtonItem *changeNameButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(changeNameButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = changeNameButton;//s
 }
 
-- (void)setNameButtonPressed:(UIButton *)sender {
+- (void)changeNameButtonPressed:(UIButton *)sender {
     NSString *newName = self.textField.text;
     if (![newName isEqualToString:self.originalName]) {
-        if (newName.length <= 3 || newName.length >= 10) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名非法" message:@"用户名长度应在3到10个字符之间" preferredStyle:UIAlertControllerStyleAlert];
+        if (newName.length <3 || newName.length >21) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名非法" message:@"用户名长度应在3到20个字符之间" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
-#warning POST请求
-            // self.user.name = [NSString stringWithString:newName];
-            [self.navigationController popViewControllerAnimated:YES];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary *param = @{@"authToken" : [userDefaults objectForKey:@"authToken"], @"userName":newName};
+            [WZUserInfo updateUserInfoWithPrameters:param success:^(){
+                [userDefaults setObject:newName forKey:@"userName"];
+                [self.navigationController popViewControllerAnimated:YES];
+            } failure:^(NSString *msg){
+                self.textField.text = [userDefaults objectForKey:@"userName"];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }];
         }
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -56,7 +64,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WZTextFieldTableViewCell *cell = [[WZTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"nameField"];
-    cell.textField.text = @"测试";
+    cell.textField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
     [cell.textField becomeFirstResponder];
     cell.textField.delegate = self;
     self.textField = cell.textField;

@@ -16,6 +16,8 @@
 #define kWZLoginTableViewCellForSubmitButton           @"kWZLoginTableViewCellForSubmitButton"
 #define kWZLoginTableViewCellForLabelAndButton         @"kWZLoginTableViewCellForLabelAndButton"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WZLoginTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UILabel *label;
@@ -24,3 +26,5 @@
 @property (strong, nonatomic) UIButton *submitButton;
 
 @end
+
+NS_ASSUME_NONNULL_END

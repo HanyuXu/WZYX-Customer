@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WZMineNavigationController : UINavigationController
 
 + (instancetype)defaultMineNavigationController;
 
 @end
+
+NS_ASSUME_NONNULL_END

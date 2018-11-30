@@ -46,6 +46,28 @@
     }];
 }
 
++ (void)logoutSuccess:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"authToken"]) {
+        failureBlock(@"用户未登录");
+        return;
+    }
+    NSDictionary *paramsDictionary = @{@"authToken" : [userDefaults objectForKey:@"authToken"]};
+    [manager POST:@"http://120.79.10.184:8080/mobile/user/logout" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+        if ([responseDictionary[@"status"] intValue] == 0) {
+            [userDefaults removeObjectForKey:@"phoneNumber"];
+            [userDefaults removeObjectForKey:@"authToken"];
+            successBlock();
+        } else {
+            failureBlock(responseDictionary[@"msg"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failureBlock(@"服务器未响应，请稍后重试");
+    }];
+}
+
 + (void)sendVerificationCodeToPhoneNumber:(NSString *)phoneNumber success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber};

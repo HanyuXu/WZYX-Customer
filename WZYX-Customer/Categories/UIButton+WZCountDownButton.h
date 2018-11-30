@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIButton (WZCountDownButton)
 
 - (void)countDownWithDuration:(NSInteger)duration interval:(NSInteger)interval countDownTitle:(NSString *)countDownTitle canInteraction:(BOOL)flag finishedBlock:(void (^)(void))finishedBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

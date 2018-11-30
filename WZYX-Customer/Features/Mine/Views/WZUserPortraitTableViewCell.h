@@ -11,9 +11,13 @@
 #define kWZUserPortraitTableViewCellLeft    @"kWZUserPortraitTableViewCellLeft"
 #define kWZUserPortraitTableViewCellRight   @"kWZUserPortraitTableViewCellRight"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WZUserPortraitTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UIImageView *avatarImageView;
 @property (strong, nonatomic) UILabel *userNameLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -51,9 +51,9 @@
             WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellRight];
             if (!portraitCell) {
                 portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
-                portraitCell.textLabel.text = @"头像";
-                portraitCell.avatarImageView.image = [WZUserInfo userPortrait];
             }
+            portraitCell.textLabel.text = @"头像";
+            portraitCell.avatarImageView.image = [WZUserInfo userPortrait];
             return portraitCell;
         }
     } else if (indexPath.section == 1) {

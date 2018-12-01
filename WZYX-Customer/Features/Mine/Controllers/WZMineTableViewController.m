@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的";
+#warning logout
     NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReloadData:) name:@"reloadData" object:nil];

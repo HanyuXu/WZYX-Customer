@@ -9,7 +9,8 @@
 #import "WZNameTableViewController.h"
 #import "WZUserPortraitTableViewCell.h"
 #import "WZTextFieldTableViewCell.h"
-#import "WZUserInfo.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZNameTableViewController ()
 
@@ -29,6 +30,7 @@
 
 - (void)changeNameButtonPressed:(UIButton *)sender {
     NSString *newName = self.textField.text;
+    
     if (![newName isEqualToString:self.originalName]) {
         if (newName.length <3 || newName.length >21) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名非法" message:@"用户名长度应在3到20个字符之间" preferredStyle:UIAlertControllerStyleAlert];
@@ -38,8 +40,8 @@
         } else {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             NSDictionary *param = @{@"authToken" : [userDefaults objectForKey:@"authToken"], @"userName":newName};
-            [WZUserInfo updateUserInfoWithPrameters:param success:^(){
-                [userDefaults setObject:newName forKey:@"userName"];
+            [WZUserInfoManager updateUserInfoWithPrameters:param success:^(){
+                [WZUser sharedUser].userName = newName;
                 [self.navigationController popViewControllerAnimated:YES];
             } failure:^(NSString *msg){
                 self.textField.text = [userDefaults objectForKey:@"userName"];
@@ -64,7 +66,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WZTextFieldTableViewCell *cell = [[WZTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"nameField"];
-    cell.textField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+    cell.textField.text = [WZUser sharedUser].userName;
     [cell.textField becomeFirstResponder];
     cell.textField.delegate = self;
     self.textField = cell.textField;

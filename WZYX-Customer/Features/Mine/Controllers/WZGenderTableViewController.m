@@ -7,7 +7,8 @@
 //
 
 #import "WZGenderTableViewController.h"
-#import "WZUserInfo.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZGenderTableViewController ()
 
@@ -29,9 +30,9 @@
         int genderIndex = selectedIndex.row == 0? 0 : 1;
         NSNumber *gender = [[NSNumber alloc]initWithInt:genderIndex];
         NSDictionary *param = @{@"authToken":[userDefaults objectForKey:@"authToken"],@"gender":gender};
-        [WZUserInfo updateUserInfoWithPrameters:param success:^(){
+        [WZUserInfoManager updateUserInfoWithPrameters:param success:^(){
             NSString *genderString = genderIndex == 0? @"男" : @"女";
-            [userDefaults setObject:genderString forKey:@"gender"];
+            [WZUser sharedUser].gender = genderString;
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *msg){
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -54,8 +55,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *gender = (NSString *)[userDefaults objectForKey:@"gender"];
+    NSString *gender = [WZUser sharedUser].gender;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GenderCell"];
     }

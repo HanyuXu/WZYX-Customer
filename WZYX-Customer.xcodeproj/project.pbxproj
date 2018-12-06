@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F188CDA21AD5F0D00985A57 /* WZUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CD921AD5F0D00985A57 /* WZUserInfo.m */; };
+		1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */; };
 		1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */; };
 		1F188CE021AF957B00985A57 /* WZSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */; };
+		1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA340C21B2768C00CF8F54 /* WZUser.m */; };
 		3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE1D21A662A0007DC72B /* AppDelegate.m */; };
 		3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2521A662A1007DC72B /* Assets.xcassets */; };
 		3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2721A662A1007DC72B /* LaunchScreen.storyboard */; };
@@ -61,13 +62,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F188CD821AD5F0D00985A57 /* WZUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUserInfo.h; sourceTree = "<group>"; };
-		1F188CD921AD5F0D00985A57 /* WZUserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUserInfo.m; sourceTree = "<group>"; };
+		1F188CD821AD5F0D00985A57 /* WZUserInfoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUserInfoManager.h; sourceTree = "<group>"; };
+		1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUserInfoManager.m; sourceTree = "<group>"; };
 		1F188CDB21AF93FF00985A57 /* WZSettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewController.h; sourceTree = "<group>"; };
 		1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewController.m; sourceTree = "<group>"; };
 		1F188CDE21AF957B00985A57 /* WZSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewCell.h; sourceTree = "<group>"; };
 		1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewCell.m; sourceTree = "<group>"; };
 		1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFA340B21B2768C00CF8F54 /* WZUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUser.h; sourceTree = "<group>"; };
+		1FFA340C21B2768C00CF8F54 /* WZUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUser.m; sourceTree = "<group>"; };
 		30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerUITests/Pods-WZYX-CustomerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B96DE1921A662A0007DC72B /* WZYX-Customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WZYX-Customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B96DE1C21A662A0007DC72B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -375,8 +378,10 @@
 			children = (
 				3B96DF0221AC289A007DC72B /* WZCityInfo.h */,
 				3B96DF0121AC289A007DC72B /* WZCityInfo.m */,
-				1F188CD821AD5F0D00985A57 /* WZUserInfo.h */,
-				1F188CD921AD5F0D00985A57 /* WZUserInfo.m */,
+				1F188CD821AD5F0D00985A57 /* WZUserInfoManager.h */,
+				1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */,
+				1FFA340B21B2768C00CF8F54 /* WZUser.h */,
+				1FFA340C21B2768C00CF8F54 /* WZUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -596,7 +601,7 @@
 				3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */,
 				3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */,
 				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
-				1F188CDA21AD5F0D00985A57 /* WZUserInfo.m in Sources */,
+				1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */,
 				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
 				3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */,
 				3B96DF0321AC289A007DC72B /* WZCityInfo.m in Sources */,
@@ -609,6 +614,7 @@
 				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
 				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,
 				1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */,
+				1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */,
 				3B96DEAE21A7E8B8007DC72B /* UIButton+WZCountDownButton.m in Sources */,
 				3B96DED121AA9553007DC72B /* WZModifyPasswordViewController.m in Sources */,
 				3B96DEB621A94440007DC72B /* WZLogin.m in Sources */,

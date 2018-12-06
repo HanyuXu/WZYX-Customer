@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WZUser : NSObject
 
+@property(copy, nonatomic) NSString *userName;
+@property(copy, nonatomic) NSString *gender;
+@property(copy, nonatomic) NSString *imageName;
+@property(copy, nonatomic) NSString *fileName;
+@property(copy, nonatomic) NSString *imageURL;
+@property(copy, nonatomic) NSString *phoneNumber;
++ (instancetype)sharedUser;
 @end
 
 NS_ASSUME_NONNULL_END

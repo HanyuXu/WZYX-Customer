@@ -1,31 +1,51 @@
 //
-//  WZUserInfo.m
+//  WZUserInfoManager.m
 //  WZYX-Customer
 //
 //  Created by 冯夏巍 on 2018/11/27.
 //  Copyright © 2018年 WZYX. All rights reserved.
 //
 
-#import "WZUserInfo.h"
+#import <AFNetworking/AFImageDownloader.h>
 #import <AFNetworking.h>
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
-@interface WZUserInfo ()
+@interface WZUserInfoManager ()
 @end
 
-@implementation WZUserInfo
+@implementation WZUserInfoManager
 
-static WZUserInfo *_sharedUser;
 
-+ (instancetype) sharedUser {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedUser = [[self alloc] init];
-    }) ;
-    return _sharedUser;
+#pragma mark - utility
+
+// get "Document" directory
++ (NSString *)documentPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    return paths[0];
 }
-//保存用户信息
-+ (void)saveUserInfoWithParameters:(NSDictionary *)userInfo {
-    NSString *gender, *userName, *imagePath;
+
++ (NSString *)imagePathWithImageName:(NSString *)imageName{
+    return [[self documentPath] stringByAppendingPathComponent:imageName];
+}
+
++ (NSString *)filePathWithFileName:(NSString *)FileName{
+    return [[self documentPath] stringByAppendingPathComponent:FileName];
+}
+
+// judge if user is logged in
++ (BOOL)userIsLoggedIn {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *filePath = [[self documentPath] stringByAppendingPathComponent:@"currentUser.plist"];
+    return [manager fileExistsAtPath:filePath];
+}
+
+
+#pragma mark - initialize user information
+
+// initialize user information with a dictionary parsed from json
++ (void)initializeUserInfoWithParameters:(NSDictionary *)userInfo {
+    NSString *gender, *userName, *imageName, *fileName, *imageURL, *phoneNumber;
     if (userInfo[@"gender"] == [NSNull null]) { // strange
         gender = @"未设定";
     } else {
@@ -36,22 +56,98 @@ static WZUserInfo *_sharedUser;
     } else {
         userName = userInfo[@"userName"];
     }
+    
+    imageName = [NSString stringWithFormat:@"用户%@.jpg",userInfo[@"userId"]];
+    fileName = [NSString stringWithFormat:@"用户%@.plist",userInfo[@"userId"]];
+    imageURL = userInfo[@"photo"];
+    phoneNumber = userInfo[@"phoneNumber"];
+    WZUser *currentUser = [WZUser sharedUser];
+    currentUser.userName = userName;
+    currentUser.gender = gender;
+    currentUser.imageName = imageName;
+    currentUser.fileName = fileName;
+    currentUser.imageURL = imageURL;
+    currentUser.phoneNumber = phoneNumber;
+    [self saveUserInfo];
 }
 
-+ (BOOL) userIsLoggedIn {
-    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"]);
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"]) {
-        return YES;
-    }
-    return NO;
+// load current user's information
++ (void)loadUserInfo {
+    NSString *filePath = [[self documentPath] stringByAppendingPathComponent:@"currentUser.plist"];
+    NSDictionary *userInfo = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    WZUser *currentUser = [WZUser sharedUser];
+    currentUser.userName = userInfo[@"userName"];
+    currentUser.gender = userInfo[@"gender"];
+    currentUser.imageName = userInfo[@"imageName"];
+    currentUser.fileName = userInfo[@"fileName"];
+    currentUser.imageURL = userInfo[@"imageURL"];
+    currentUser.phoneNumber = userInfo[@"phoneNumber"];
 }
-//更新用户信息
+
+#pragma mark - save userInfomation
+
++ (void)saveUserInfo {
+    WZUser *user = [WZUser sharedUser];
+    NSDictionary *userInfo = @{@"userName":user.userName, @"gender":user.gender, @"imageName":user.imageName, @"fileName":user.fileName, @"imageURL":user.imageURL, @"phoneNumber":user.phoneNumber};
+    NSString *path = [self documentPath];
+    NSString *userInfoFileName = [self filePathWithFileName:userInfo[@"fileName"]];
+    NSString *currentUserInfoFileName = [path stringByAppendingPathComponent:@"currentUser.plist"];
+    [userInfo writeToFile:userInfoFileName atomically:YES];
+    [userInfo writeToFile:currentUserInfoFileName atomically:YES];
+}
+
++ (void)saveImage:(UIImage *)newImage{
+    NSString *imagePath = [self imagePathWithImageName:[WZUser sharedUser].imageName];
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.7);
+    [imageData writeToFile:imagePath atomically:YES];
+}
+
+#pragma mark - obtain user information
+
+// 获取用户头像
+
++ (void)downloadPortrait {
+    AFImageDownloader *downloader = [AFImageDownloader defaultInstance];
+    NSString *imageURLString = [[WZUser sharedUser] imageURL];
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [downloader downloadImageForURLRequest:request success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
+        NSLog(@"success");
+        [self saveImage:responseObject];
+    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
+}
+
++ (UIImage *)userPortrait {
+    if (![self userIsLoggedIn]) {
+        return [UIImage imageNamed:@"Person"];
+    }
+    WZUser *user = [WZUser sharedUser];
+    NSString *imagePath = [self imagePathWithImageName:user.imageName];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:imagePath]) {
+        UIImage *image=[[UIImage alloc]initWithContentsOfFile:imagePath];
+        CGSize size = CGSizeMake(60, 60);
+        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
+        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        UIImage * scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return scaledImage;
+    }
+    else return [UIImage imageNamed:@"Person"];
+}
+
+#pragma mark - update user information
+
+// update user's information such as name, gender etc.
 + (void)updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock
                        failure:(void (^)(NSString *userInfo))failureBlock {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:@"http://120.79.10.184:8080/mobile/user/update_information" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
+            
          successBlock();
         } else {
             failureBlock(responseDictionary[@"msg"]);
@@ -61,31 +157,16 @@ static WZUserInfo *_sharedUser;
     }];
 }
 
-//保存用户头像
-+ (void) saveImage:(UIImage *)newImage withName:(NSString *)name {
-    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.7);
-    // 获取沙盒目录
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
-    // 将图片写入文件
-    [imageData writeToFile:fullPath atomically:YES];
-}
-
-//头像上传
+// upload portrait
 +(void)uploadImage:(UIImage *)image withParamters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
-                                                         
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",                                  
                                                          @"text/html",
-                                                         
                                                          @"image/jpeg",
-                                                         
                                                          @"image/png",
-                                                         
                                                          @"application/octet-stream",
-                                                         
                                                          @"text/json",
-                                                         
                                                          nil];
     [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
     [manager POST:@"http://120.79.10.184:8080/mobile/user/update_photo"  parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -96,27 +177,25 @@ static WZUserInfo *_sharedUser;
         NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
         [formData appendPartWithFileData:data name:@"file" fileName:fileName mimeType:@"image/jpg"];
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        [self saveImage:image];
+        [WZUser sharedUser].imageURL = dic[@"msg"];
+        [self saveUserInfo];
         successBlock();
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
         failureBlock(@"服务器未响应，请稍后再试");
     }];
 }
-// 获取用户头像
-+ (UIImage *)userPortrait{
-    NSNumber *userId = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-    NSString *name= [NSString stringWithFormat:@"userimage%lu",userId.integerValue];
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
-    NSFileManager *filemanager = [NSFileManager defaultManager];
-    if ([filemanager fileExistsAtPath:fullPath]) {
-        UIImage *image=[[UIImage alloc]initWithContentsOfFile:fullPath];
-        CGSize size = CGSizeMake(60, 60);
-        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
-        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        UIImage * scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return scaledImage;
-    }
-    return [UIImage imageNamed:@"Person"];
+
+#pragma mark - user logout
++ (void) clearCurrentUser {
+    NSString *path = [[self documentPath] stringByAppendingPathComponent:@"currentUser.plist"];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
 @end

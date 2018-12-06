@@ -9,5 +9,23 @@
 #import "WZUser.h"
 
 @implementation WZUser
+static WZUser* user = nil;
+
++ (instancetype) sharedUser {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        user = [[self alloc] init];
+    });
+    return user;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        user = [super allocWithZone:zone];
+    });
+    return user;
+}
 
 @end

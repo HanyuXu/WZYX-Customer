@@ -11,8 +11,10 @@
 #import "WZSubmitButtonTableViewCell.h"
 #import "WZMyProfileTableViewController.h"
 #import "WZLoginNavigationController.h"
-#import "WZUserInfo.h"
+#import "WZUserInfoManager.h"
 #import "WZSettingsTableViewController.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZMineTableViewController ()
 
@@ -23,14 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的";
+  if ([WZUserInfoManager userIsLoggedIn]) {
+        [WZUserInfoManager loadUserInfo];
+        [WZUserInfoManager downloadPortrait];
+   }
 #warning logout
-    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldReloadData:) name:@"reloadData" object:nil];
+//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldPresentLoginView:) name:@"shouldPresentLoginView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadUserInfo:) name:@"shouldLoadUserInfo" object:nil];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
+//    if ([WZUserInfoManager userIsLoggedIn]) {
+//
+//        [WZUserInfoManager downloadPortrait];
+//    }
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
@@ -48,16 +59,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    WZUser *user = [WZUser sharedUser];
     UITableViewCell *cell;
     if (indexPath.section == 0) { // AvatorCell
         WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellLeft];
         if (!portraitCell) {
             portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellLeft];
         }
-        portraitCell.avatarImageView.image = [WZUserInfo userPortrait];
-        if ([WZUserInfo userIsLoggedIn]) {
-            portraitCell.userNameLabel.text = [userDefaults objectForKey:@"userName"];
+        portraitCell.avatarImageView.image = [WZUserInfoManager userPortrait];
+        if ([WZUserInfoManager userIsLoggedIn]) {
+            portraitCell.userNameLabel.text =user.userName;
         }
         else {
             portraitCell.userNameLabel.text = @"登录 / 注册";
@@ -94,7 +105,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0){ //Profile
-        if ([WZUserInfo userIsLoggedIn]) {
+        if ([WZUserInfoManager userIsLoggedIn]) {
             WZMyProfileTableViewController *myProfileVC = [[WZMyProfileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             myProfileVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myProfileVC animated:YES];
@@ -122,8 +133,17 @@
     }];
 }
 
-- (void) shouldReloadData:(NSNotification *) notification {
+- (void)shouldReloadData:(NSNotification *) notification {
     //[self.tableView reloadData];
 }
 
+- (void)shouldPresentLoginView:(NSNotification *) notification {
+    WZLoginNavigationController *loginVC = [WZLoginNavigationController defaultLoginNavigationController];
+    [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+- (void)shouldLoadUserInfo:(NSNotification *) notificaiton {
+    [WZUserInfoManager loadUserInfo];
+    [WZUserInfoManager downloadPortrait];
+}
 @end

@@ -12,7 +12,8 @@
 #import "WZNameTableViewController.h"
 #import "WZGenderTableViewController.h"
 #import "WZLoginNavigationController.h"
-#import "WZUserInfo.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZMyProfileTableViewController ()
 
@@ -53,7 +54,7 @@
                 portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
             }
             portraitCell.textLabel.text = @"头像";
-            portraitCell.avatarImageView.image = [WZUserInfo userPortrait];
+            portraitCell.avatarImageView.image = [WZUserInfoManager userPortrait];
             return portraitCell;
         }
     } else if (indexPath.section == 1) {
@@ -63,14 +64,14 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"userNameCell"];
             }
             cell.textLabel.text = @"昵称";
-            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+            cell.detailTextLabel.text = [WZUser sharedUser].userName;
         } else if(indexPath.row == 1) {
             cell  = [self.tableView dequeueReusableCellWithIdentifier:@"PhoneNumberCell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PhoneNumberCell"];
             }
             cell.textLabel.text = @"手机号";
-            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
+            cell.detailTextLabel.text = [WZUser sharedUser].phoneNumber;
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
@@ -79,7 +80,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"GenderCell"];
             }
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"gender"];
+            cell.detailTextLabel.text = [WZUser sharedUser].gender;
         } else if (indexPath.row == 1) {
             cell  = [self.tableView dequeueReusableCellWithIdentifier:@"CityCell"];
             if (!cell) {

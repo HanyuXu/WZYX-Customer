@@ -8,7 +8,8 @@
 
 #import "WZAvatarViewController.h"
 #import <Masonry.h>
-#import "WZUserInfo.h"
+#import "WZUserInfoManager.h"
+#import <MBProgressHUD.h>
 
 #define kWZAvatorViewImageSize  (self.view.bounds.size.height-self.view.bounds.size.width-10)/2
 #define kWZAvatorViewEdgeInsets UIEdgeInsetsMake(kWZAvatorViewImageSize, 5, kWZAvatorViewImageSize, 5)
@@ -16,7 +17,7 @@
 
 
 @interface WZAvatarViewController ()
-
+@property (strong, nonatomic) MBProgressHUD *progressHUD;
 @end
 
 @implementation WZAvatarViewController
@@ -25,7 +26,7 @@
     
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.imageView.image = [WZUserInfo userPortrait];
+    self.imageView.image = [WZUserInfoManager userPortrait];
     [self.view addSubview:self.imageView];
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,13 +78,11 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     UIImage *newPhoto = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    
     UIImage *newImage = [self scaleToSize:newPhoto size:kWZAvatorViewNewImageSize];
     NSDictionary *params = @{@"authToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"]};
-    [WZUserInfo uploadImage:newImage withParamters:params success:^{
-        NSNumber *userId = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-        NSString *fileName = [NSString stringWithFormat:@"userimage%lu",userId.integerValue];
-        [WZUserInfo saveImage:newImage withName:fileName];
+    [self.progressHUD showAnimated:YES];
+    [WZUserInfoManager uploadImage:newImage withParamters:params success:^{
+        [self.progressHUD hideAnimated:YES];
         self.imageView.image = newPhoto;
     } failure:^(NSString * _Nonnull msg) {
         NSLog(@"fail");
@@ -91,6 +90,7 @@
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+        [self.progressHUD  hideAnimated:YES];
     }];
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -103,4 +103,13 @@
     UIGraphicsEndImageContext();
     return scaledImage;
 }
+
+- (MBProgressHUD *)progressHUD {
+    if (!_progressHUD) {
+        _progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:_progressHUD];
+    }
+    return _progressHUD;
+}
+
 @end

@@ -12,9 +12,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WZUserInfo : NSObject
+
+@property(strong, nonatomic) NSString *userName;
+@property(strong, nonatomic) NSString *gender;
+@property(strong, nonatomic) NSString *imagePath;
+
++ (instancetype) sharedUser;
 + (BOOL) userIsLoggedIn;
-+ (void) updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock
-                            failure:(void (^)(NSString *userInfo))failureBlock;
++ (void) saveUserInfoWithParameters:(NSDictionary *)userInfo;
++ (void) updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
 + (void) saveImage:(UIImage *)newImage withName:(NSString *)name;
 

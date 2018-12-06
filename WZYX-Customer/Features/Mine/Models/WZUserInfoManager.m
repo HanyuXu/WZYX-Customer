@@ -14,14 +14,38 @@
 
 @implementation WZUserInfo
 
-+ (BOOL) userIsLoggedIn{
+static WZUserInfo *_sharedUser;
+
++ (instancetype) sharedUser {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedUser = [[self alloc] init];
+    }) ;
+    return _sharedUser;
+}
+//保存用户信息
++ (void)saveUserInfoWithParameters:(NSDictionary *)userInfo {
+    NSString *gender, *userName, *imagePath;
+    if (userInfo[@"gender"] == [NSNull null]) { // strange
+        gender = @"未设定";
+    } else {
+        gender = ([userInfo[@"gender"] intValue] == 0) ? @"男" : @"女";
+    }
+    if (userInfo[@"userName"] == nil) {
+        userName = [NSString stringWithFormat:@"用户%@",userInfo[@"userId"]];
+    } else {
+        userName = userInfo[@"userName"];
+    }
+}
+
++ (BOOL) userIsLoggedIn {
     NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"]);
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"]) {
         return YES;
     }
     return NO;
 }
-
+//更新用户信息
 + (void)updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock
                        failure:(void (^)(NSString *userInfo))failureBlock {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -37,6 +61,7 @@
     }];
 }
 
+//保存用户头像
 + (void) saveImage:(UIImage *)newImage withName:(NSString *)name {
     NSData *imageData = UIImageJPEGRepresentation(newImage, 0.7);
     // 获取沙盒目录
@@ -77,7 +102,7 @@
         failureBlock(@"服务器未响应，请稍后再试");
     }];
 }
-
+// 获取用户头像
 + (UIImage *)userPortrait{
     NSNumber *userId = (NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     NSString *name= [NSString stringWithFormat:@"userimage%lu",userId.integerValue];

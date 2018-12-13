@@ -51,7 +51,7 @@
     } else {
         gender = ([userInfo[@"gender"] intValue] == 0) ? @"男" : @"女";
     }
-    if (userInfo[@"userName"] == nil) {
+    if (userInfo[@"userName"] == [NSNull null]) {
         userName = [NSString stringWithFormat:@"用户%@",userInfo[@"userId"]];
     } else {
         userName = userInfo[@"userName"];

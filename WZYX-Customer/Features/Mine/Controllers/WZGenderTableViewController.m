@@ -7,6 +7,8 @@
 //
 
 #import "WZGenderTableViewController.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZGenderTableViewController ()
 
@@ -16,19 +18,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:(UIBarButtonItemStylePlain) target:self action:@selector(setGenderButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    UIBarButtonItem *changeGenderButton = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:(UIBarButtonItemStylePlain) target:self action:@selector(changeGenderButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = changeGenderButton;
     self.tableView.allowsSelection = YES;
 }
 
-- (void)setGenderButtonPressed:(UIButton *)sender {
-//    if ([self.tableView indexPathForSelectedRow] != nil) {
-//        NSIndexPath *selectedIndex= [self.tableView indexPathForSelectedRow];
-//        if(selectedIndex.row != self.user.gender){
-//            self.user.gender = selectedIndex.row;
-//        }
-//    }
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)changeGenderButtonPressed:(UIButton *)sender {
+    if ([self.tableView indexPathForSelectedRow] != nil) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSIndexPath *selectedIndex= [self.tableView indexPathForSelectedRow];
+        int genderIndex = selectedIndex.row == 0? 0 : 1;
+        NSNumber *gender = [[NSNumber alloc]initWithInt:genderIndex];
+        NSDictionary *param = @{@"authToken":[userDefaults objectForKey:@"authToken"],@"gender":gender};
+        [WZUserInfoManager updateUserInfoWithPrameters:param success:^(){
+            NSString *genderString = genderIndex == 0? @"男" : @"女";
+            [WZUser sharedUser].gender = genderString;
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSString *msg){
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -43,21 +55,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
+    NSString *gender = [WZUser sharedUser].gender;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GenderCell"];
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"男";
-//            if (self.user.gender == male) {
-//                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//                [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-//            }
-        } else {
-            cell.textLabel.text=@"女";
-//            if (self.user.gender == female) {
-//                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//                cell.selected = YES;
-//                [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-//            }
+    }
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"男";
+        if([gender isEqualToString:@"男"]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.selected = YES;
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        }
+    } else {
+        cell.textLabel.text = @"女";
+        if([gender isEqualToString:@"女"]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            cell.selected = YES;
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

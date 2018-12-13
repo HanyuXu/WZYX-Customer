@@ -12,6 +12,8 @@
 #import "WZNameTableViewController.h"
 #import "WZGenderTableViewController.h"
 #import "WZLoginNavigationController.h"
+#import "WZUserInfoManager.h"
+#import "WZUser.h"
 
 @interface WZMyProfileTableViewController ()
 
@@ -20,6 +22,7 @@
 @implementation WZMyProfileTableViewController
 
 - (void)viewDidLoad {
+     // If user isn't logged in, this view should not appear.
     [super viewDidLoad];
     self.navigationItem.title = @"个人资料";
 }
@@ -31,44 +34,64 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 4;
+        return 1;
     } else {
         return 2;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        WZUserPortraitTableViewCell *cell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
-        cell.textLabel.text = @"头像";
-        cell.avatarImageView.image = [UIImage imageNamed:@"Person"];
-        return cell;
-    } else {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        if (indexPath.section == 0 && indexPath.row == 1) {
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        if(indexPath.row == 0 ) {
+            WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellRight];
+            if (!portraitCell) {
+                portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
+            }
+            portraitCell.textLabel.text = @"头像";
+            portraitCell.avatarImageView.image = [WZUserInfoManager userPortrait];
+            return portraitCell;
+        }
+    } else if (indexPath.section == 1) {
+        if(indexPath.row == 0) {
+            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"userNameCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"userNameCell"];
+            }
             cell.textLabel.text = @"昵称";
-            cell.detailTextLabel.text = @"测试一个非常非常非常非常非常非常非常长的名字";
-        } else if (indexPath.section == 0 && indexPath.row == 2) {
+            cell.detailTextLabel.text = [WZUser sharedUser].userName;
+        } else if(indexPath.row == 1) {
+            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"PhoneNumberCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PhoneNumberCell"];
+            }
             cell.textLabel.text = @"手机号";
-            cell.detailTextLabel.text = @"13800000000";
-        } else if (indexPath.section == 0 && indexPath.row == 3) {
-            cell.textLabel.text = @"密码";
-            cell.detailTextLabel.text = @"修改密码";
-        } else if (indexPath.section == 1 && indexPath.row == 0){
+            cell.detailTextLabel.text = [WZUser sharedUser].phoneNumber;
+        }
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"GenderCell"];
+            }
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = @"男";
-        } else {
+            cell.detailTextLabel.text = [WZUser sharedUser].gender;
+        } else if (indexPath.row == 1) {
+            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"CityCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CityCell"];
+            }
             cell.textLabel.text = @"地区";
             cell.detailTextLabel.text = @"上海 杨浦";
         }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
@@ -79,14 +102,13 @@
         if (indexPath.row == 0) {
             WZAvatarViewController *avatorVC = [[WZAvatarViewController alloc] init];
             [self.navigationController pushViewController:avatorVC animated:YES];
-        } else if (indexPath.row == 1) {
-            WZNameTableViewController *nameVC = [[WZNameTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            [self.navigationController pushViewController:nameVC animated:YES];
-        } else if (indexPath.row == 3) {
-            WZLoginNavigationController *loginVC = [WZLoginNavigationController defaultModifyPasswordNavigationController];
-            [self presentViewController:loginVC animated:YES completion:nil];
         }
     } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            WZNameTableViewController *nameVC = [[WZNameTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:nameVC animated:YES];
+        }
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             WZGenderTableViewController *genderVC = [[WZGenderTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:genderVC animated:YES];

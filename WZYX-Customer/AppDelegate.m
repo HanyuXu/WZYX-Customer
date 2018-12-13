@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WZMainTabBarController.h"
+#import "WZUserInfoManager.h"
 
 #define SANDBOX_DOCUMENT_PATH   NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
 #define DEFAULT_FILE_MANAGER    [NSFileManager defaultManager]
@@ -32,7 +33,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
+    [WZUserInfoManager saveUserInfo];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -7,6 +7,7 @@
 //
 
 #import "WZLogin.h"
+#import "WZUserInfoManager.h"
 #import "AFNetworking.h"
 
 @implementation WZLogin
@@ -20,6 +21,8 @@
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:phoneNumber forKey:@"phoneNumber"];
             [userDefaults setObject:responseDictionary[@"msg"] forKey:@"authToken"];
+            [WZUserInfoManager initializeUserInfoWithParameters:responseObject[@"data"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldLoadUserInfo" object:nil];
             successBlock();
         } else {
             failureBlock(responseDictionary[@"msg"]);

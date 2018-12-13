@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#define kWZTextLabelCellCenter @"kWZTextLabelCenter"
+
+#define kWZTextLabelCellCenter  @"kWZTextLabelCenter"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WZSettingsTableViewCell : UITableViewCell
+
 @property (strong,nonatomic) UILabel *WZtextLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

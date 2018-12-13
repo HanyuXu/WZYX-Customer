@@ -22,7 +22,6 @@
 @implementation WZMyProfileTableViewController
 
 - (void)viewDidLoad {
-     // If user isn't logged in, this view should not appear.
     [super viewDidLoad];
     self.navigationItem.title = @"个人资料";
 }
@@ -48,7 +47,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     if (indexPath.section == 0) {
-        if(indexPath.row == 0 ) {
+        if (indexPath.row == 0) {
             WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellRight];
             if (!portraitCell) {
                 portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
@@ -58,15 +57,15 @@
             return portraitCell;
         }
     } else if (indexPath.section == 1) {
-        if(indexPath.row == 0) {
-            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"userNameCell"];
+        if (indexPath.row == 0) {
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"userNameCell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"userNameCell"];
             }
             cell.textLabel.text = @"昵称";
             cell.detailTextLabel.text = [WZUser sharedUser].userName;
-        } else if(indexPath.row == 1) {
-            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"PhoneNumberCell"];
+        } else if (indexPath.row == 1) {
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"PhoneNumberCell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PhoneNumberCell"];
             }
@@ -75,14 +74,14 @@
         }
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"GenderCell"];
             }
             cell.textLabel.text = @"性别";
             cell.detailTextLabel.text = [WZUser sharedUser].gender;
         } else if (indexPath.row == 1) {
-            cell  = [self.tableView dequeueReusableCellWithIdentifier:@"CityCell"];
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"CityCell"];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CityCell"];
             }
@@ -96,7 +95,7 @@
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {

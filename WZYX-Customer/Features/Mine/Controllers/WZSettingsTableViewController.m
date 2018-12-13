@@ -20,12 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)showAlertViewWithTitle:(NSString *)title Message:(NSString *)msg {
@@ -35,7 +29,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -75,14 +69,16 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![WZUserInfoManager userIsLoggedIn]) {
         [self showAlertViewWithTitle:@"尚未登录" Message:@"请先登录以修改信息"];
         return;
     }
-    if (indexPath.section == 0 ) {//change password;
+    if (indexPath.section == 0) { //change password;
         [self presentViewController:[WZLoginNavigationController defaultModifyPasswordNavigationController] animated:YES completion:nil];
-    } else if (indexPath.section == 1) {//switch account
+    } else if (indexPath.section == 1) { //switch account
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出登录" message:@"确定要退出登录吗？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self presentViewController:alert animated:YES completion:nil];
@@ -94,12 +90,11 @@
         [alert addAction:okAction];
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
-    } else if (indexPath.section == 2) {// logout
+    } else if (indexPath.section == 2) { // logout
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"切换账号" message:@"确定要切换账号？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [WZUserInfoManager clearCurrentUser];
             [self.navigationController popViewControllerAnimated:YES];
-
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:okAction];

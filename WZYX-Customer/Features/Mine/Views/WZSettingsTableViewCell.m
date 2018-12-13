@@ -15,7 +15,7 @@
 - (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.accessoryType = UITableViewCellAccessoryNone;
-        if([reuseIdentifier isEqualToString:kWZTextLabelCellCenter]) {
+        if ([reuseIdentifier isEqualToString:kWZTextLabelCellCenter]) {
             [self.contentView addSubview:self.WZtextLabel];
             [self.WZtextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.bottom.equalTo(self.contentView).insets(kWZTextLabelCellInsets);
@@ -27,18 +27,10 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+#pragma mark - LazyLoad
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
-}
-
--(UILabel *)WZtextLabel {
-    if(!_WZtextLabel) {
+- (UILabel *)WZtextLabel {
+    if (!_WZtextLabel) {
         _WZtextLabel = [[UILabel alloc] init];
     }
     return _WZtextLabel;

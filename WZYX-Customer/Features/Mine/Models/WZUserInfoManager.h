@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong, nonatomic) NSString *userName;
 @property(strong, nonatomic) NSString *gender;
 @property(strong, nonatomic) NSString *imagePath;
+
 + (void)downloadPortrait;
 + (void)loadUserInfo;
 + (BOOL)userIsLoggedIn;
@@ -28,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)userPortrait;
 + (void)saveUserInfo;
 + (void)clearCurrentUser;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,12 +12,12 @@
 #import "WZUser.h"
 
 @interface WZUserInfoManager ()
+
 @end
 
 @implementation WZUserInfoManager
 
-
-#pragma mark - utility
+#pragma mark - Utilities
 
 // get "Document" directory
 + (NSString *)documentPath {
@@ -25,11 +25,11 @@
     return paths[0];
 }
 
-+ (NSString *)imagePathWithImageName:(NSString *)imageName{
++ (NSString *)imagePathWithImageName:(NSString *)imageName {
     return [[self documentPath] stringByAppendingPathComponent:imageName];
 }
 
-+ (NSString *)filePathWithFileName:(NSString *)FileName{
++ (NSString *)filePathWithFileName:(NSString *)FileName {
     return [[self documentPath] stringByAppendingPathComponent:FileName];
 }
 
@@ -40,8 +40,7 @@
     return [manager fileExistsAtPath:filePath];
 }
 
-
-#pragma mark - initialize user information
+#pragma mark - InitializeUserInformation
 
 // initialize user information with a dictionary parsed from json
 + (void)initializeUserInfoWithParameters:(NSDictionary *)userInfo {
@@ -52,13 +51,13 @@
         gender = ([userInfo[@"gender"] intValue] == 0) ? @"男" : @"女";
     }
     if (userInfo[@"userName"] == [NSNull null]) {
-        userName = [NSString stringWithFormat:@"用户%@",userInfo[@"userId"]];
+        userName = [NSString stringWithFormat:@"用户%@", userInfo[@"userId"]];
     } else {
         userName = userInfo[@"userName"];
     }
     
-    imageName = [NSString stringWithFormat:@"用户%@.jpg",userInfo[@"userId"]];
-    fileName = [NSString stringWithFormat:@"用户%@.plist",userInfo[@"userId"]];
+    imageName = [NSString stringWithFormat:@"用户%@.jpg", userInfo[@"userId"]];
+    fileName = [NSString stringWithFormat:@"用户%@.plist", userInfo[@"userId"]];
     imageURL = userInfo[@"photo"];
     phoneNumber = userInfo[@"phoneNumber"];
     WZUser *currentUser = [WZUser sharedUser];
@@ -84,7 +83,7 @@
     currentUser.phoneNumber = userInfo[@"phoneNumber"];
 }
 
-#pragma mark - save userInfomation
+#pragma mark - SaveUserInfomation
 
 + (void)saveUserInfo {
     WZUser *user = [WZUser sharedUser];
@@ -96,16 +95,15 @@
     [userInfo writeToFile:currentUserInfoFileName atomically:YES];
 }
 
-+ (void)saveImage:(UIImage *)newImage{
++ (void)saveImage:(UIImage *)newImage {
     NSString *imagePath = [self imagePathWithImageName:[WZUser sharedUser].imageName];
     NSData *imageData = UIImageJPEGRepresentation(newImage, 0.7);
     [imageData writeToFile:imagePath atomically:YES];
 }
 
-#pragma mark - obtain user information
+#pragma mark - ObtainUserInformation
 
 // 获取用户头像
-
 + (void)downloadPortrait {
     AFImageDownloader *downloader = [AFImageDownloader defaultInstance];
     NSString *imageURLString = [[WZUser sharedUser] imageURL];
@@ -136,7 +134,7 @@
     else return [UIImage imageNamed:@"Person"];
 }
 
-#pragma mark - update user information
+#pragma mark - UpdateUserInformation
 
 // update user's information such as name, gender etc.
 + (void)updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock
@@ -145,8 +143,7 @@
     [manager POST:@"http://120.79.10.184:8080/mobile/user/update_information" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
-            
-         successBlock();
+            successBlock();
         } else {
             failureBlock(responseDictionary[@"msg"]);
         }
@@ -156,7 +153,7 @@
 }
 
 // upload portrait
-+(void)uploadImage:(UIImage *)image withParamters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock{
++ (void)uploadImage:(UIImage *)image withParamters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",                                  
@@ -191,9 +188,11 @@
     }];
 }
 
-#pragma mark - user logout
-+ (void) clearCurrentUser {
+#pragma mark - UserLogout
+
++ (void)clearCurrentUser {
     NSString *path = [[self documentPath] stringByAppendingPathComponent:@"currentUser.plist"];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
+
 @end

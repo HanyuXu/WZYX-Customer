@@ -23,19 +23,21 @@
     self.tableView.allowsSelection = YES;
 }
 
+#pragma mark - EventHandlers
+
 - (void)changeGenderButtonPressed:(UIButton *)sender {
     if ([self.tableView indexPathForSelectedRow] != nil) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSIndexPath *selectedIndex= [self.tableView indexPathForSelectedRow];
-        int genderIndex = selectedIndex.row == 0? 0 : 1;
-        NSNumber *gender = [[NSNumber alloc]initWithInt:genderIndex];
-        NSDictionary *param = @{@"authToken":[userDefaults objectForKey:@"authToken"],@"gender":gender};
-        [WZUserInfoManager updateUserInfoWithPrameters:param success:^(){
-            NSString *genderString = genderIndex == 0? @"男" : @"女";
+        int genderIndex = selectedIndex.row == 0 ? 0 : 1;
+        NSNumber *gender = [[NSNumber alloc] initWithInt:genderIndex];
+        NSDictionary *param = @{@"authToken" : [userDefaults objectForKey:@"authToken"], @"gender" : gender};
+        [WZUserInfoManager updateUserInfoWithPrameters:param success:^{
+            NSString *genderString = genderIndex == 0 ? @"男" : @"女";
             [WZUser sharedUser].gender = genderString;
             [self.navigationController popViewControllerAnimated:YES];
-        } failure:^(NSString *msg){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];
+        } failure:^(NSString * _Nonnull userInfo) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
             [alert addAction:okAction];
             [self presentViewController:alert animated:YES completion:nil];
@@ -61,14 +63,14 @@
     }
     if (indexPath.row == 0) {
         cell.textLabel.text = @"男";
-        if([gender isEqualToString:@"男"]){
+        if ([gender isEqualToString:@"男"]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.selected = YES;
             [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         }
     } else {
         cell.textLabel.text = @"女";
-        if([gender isEqualToString:@"女"]){
+        if ([gender isEqualToString:@"女"]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             cell.selected = YES;
             [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];

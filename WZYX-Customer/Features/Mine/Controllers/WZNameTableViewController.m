@@ -93,7 +93,6 @@
 #pragma mark - UIResponder
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touch begins");
     [self.tableView endEditing: YES];
 }
 

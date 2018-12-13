@@ -112,10 +112,8 @@
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
     [downloader downloadImageForURLRequest:request success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
-        NSLog(@"success");
         [self saveImage:responseObject];
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-        NSLog(@"failure");
     }];
 }
 

@@ -36,6 +36,18 @@
 		3B96DF0321AC289A007DC72B /* WZCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF0121AC289A007DC72B /* WZCityInfo.m */; };
 		3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DF0421AC2A5A007DC72B /* cities.plist */; };
 		3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */; };
+		3B96DF5C21B0F080007DC72B /* WZOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF5B21B0F080007DC72B /* WZOrder.m */; };
+		3B96DF5F21B0FB36007DC72B /* WZOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF5E21B0FB36007DC72B /* WZOrderTableViewCell.m */; };
+		3B96DF6221B10205007DC72B /* WZOrderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6121B10205007DC72B /* WZOrderNavigationController.m */; };
+		3B96DF6521B10DD4007DC72B /* WZBaseScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6421B10DD4007DC72B /* WZBaseScrollViewController.m */; };
+		3B96DF6821B11C6A007DC72B /* WZOrderListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */; };
+		3BC20C8021BB9873002A31EC /* WZObjectDictionaryConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */; };
+		3BC20C8321BE02BA002A31EC /* WZOrderActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8221BE02BA002A31EC /* WZOrderActionTableViewCell.m */; };
+		3BC20C8621BE359F002A31EC /* WZOrderDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8521BE359F002A31EC /* WZOrderDetailTableViewController.m */; };
+		3BC20C8921BE3C75002A31EC /* WZOrderStateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8821BE3C75002A31EC /* WZOrderStateTableViewCell.m */; };
+		3BC20C8C21BE42C8002A31EC /* WZOrderPriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8B21BE42C8002A31EC /* WZOrderPriceTableViewCell.m */; };
+		3BC20C8F21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8E21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m */; };
+		3BC20C9221BF9302002A31EC /* WZCertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C9121BF9302002A31EC /* WZCertificationViewController.m */; };
 		4410F969BE01C12EE4B287EC /* libPods-WZYX-CustomerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */; };
 		55458D95B0F617FAEFF3F2F0 /* libPods-WZYX-CustomerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */; };
 		CDDCAF79B2D05B4069998630 /* libPods-WZYX-Customer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 574557591493654341966A29 /* libPods-WZYX-Customer.a */; };
@@ -119,6 +131,30 @@
 		3B96DF0421AC2A5A007DC72B /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		3B96DF0621AC3ED9007DC72B /* WZSubmitButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSubmitButtonTableViewCell.h; sourceTree = "<group>"; };
 		3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSubmitButtonTableViewCell.m; sourceTree = "<group>"; };
+		3B96DF5A21B0F080007DC72B /* WZOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrder.h; sourceTree = "<group>"; };
+		3B96DF5B21B0F080007DC72B /* WZOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrder.m; sourceTree = "<group>"; };
+		3B96DF5D21B0FB36007DC72B /* WZOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderTableViewCell.h; sourceTree = "<group>"; };
+		3B96DF5E21B0FB36007DC72B /* WZOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderTableViewCell.m; sourceTree = "<group>"; };
+		3B96DF6021B10205007DC72B /* WZOrderNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderNavigationController.h; sourceTree = "<group>"; };
+		3B96DF6121B10205007DC72B /* WZOrderNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderNavigationController.m; sourceTree = "<group>"; };
+		3B96DF6321B10DD4007DC72B /* WZBaseScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZBaseScrollViewController.h; sourceTree = "<group>"; };
+		3B96DF6421B10DD4007DC72B /* WZBaseScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZBaseScrollViewController.m; sourceTree = "<group>"; };
+		3B96DF6621B11C6A007DC72B /* WZOrderListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderListTableViewController.h; sourceTree = "<group>"; };
+		3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderListTableViewController.m; sourceTree = "<group>"; };
+		3BC20C7E21BB9873002A31EC /* WZObjectDictionaryConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZObjectDictionaryConverter.h; sourceTree = "<group>"; };
+		3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZObjectDictionaryConverter.m; sourceTree = "<group>"; };
+		3BC20C8121BE02BA002A31EC /* WZOrderActionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderActionTableViewCell.h; sourceTree = "<group>"; };
+		3BC20C8221BE02BA002A31EC /* WZOrderActionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderActionTableViewCell.m; sourceTree = "<group>"; };
+		3BC20C8421BE359F002A31EC /* WZOrderDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderDetailTableViewController.h; sourceTree = "<group>"; };
+		3BC20C8521BE359F002A31EC /* WZOrderDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderDetailTableViewController.m; sourceTree = "<group>"; };
+		3BC20C8721BE3C75002A31EC /* WZOrderStateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderStateTableViewCell.h; sourceTree = "<group>"; };
+		3BC20C8821BE3C75002A31EC /* WZOrderStateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderStateTableViewCell.m; sourceTree = "<group>"; };
+		3BC20C8A21BE42C8002A31EC /* WZOrderPriceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderPriceTableViewCell.h; sourceTree = "<group>"; };
+		3BC20C8B21BE42C8002A31EC /* WZOrderPriceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderPriceTableViewCell.m; sourceTree = "<group>"; };
+		3BC20C8D21BE4B0B002A31EC /* WZOrderInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderInfoTableViewCell.h; sourceTree = "<group>"; };
+		3BC20C8E21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderInfoTableViewCell.m; sourceTree = "<group>"; };
+		3BC20C9021BF9302002A31EC /* WZCertificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZCertificationViewController.h; sourceTree = "<group>"; };
+		3BC20C9121BF9302002A31EC /* WZCertificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZCertificationViewController.m; sourceTree = "<group>"; };
 		516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528167EA6683A41A180B57B0 /* Pods-WZYX-Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-Customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer.release.xcconfig"; sourceTree = "<group>"; };
 		574557591493654341966A29 /* libPods-WZYX-Customer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-Customer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +309,8 @@
 			children = (
 				3B96DEB021A7FB27007DC72B /* WZDataFormatChecker.h */,
 				3B96DEB121A7FB27007DC72B /* WZDataFormatChecker.m */,
+				3BC20C7E21BB9873002A31EC /* WZObjectDictionaryConverter.h */,
+				3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -335,6 +373,7 @@
 		3B96DEDC21AC0737007DC72B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				3B96DF5621B0F03B007DC72B /* Order */,
 				3B96DED921AC0655007DC72B /* Mine */,
 				3B96DE8D21A6B638007DC72B /* Login */,
 			);
@@ -367,6 +406,59 @@
 			children = (
 				3B96DF0221AC289A007DC72B /* WZCityInfo.h */,
 				3B96DF0121AC289A007DC72B /* WZCityInfo.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B96DF5621B0F03B007DC72B /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF5921B0F062007DC72B /* Models */,
+				3B96DF5821B0F058007DC72B /* Views */,
+				3B96DF5721B0F04A007DC72B /* Controllers */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		3B96DF5721B0F04A007DC72B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF6021B10205007DC72B /* WZOrderNavigationController.h */,
+				3B96DF6121B10205007DC72B /* WZOrderNavigationController.m */,
+				3B96DF6321B10DD4007DC72B /* WZBaseScrollViewController.h */,
+				3B96DF6421B10DD4007DC72B /* WZBaseScrollViewController.m */,
+				3B96DF6621B11C6A007DC72B /* WZOrderListTableViewController.h */,
+				3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */,
+				3BC20C8421BE359F002A31EC /* WZOrderDetailTableViewController.h */,
+				3BC20C8521BE359F002A31EC /* WZOrderDetailTableViewController.m */,
+				3BC20C9021BF9302002A31EC /* WZCertificationViewController.h */,
+				3BC20C9121BF9302002A31EC /* WZCertificationViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3B96DF5821B0F058007DC72B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF5D21B0FB36007DC72B /* WZOrderTableViewCell.h */,
+				3B96DF5E21B0FB36007DC72B /* WZOrderTableViewCell.m */,
+				3BC20C8121BE02BA002A31EC /* WZOrderActionTableViewCell.h */,
+				3BC20C8221BE02BA002A31EC /* WZOrderActionTableViewCell.m */,
+				3BC20C8721BE3C75002A31EC /* WZOrderStateTableViewCell.h */,
+				3BC20C8821BE3C75002A31EC /* WZOrderStateTableViewCell.m */,
+				3BC20C8A21BE42C8002A31EC /* WZOrderPriceTableViewCell.h */,
+				3BC20C8B21BE42C8002A31EC /* WZOrderPriceTableViewCell.m */,
+				3BC20C8D21BE4B0B002A31EC /* WZOrderInfoTableViewCell.h */,
+				3BC20C8E21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B96DF5921B0F062007DC72B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B96DF5A21B0F080007DC72B /* WZOrder.h */,
+				3B96DF5B21B0F080007DC72B /* WZOrder.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,8 +675,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC20C8321BE02BA002A31EC /* WZOrderActionTableViewCell.m in Sources */,
+				3BC20C8021BB9873002A31EC /* WZObjectDictionaryConverter.m in Sources */,
 				3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */,
 				3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */,
+				3B96DF6221B10205007DC72B /* WZOrderNavigationController.m in Sources */,
 				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
 				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
 				3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */,
@@ -597,14 +692,23 @@
 				3B96DEE521AC09BE007DC72B /* WZMineNavigationController.m in Sources */,
 				3B96DE2C21A662A1007DC72B /* main.m in Sources */,
 				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
+				3BC20C8C21BE42C8002A31EC /* WZOrderPriceTableViewCell.m in Sources */,
 				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,
 				3B96DEAE21A7E8B8007DC72B /* UIButton+WZCountDownButton.m in Sources */,
 				3B96DED121AA9553007DC72B /* WZModifyPasswordViewController.m in Sources */,
+				3BC20C8621BE359F002A31EC /* WZOrderDetailTableViewController.m in Sources */,
+				3BC20C9221BF9302002A31EC /* WZCertificationViewController.m in Sources */,
+				3B96DF5C21B0F080007DC72B /* WZOrder.m in Sources */,
+				3BC20C8921BE3C75002A31EC /* WZOrderStateTableViewCell.m in Sources */,
 				3B96DEB621A94440007DC72B /* WZLogin.m in Sources */,
+				3B96DF6821B11C6A007DC72B /* WZOrderListTableViewController.m in Sources */,
+				3B96DF5F21B0FB36007DC72B /* WZOrderTableViewCell.m in Sources */,
+				3BC20C8F21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m in Sources */,
 				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
 				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
 				3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */,
 				3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */,
+				3B96DF6521B10DD4007DC72B /* WZBaseScrollViewController.m in Sources */,
 				3B96DEFB21AC270A007DC72B /* WZAvatarViewController.m in Sources */,
 				3B96DE9321A6B6A2007DC72B /* WZLoginViewController.m in Sources */,
 			);

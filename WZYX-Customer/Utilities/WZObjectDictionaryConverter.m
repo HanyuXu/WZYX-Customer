@@ -27,7 +27,11 @@
     NSArray *properties = [WZObjectDictionaryConverter propertiesArrayOfClass:[obj class]];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:properties.count];
     for (NSString *property in properties) {
-        [dictionary setObject:[obj valueForKey:property] forKey:property];
+        if ([obj valueForKey:property] != nil) {
+            [dictionary setObject:[obj valueForKey:property] forKey:property];
+        } else {
+            [dictionary setObject:[NSNull null] forKey:property];
+        }
     }
     return dictionary;
 }

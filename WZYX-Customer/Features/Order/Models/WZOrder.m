@@ -22,7 +22,9 @@
     if (self = [super init]) {
         NSArray *properties = [WZObjectDictionaryConverter propertiesArrayOfClass:[self class]];
         for (NSString *property in properties) {
-            [self setValue:dataDictionary[property] forKey:property];
+            if (dataDictionary[property] != [NSNull null]) {
+                [self setValue:dataDictionary[property] forKey:property];
+            }
         }
     }
     return self;

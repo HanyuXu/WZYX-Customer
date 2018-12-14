@@ -45,52 +45,43 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellRight];
-            if (!portraitCell) {
-                portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
-            }
-            portraitCell.textLabel.text = @"头像";
-            portraitCell.avatarImageView.image = [WZUserInfoManager userPortrait];
-            return portraitCell;
+        WZUserPortraitTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellRight];
+        if (!cell) {
+            cell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellRight];
         }
+        cell.textLabel.text = @"头像";
+        cell.avatarImageView.image = [WZUserInfoManager userPortrait];
+        return cell;
     } else if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ItemCell"];
+        }
         if (indexPath.row == 0) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"userNameCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"userNameCell"];
-            }
             cell.textLabel.text = @"昵称";
             cell.detailTextLabel.text = [WZUser sharedUser].userName;
         } else if (indexPath.row == 1) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"PhoneNumberCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PhoneNumberCell"];
-            }
             cell.textLabel.text = @"手机号";
             cell.detailTextLabel.text = [WZUser sharedUser].phoneNumber;
         }
-    } else if (indexPath.section == 2) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ItemCell"];
+        }
         if (indexPath.row == 0) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"GenderCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"GenderCell"];
-            }
             cell.textLabel.text = @"性别";
             cell.detailTextLabel.text = [WZUser sharedUser].gender;
         } else if (indexPath.row == 1) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"CityCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"CityCell"];
-            }
             cell.textLabel.text = @"地区";
             cell.detailTextLabel.text = @"上海 杨浦";
         }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate

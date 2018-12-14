@@ -11,7 +11,6 @@
 #import "WZSubmitButtonTableViewCell.h"
 #import "WZMyProfileTableViewController.h"
 #import "WZLoginNavigationController.h"
-#import "WZUserInfoManager.h"
 #import "WZSettingsTableViewController.h"
 #import "WZUserInfoManager.h"
 #import "WZUser.h"
@@ -25,21 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我的";
+    
     if ([WZUserInfoManager userIsLoggedIn]) {
         [WZUserInfoManager loadUserInfo];
-        [WZUserInfoManager downloadPortrait];
     }
-//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldPresentLoginView:) name:@"shouldPresentLoginView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldLoadUserInfo:) name:@"shouldLoadUserInfo" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    if ([WZUserInfoManager userIsLoggedIn]) {
-//
-//        [WZUserInfoManager downloadPortrait];
-//    }
     [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
@@ -58,52 +51,51 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WZUser *user = [WZUser sharedUser];
-    UITableViewCell *cell;
-    if (indexPath.section == 0) { // AvatorCell
-        WZUserPortraitTableViewCell *portraitCell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellLeft];
-        if (!portraitCell) {
-            portraitCell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellLeft];
+    if (indexPath.section == 0) {
+        WZUserPortraitTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kWZUserPortraitTableViewCellLeft];
+        if (!cell) {
+            cell = [[WZUserPortraitTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWZUserPortraitTableViewCellLeft];
         }
-        portraitCell.avatarImageView.image = [WZUserInfoManager userPortrait];
+        WZUser *user = [WZUser sharedUser];
+        cell.avatarImageView.image = [WZUserInfoManager userPortrait];
         if ([WZUserInfoManager userIsLoggedIn]) {
-            portraitCell.userNameLabel.text =user.userName;
+            cell.userNameLabel.text =user.userName;
+        } else {
+            cell.userNameLabel.text = @"登录 / 注册";
         }
-        else {
-            portraitCell.userNameLabel.text = @"登录 / 注册";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    } else if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingCell"];
         }
-        portraitCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return portraitCell;
-    } else if (indexPath.section == 1) { // Favorite
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FavoriteCell"];
         cell.imageView.image = [UIImage imageNamed:@"Setting"];
         cell.textLabel.text = @"收藏";
-    } else if (indexPath.section == 2) { // Setting & About
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingCell"];
+        }
         if (indexPath.row == 0) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"SettingCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingCell"];
-            }
             cell.imageView.image = [UIImage imageNamed:@"Setting"];
             cell.textLabel.text = @"设置";
-        }else if (indexPath.row == 1) {
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"AboutCell"];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AboutCell"];
-            }
+        } else if (indexPath.row == 1) {
             cell.imageView.image = [UIImage imageNamed:@"Setting"];
             cell.textLabel.text = @"关于";
         }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0){ // Profile
+    if (indexPath.section == 0) {
         if ([WZUserInfoManager userIsLoggedIn]) {
             WZMyProfileTableViewController *myProfileVC = [[WZMyProfileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             myProfileVC.hidesBottomBarWhenPushed = YES;
@@ -112,28 +104,18 @@
             WZLoginNavigationController *loginVC = [WZLoginNavigationController defaultLoginNavigationController];
             [self presentViewController:loginVC animated:YES completion:nil];
         }
-    } else if (indexPath.section == 1) { // Favorites
+    } else if (indexPath.section == 1) {
         
     } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) { // Settings
+        if (indexPath.row == 0) {
             WZSettingsTableViewController *settingsVC = [[WZSettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            settingsVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingsVC animated:YES];
         }
     }
 }
 
 #pragma mark - EventHandlers
-
-- (void)pressesLoginButton:(UIButton *)button {
-    WZLoginNavigationController *loginVC = [WZLoginNavigationController defaultLoginNavigationController];
-    [self presentViewController:loginVC animated:YES completion:^(){
-        [self.tableView reloadData];
-    }];
-}
-
-- (void)shouldReloadData:(NSNotification *)notification {
-    //[self.tableView reloadData];
-}
 
 - (void)shouldPresentLoginView:(NSNotification *)notification {
     WZLoginNavigationController *loginVC = [WZLoginNavigationController defaultLoginNavigationController];
@@ -142,7 +124,6 @@
 
 - (void)shouldLoadUserInfo:(NSNotification *)notificaiton {
     [WZUserInfoManager loadUserInfo];
-    [WZUserInfoManager downloadPortrait];
     [self.tableView reloadData];
 }
 

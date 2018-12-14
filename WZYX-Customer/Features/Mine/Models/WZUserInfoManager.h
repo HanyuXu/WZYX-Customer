@@ -12,23 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WZUserInfoManager : NSObject
 
-@property(strong, nonatomic) NSString *userName;
-@property(strong, nonatomic) NSString *gender;
-@property(strong, nonatomic) NSString *imagePath;
-
-+ (void)downloadPortrait;
-+ (void)loadUserInfo;
 + (BOOL)userIsLoggedIn;
 + (void)initializeUserInfoWithParameters:(NSDictionary *)userInfo;
++ (void)loadUserInfo;
++ (void)saveUserInfo;
++ (UIImage *)userPortrait;
++ (void)clearCurrentUser;
+
 + (void)updateUserInfoWithPrameters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)saveImage:(UIImage *)newImage;
-
 + (void)uploadImage:(UIImage *)image withParamters:(NSDictionary *)param success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
-
-+ (UIImage *)userPortrait;
-+ (void)saveUserInfo;
-+ (void)clearCurrentUser;
 
 @end
 

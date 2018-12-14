@@ -23,7 +23,7 @@
             [self.contentView addSubview:self.userNameLabel];
             [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.left.bottom.equalTo(self.contentView).insets(kWZUserPortraitTableViewCellEdgeInsets);
-                make.size.mas_equalTo(kWZUserPortraitTableViewCellAvatarImageViewSize).priorityHigh();
+                make.size.mas_equalTo(kWZUserPortraitTableViewCellAvatarImageViewSize).priority(800);
             }];
             [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.avatarImageView.mas_right).inset(kWZUserPortraitTableViewCellEdgeInsets.right);

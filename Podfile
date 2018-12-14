@@ -6,6 +6,7 @@ target 'WZYX-Customer' do
   pod 'Masonry', '1.1.0'
   pod 'AFNetworking', '3.2.1'
   pod 'MBProgressHUD', '1.1.0'
+  pod 'FMDB', '2.7.5'
 
   target 'WZYX-CustomerTests' do
     inherit! :search_paths

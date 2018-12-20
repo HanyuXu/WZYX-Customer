@@ -74,13 +74,17 @@
                 [WZUserInfoManager saveUserInfo];
                 [self.navigationController popViewControllerAnimated:YES];
             } failure:^(NSString * _Nonnull userInfo) {
-                self.textField.text = [userDefaults objectForKey:@"userName"];
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
                 [alert addAction:okAction];
                 [self presentViewController:alert animated:YES completion:nil];
             }];
         }
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名未改变" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

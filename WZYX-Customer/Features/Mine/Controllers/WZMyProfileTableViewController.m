@@ -11,7 +11,6 @@
 #import "WZAvatarViewController.h"
 #import "WZNameTableViewController.h"
 #import "WZGenderTableViewController.h"
-#import "WZLoginNavigationController.h"
 #import "WZUserInfoManager.h"
 #import "WZUser.h"
 

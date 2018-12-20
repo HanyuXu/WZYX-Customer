@@ -22,15 +22,13 @@
 @implementation WZUserInfoManager
 
 + (BOOL)userIsLoggedIn {
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    if ([userDefaults objectForKey:@"authToken"] != nil) {
-//        return YES;
-//    } else {
-//        return NO;
-//    }
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
-    return [manager fileExistsAtPath:filePath];
+    // 待实现：后台应提供心跳接口，验证登录状态是否过期
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"authToken"] != nil) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 + (void)initializeUserInfoWithParameters:(NSDictionary *)userInfo {
@@ -53,7 +51,7 @@
 }
 
 + (void)loadUserInfo {
-    NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
+    NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"CurrentUser.plist"];
     NSDictionary *userInfo = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     WZUser *currentUser = [WZUser sharedUser];
     currentUser.userName = userInfo[@"userName"];
@@ -67,9 +65,7 @@
 + (void)saveUserInfo {
     WZUser *user = [WZUser sharedUser];
     NSDictionary *userInfo = @{@"userName":user.userName, @"gender":user.gender, @"imageName":user.imageName, @"fileName":user.fileName, @"imageURL":user.imageURL, @"phoneNumber":user.phoneNumber};
-    NSString *userInfoFileName = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:userInfo[@"fileName"]];
-    NSString *currentUserInfoFileName = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
-    [userInfo writeToFile:userInfoFileName atomically:YES];
+    NSString *currentUserInfoFileName = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"CurrentUser.plist"];
     [userInfo writeToFile:currentUserInfoFileName atomically:YES];
 }
 
@@ -88,7 +84,7 @@
 }
 
 + (void)clearCurrentUser {
-    NSString *path = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
+    NSString *path = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"CurrentUser.plist"];
     [DEFAULT_FILE_MANAGER removeItemAtPath:path error:nil];
 }
 

@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#define kWZTextLabelCellCenter  @"kWZTextLabelCenter"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WZSettingsTableViewCell : UITableViewCell
+@interface WZCenterLabelTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) UILabel *WZtextLabel;
+@property (strong,nonatomic) UILabel *centerLabel;
 
 @end
 

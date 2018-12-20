@@ -8,7 +8,6 @@
 
 #import "WZMineTableViewController.h"
 #import "WZUserPortraitTableViewCell.h"
-#import "WZSubmitButtonTableViewCell.h"
 #import "WZMyProfileTableViewController.h"
 #import "WZLoginNavigationController.h"
 #import "WZSettingsTableViewController.h"
@@ -59,7 +58,7 @@
         WZUser *user = [WZUser sharedUser];
         cell.avatarImageView.image = [WZUserInfoManager userPortrait];
         if ([WZUserInfoManager userIsLoggedIn]) {
-            cell.userNameLabel.text =user.userName;
+            cell.userNameLabel.text = user.userName;
         } else {
             cell.userNameLabel.text = @"登录 / 注册";
         }

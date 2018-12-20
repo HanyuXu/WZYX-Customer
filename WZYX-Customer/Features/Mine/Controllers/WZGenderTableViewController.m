@@ -35,6 +35,7 @@
         [WZUserInfoManager updateUserInfoWithPrameters:param success:^{
             NSString *genderString = genderIndex == 0 ? @"男" : @"女";
             [WZUser sharedUser].gender = genderString;
+            [WZUserInfoManager saveUserInfo];
             [self.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString * _Nonnull userInfo) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];

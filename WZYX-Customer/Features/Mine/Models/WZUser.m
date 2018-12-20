@@ -12,7 +12,7 @@
 
 static WZUser* user = nil;
 
-+ (instancetype) sharedUser {
++ (instancetype)sharedUser {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         user = [[self alloc] init];

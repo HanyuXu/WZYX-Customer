@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WZNameTableViewController : UITableViewController <UITextFieldDelegate>
+@interface WZNameTableViewController : UITableViewController
 
 @end
 

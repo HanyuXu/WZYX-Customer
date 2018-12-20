@@ -16,8 +16,9 @@
 #define kWZAvatorViewEdgeInsets     UIEdgeInsetsMake(kWZAvatorViewImageSize, 5, kWZAvatorViewImageSize, 5)
 #define kWZAvatorViewNewImageSize   CGSizeMake(60,60)
 
-@interface WZAvatarViewController ()
+@interface WZAvatarViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) MBProgressHUD *progressHUD;
 
 @end

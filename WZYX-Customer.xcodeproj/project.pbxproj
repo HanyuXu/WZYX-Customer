@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */; };
 		1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */; };
-		1F188CE021AF957B00985A57 /* WZSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */; };
+		1F188CE021AF957B00985A57 /* WZCenterLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDF21AF957B00985A57 /* WZCenterLabelTableViewCell.m */; };
 		1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA340C21B2768C00CF8F54 /* WZUser.m */; };
 		3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE1D21A662A0007DC72B /* AppDelegate.m */; };
 		3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2521A662A1007DC72B /* Assets.xcassets */; };
@@ -78,8 +78,8 @@
 		1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUserInfoManager.m; sourceTree = "<group>"; };
 		1F188CDB21AF93FF00985A57 /* WZSettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewController.h; sourceTree = "<group>"; };
 		1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewController.m; sourceTree = "<group>"; };
-		1F188CDE21AF957B00985A57 /* WZSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewCell.h; sourceTree = "<group>"; };
-		1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewCell.m; sourceTree = "<group>"; };
+		1F188CDE21AF957B00985A57 /* WZCenterLabelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZCenterLabelTableViewCell.h; sourceTree = "<group>"; };
+		1F188CDF21AF957B00985A57 /* WZCenterLabelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZCenterLabelTableViewCell.m; sourceTree = "<group>"; };
 		1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFA340B21B2768C00CF8F54 /* WZUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUser.h; sourceTree = "<group>"; };
 		1FFA340C21B2768C00CF8F54 /* WZUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUser.m; sourceTree = "<group>"; };
@@ -398,8 +398,8 @@
 				3B96DEF421AC22DD007DC72B /* WZTextFieldTableViewCell.m */,
 				3B96DF0621AC3ED9007DC72B /* WZSubmitButtonTableViewCell.h */,
 				3B96DF0721AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m */,
-				1F188CDE21AF957B00985A57 /* WZSettingsTableViewCell.h */,
-				1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */,
+				1F188CDE21AF957B00985A57 /* WZCenterLabelTableViewCell.h */,
+				1F188CDF21AF957B00985A57 /* WZCenterLabelTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -722,7 +722,7 @@
 				3B96DF5F21B0FB36007DC72B /* WZOrderTableViewCell.m in Sources */,
 				3BC20C8F21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m in Sources */,
 				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
-				1F188CE021AF957B00985A57 /* WZSettingsTableViewCell.m in Sources */,
+				1F188CE021AF957B00985A57 /* WZCenterLabelTableViewCell.m in Sources */,
 				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
 				3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */,
 				3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */,

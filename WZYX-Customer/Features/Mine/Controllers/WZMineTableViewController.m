@@ -29,7 +29,6 @@
         [WZUserInfoManager loadUserInfo];
         [WZUserInfoManager downloadPortrait];
    }
-#warning logout
 //    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
 //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldPresentLoginView:) name:@"shouldPresentLoginView" object:nil];
@@ -145,5 +144,6 @@
 - (void)shouldLoadUserInfo:(NSNotification *) notificaiton {
     [WZUserInfoManager loadUserInfo];
     [WZUserInfoManager downloadPortrait];
+    [self.tableView reloadData];
 }
 @end

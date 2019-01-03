@@ -20,14 +20,14 @@
         [self.contentView addSubview: self.topImage];
         [self.contentView addSubview:self.bottomLabel];
     }
-    //self.backgroundColor = [UIColor greenColor];
     return self;
 }
 
 - (void) layoutSubviews {
     [self.topImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(kWZActivityCollectionViewCellTopImageSize);
+        //make.size.mas_equalTo(kWZActivityCollectionViewCellTopImageSize);
         make.top.left.right.equalTo(self.contentView).insets(kWZActivityCollectionViewCellTopImageEdgeInsets);
+        make.centerX.equalTo(self.contentView);
     }];
     [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.size.mas_equalTo(kWZActivityCollectionViewCellBottomLabelSize);

@@ -16,23 +16,27 @@ PODS:
     - AFNetworking/NSURLSession
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - AFNetworking (= 3.2.1)
   - Masonry (= 1.1.0)
   - MBProgressHUD (= 1.1.0)
+  - SVPullToRefresh
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Masonry
     - MBProgressHUD
+    - SVPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 5969d67db188bb88c0a5830a780d342eb2c3da28
+PODFILE CHECKSUM: e7bc155059d9040cf33a0e1c8073e5fe29b60dd8
 
 COCOAPODS: 1.5.3

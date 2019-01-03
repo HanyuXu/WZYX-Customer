@@ -6,6 +6,8 @@
 //  Copyright © 2018年 WZYX. All rights reserved.
 //
 
+#define kWZActivityCategoryTableViewCellInsets UIEdgeInsetsMake(5,5,5,5)
+
 #import "WZActivityCategoryTableViewCell.h"
 #import <Masonry.h>
 
@@ -25,10 +27,7 @@
 
 - (void)layoutSubviews {
     [self.categoryCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.left.equalTo(self.contentView).offset(5);
-        make.right.equalTo(self.contentView).offset(-5);
-        make.top.equalTo(self.contentView).offset(5);
-        make.bottom.equalTo(self.contentView).offset(-20);
+        make.edges.equalTo(self.contentView).insets(kWZActivityCategoryTableViewCellInsets);
     }];
 }
 
@@ -36,7 +35,6 @@
 - (UICollectionViewFlowLayout *) layout {
     if (!_layout) {
         _layout = [[UICollectionViewFlowLayout alloc] init];
-        //_layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 100);
         _layout.itemSize =CGSizeMake(55, 70);
     }
     return _layout;
@@ -44,7 +42,7 @@
 
 - (UICollectionView *) categoryCollectionView {
     if (!_categoryCollectionView) {
-        _categoryCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width,200) collectionViewLayout:self.layout];
+        _categoryCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.bounds.size.width,self.contentView.bounds.size.height) collectionViewLayout:self.layout];
     }
     _categoryCollectionView.backgroundColor = [UIColor clearColor];
     return _categoryCollectionView;

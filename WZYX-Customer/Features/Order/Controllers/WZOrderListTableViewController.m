@@ -14,10 +14,13 @@
 #import "WZPayTableViewController.h"
 
 #import "MBProgressHUD.h"
+#import "MJRefresh.h"
 
 @interface WZOrderListTableViewController () <WZOrderDetailTableViewControllerDelegate, WZPayTableViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *orders;
+
+@property (strong, nonatomic) MBProgressHUD *progressHUD;
 
 @end
 
@@ -41,6 +44,14 @@
     self.tableView.sectionHeaderHeight = 5;
     self.tableView.sectionFooterHeight = 5;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    MJRefreshNormalHeader *normalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self pullDownRefreshOrderListData];
+    }];
+    normalHeader.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = normalHeader;
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreOrderListDataFromOffset:self.orders.count];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -138,21 +149,17 @@
 #pragma mark - Methods
 
 - (void)loadOrderListData {
-    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    progressHUD.label.text = @"正在加载";
-    progressHUD.contentColor = [UIColor whiteColor];
-    progressHUD.bezelView.backgroundColor = [UIColor blackColor];
-    progressHUD.animationType = MBProgressHUDAnimationZoom;
-    progressHUD.offset = CGPointMake(0, -100);
-    [WZOrder loadOrderListWithOrderState:self.orderState success:^(NSMutableArray * _Nonnull orders) {
+    [self.view addSubview:self.progressHUD];
+    [self.progressHUD showAnimated:YES];
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:(self.orders.count == 0 ? 5 : self.orders.count) success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [progressHUD hideAnimated:YES];
+            [self.progressHUD hideAnimated:YES];
             self.orders = orders;
             [self.tableView reloadData];
         });
     } failure:^(NSString * _Nonnull userInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [progressHUD hideAnimated:YES];
+            [self.progressHUD hideAnimated:YES];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
             [alert addAction:okAction];
@@ -164,6 +171,44 @@
 - (void)wipeOrderListData {
     [self.orders removeAllObjects];
     [self.tableView reloadData];
+}
+
+#pragma mark - PrivateMethods
+
+- (void)pullDownRefreshOrderListData {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:5 success:^(NSMutableArray * _Nonnull orders) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+            self.orders = orders;
+            [self.tableView reloadData];
+        });
+    } failure:^(NSString * _Nonnull userInfo) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    }];
+}
+
+- (void)loadMoreOrderListDataFromOffset:(NSUInteger)offset {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:offset limit:5 success:^(NSMutableArray * _Nonnull orders) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.orders addObjectsFromArray:orders];
+            [self.tableView reloadData];
+            [self.tableView.mj_footer endRefreshing];
+        });
+    } failure:^(NSString * _Nonnull userInfo) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_footer endRefreshing];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    }];
 }
 
 #pragma mark - EventHandlers
@@ -231,6 +276,20 @@
     } else if ([button.titleLabel.text isEqualToString:@"正在退款"]) {
         
     }
+}
+
+#pragma mark - LazyLoad
+
+- (MBProgressHUD *)progressHUD {
+    if (!_progressHUD) {
+        _progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _progressHUD.label.text = @"正在加载";
+        _progressHUD.contentColor = [UIColor whiteColor];
+        _progressHUD.bezelView.backgroundColor = [UIColor blackColor];
+        _progressHUD.animationType = MBProgressHUDAnimationZoom;
+        _progressHUD.offset = CGPointMake(0, -100);
+    }
+    return _progressHUD;
 }
 
 @end

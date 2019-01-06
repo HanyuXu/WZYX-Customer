@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
 
 - (instancetype)initWithDataDictionary:(NSDictionary *)dataDictionary;
 
-+ (void)loadOrderListWithOrderState:(WZOrderState)orderState success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)loadOrderListWithOrderState:(WZOrderState)orderState offset:(NSUInteger)offset limit:(NSUInteger)limit success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
 + (void)loadOrder:(NSString *)orderId success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 

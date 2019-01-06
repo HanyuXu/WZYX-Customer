@@ -538,6 +538,7 @@
 				3B96DE1521A662A0007DC72B /* Sources */,
 				3B96DE1621A662A0007DC72B /* Frameworks */,
 				3B96DE1721A662A0007DC72B /* Resources */,
+				016BFCBB62B971E44C386201 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -659,6 +660,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		016BFCBB62B971E44C386201 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		023C5F66657895E5C4AA5C6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

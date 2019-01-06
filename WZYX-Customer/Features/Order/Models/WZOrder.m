@@ -53,7 +53,7 @@
 
 #pragma mark - Methods
 
-+ (void)loadOrderListWithOrderState:(WZOrderState)orderState success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
++ (void)loadOrderListWithOrderState:(WZOrderState)orderState offset:(NSUInteger)offset limit:(NSUInteger)limit success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [NSThread sleepForTimeInterval:0.5];
@@ -65,11 +65,11 @@
         }
         FMResultSet *results;
         if (orderState == WZOrderStateAllState) {
-            results = [db executeQuery:@"SELECT * FROM test_order ORDER BY orderId DESC"];
+            results = [db executeQuery:@"SELECT * FROM test_order ORDER BY orderId DESC LIMIT ? OFFSET ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:limit], [NSNumber numberWithUnsignedInteger:offset]]];
         } else {
-            results = [db executeQuery:@"SELECT * FROM test_order WHERE orderState = ? ORDER BY orderId DESC" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:orderState]]];
+            results = [db executeQuery:@"SELECT * FROM test_order WHERE orderState = ? ORDER BY orderId DESC LIMIT ? OFFSET ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:orderState], [NSNumber numberWithUnsignedInteger:limit], [NSNumber numberWithUnsignedInteger:offset]]];
         }
-        NSMutableArray *orders = [NSMutableArray arrayWithCapacity:10];
+        NSMutableArray *orders = [NSMutableArray arrayWithCapacity:limit];
         while ([results next]) {
             NSData *orderInfo = [results objectForColumn:@"orderInfo"];
             WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];

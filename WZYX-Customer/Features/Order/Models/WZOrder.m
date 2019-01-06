@@ -24,7 +24,7 @@
     if (self = [super init]) {
         NSArray *properties = [WZObjectDictionaryConverter propertiesArrayOfClass:[self class]];
         for (NSString *property in properties) {
-            if (dataDictionary[property] != [NSNull null]) {
+            if (dataDictionary[property] && dataDictionary[property] != [NSNull null]) {
                 [self setValue:dataDictionary[property] forKey:property];
             }
         }
@@ -211,75 +211,21 @@
 #pragma mark - Test
 
 + (void)prepareTestData {
-    WZOrder *testOrder1 = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201811241430300001",
-                                                                    @"orderTimeStamp" : @"2018-11-24 14:30:30",
-                                                                    @"orderState" : @1,
+    WZOrder *testOrder1 = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201901061347120001",
+                                                                    @"orderTimeStamp" : @"2019-01-06 13:47:12",
+                                                                    @"orderState" : [NSNumber numberWithUnsignedInteger:WZOrderStateWaitingPayment],
                                                                     @"sponsorId" : @"S000001",
-                                                                    @"sponsorName" : @"万众艺兴",
+                                                                    @"sponsorName" : @"浙江大学软件学院",
                                                                     @"eventId" : @"E000001",
                                                                     @"eventAvatar" : @"Setting",
-                                                                    @"eventTitle" : @"万众艺兴测试活动名字会很长",
-                                                                    @"eventSeason" : @"2018-11-30 15:30:00\n浙江大学软件学院",
+                                                                    @"eventTitle" : @"项目实训设计评审",
+                                                                    @"eventSeason" : @"2019-01-08 13:00:00\n浙江大学软件学院教学楼N312",
                                                                     @"eventPrice" : @"1000000.00",
                                                                     @"purchaseCount" : @"1",
-                                                                    @"orderDiscount" : @"0.00",
                                                                     @"orderAmount" : @"1000000.00",
-                                                                    @"paymentMethod" : @0,
-                                                                    @"paymentTimeStamp" : @"2018-11-24 14:32:03",
-                                                                    @"certificationNumber" : @"7437287382",
-                                                                    @"myCommentId" : @"C000001"}];
-    WZOrder *testOrder2 = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201811260934140001",
-                                                                    @"orderTimeStamp" : @"2018-11-26 09:34:14",
-                                                                    @"orderState" : @3,
-                                                                    @"sponsorId" : @"S000002",
-                                                                    @"sponsorName" : @"浙江大学软件学院",
-                                                                    @"eventId" : @"E000002",
-                                                                    @"eventAvatar" : @"Setting",
-                                                                    @"eventTitle" : @"实训项目评审",
-                                                                    @"eventSeason" : @"2018-12-04 13:00:00\n浙江大学软件学院N312",
-                                                                    @"eventPrice" : @"0.00",
-                                                                    @"purchaseCount" : @"3",
                                                                     @"orderDiscount" : @"0.00",
-                                                                    @"orderAmount" : @"0.00",
-                                                                    @"paymentMethod" : @0,
-                                                                    @"paymentTimeStamp" : @"2018-11-26 09:34:18",
-                                                                    @"certificationNumber" : @"7328923112",
-                                                                    @"myCommentId" : @"C000006"}];
-    WZOrder *testOrder3 = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201811281409480001",
-                                                                    @"orderTimeStamp" : @"2018-11-28 14:09:48",
-                                                                    @"orderState" : @2,
-                                                                    @"sponsorId" : @"S000003",
-                                                                    @"sponsorName" : @"浙大软院1808班",
-                                                                    @"eventId" : @"E000003",
-                                                                    @"eventAvatar" : @"Setting",
-                                                                    @"eventTitle" : @"校歌彩排",
-                                                                    @"eventSeason" : @"2018-12-04 20:00:00\n舞蹈室",
-                                                                    @"eventPrice" : @"0.00",
-                                                                    @"purchaseCount" : @"60",
-                                                                    @"orderDiscount" : @"0.00",
-                                                                    @"orderAmount" : @"0.00",
-                                                                    @"paymentMethod" : @0,
-                                                                    @"paymentTimeStamp" : @"2018-11-28 14:09:54",
-                                                                    @"certificationNumber" : @"2190002812",
-                                                                    @"myCommentId" : @"C000004"}];
-    WZOrder *testOrder4 = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201812042209030001",
-                                                                    @"orderTimeStamp" : @"2018-12-04 22:09:03",
-                                                                    @"orderState" : @1,
-                                                                    @"sponsorId" : @"S000002",
-                                                                    @"sponsorName" : @"浙江大学软件学院",
-                                                                    @"eventId" : @"E000004",
-                                                                    @"eventAvatar" : @"Setting",
-                                                                    @"eventTitle" : @"六级考试包车",
-                                                                    @"eventSeason" : @"2018-12-15 09:00:00\n浙江大学软件学院",
-                                                                    @"eventPrice" : @"60.00",
-                                                                    @"purchaseCount" : @"1",
-                                                                    @"orderDiscount" : @"0.00",
-                                                                    @"orderAmount" : @"60.00",
-                                                                    @"paymentMethod" : @1,
-                                                                    @"paymentTimeStamp" : @"2018-12-04 23:00:12",
-                                                                    @"certificationNumber" : @"8761987409",
-                                                                    @"myCommentId" : @"C000005"}];
-    NSMutableArray *orders = [NSMutableArray arrayWithObjects:testOrder1, testOrder2, testOrder3, testOrder4, nil];
+                                                                    @"actualAmount" : @"1000000.00",}];
+    NSMutableArray *orders = [NSMutableArray arrayWithObjects:testOrder1, nil];
     
     NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
@@ -314,23 +260,24 @@
         NSLog(@"数据库打开失败");
         return;
     }
-    WZOrder *testOrder = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201812141800000001",
-                                                                   @"orderTimeStamp" : @"2018-12-14 18:00:00",
-                                                                   @"orderState" : @6,
+    WZOrder *testOrder = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201901061404080001",
+                                                                   @"orderTimeStamp" : @"2019-01-06 14:04:08",
+                                                                   @"orderState" : [NSNumber numberWithUnsignedInteger:WZOrderStateRefunded],
                                                                    @"sponsorId" : @"S000002",
                                                                    @"sponsorName" : @"一个名字很长很长很长很长很长很长很长很长很长的主办方",
-                                                                   @"eventId" : @"E000000",
+                                                                   @"eventId" : @"E000002",
                                                                    @"eventAvatar" : @"Setting",
                                                                    @"eventTitle" : @"一个名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的活动",
                                                                    @"eventSeason" : @"2018-12-14 18:00:00\n一个名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的地点",
                                                                    @"eventPrice" : @"1000.00",
                                                                    @"purchaseCount" : @"1",
+                                                                   @"orderAmount" : @"1000.00",
                                                                    @"orderDiscount" : @"100.00",
-                                                                   @"orderAmount" : @"900.00",
-                                                                   @"paymentMethod" : @0,
-                                                                   @"paymentTimeStamp" : @"2018-12-14 18:00:00",
-                                                                   @"certificationNumber" : @"1287909639",
-                                                                   @"myCommentId" : @"C000090"}];
+                                                                   @"actualAmount" : @"900.00",
+                                                                   @"paymentMethod" : [NSNumber numberWithUnsignedInteger:WZOrderPaymentMethodAlipay],
+                                                                   @"paymentTimeStamp" : @"2019-01-06 14:04:42",
+                                                                   @"certificationNumber" : @"1229809587909639",
+                                                                   @"myCommentId" : @"C000002"}];
     NSData *orderInfo = [NSKeyedArchiver archivedDataWithRootObject:testOrder];
     if ([db executeUpdate:@"INSERT INTO test_order(orderId, orderState, orderInfo) VALUES(?, ?, ?)" withArgumentsInArray:@[testOrder.orderId, [NSNumber numberWithUnsignedInteger:testOrder.orderState], orderInfo]]) {
         NSLog(@"数据库插入成功");

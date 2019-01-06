@@ -113,7 +113,7 @@
 - (UILabel *)eventSeasonLabel {
     if (!_eventSeasonLabel) {
         _eventSeasonLabel = [[UILabel alloc] init];
-        _eventSeasonLabel.numberOfLines = 2;
+        _eventSeasonLabel.numberOfLines = 3;
         _eventSeasonLabel.font = [UIFont systemFontOfSize:kWZOrderTableViewCellFontSizeSmall];
         _eventSeasonLabel.textColor = [UIColor grayColor];
     }

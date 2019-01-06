@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WZOrderState) {
-    WZOrderStateAllState,               // 所有状态
     WZOrderStateWaitingPayment,         // 待付款
     WZOrderStateWaitingParticipation,   // 待参与
     WZOrderStateWaitingComment,         // 待评价
@@ -20,12 +19,14 @@ typedef NS_ENUM(NSUInteger, WZOrderState) {
     WZOrderStateRefunding,              // 退款中
     WZOrderStateRefunded,               // 已退款
     WZOrderStateFinished,               // 已完成
+    WZOrderStateAllState,               // 所有状态
 };
 
 typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
-    WZOrderPaymentMethodAlipay,
-    WZOrderPaymentMethodWeChatPay,
-    WZOrderPaymentMethodUnionPay,
+    WZOrderPaymentMethodNone,           // 未支付
+    WZOrderPaymentMethodAlipay,         // 支付宝
+    WZOrderPaymentMethodWeChatPay,      // 微信支付
+    WZOrderPaymentMethodUnionPay,       // 银联支付
 };
 
 @interface WZOrder : NSObject <NSCoding>
@@ -44,8 +45,9 @@ typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
 @property (copy, nonatomic) NSString *eventPrice;                   // 活动单价
 
 @property (copy, nonatomic) NSString *purchaseCount;                // 购买数量
-@property (copy, nonatomic) NSString *orderDiscount;                // 订单优惠
 @property (copy, nonatomic) NSString *orderAmount;                  // 订单总价
+@property (copy, nonatomic) NSString *orderDiscount;                // 订单优惠
+@property (copy, nonatomic) NSString *actualAmount;                 // 实际支付
 
 @property (assign, nonatomic) WZOrderPaymentMethod paymentMethod;   // 支付手段
 @property (copy, nonatomic) NSString *paymentTimeStamp;             // 支付时间戳

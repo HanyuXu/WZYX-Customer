@@ -61,13 +61,13 @@
         }
         WZOrder *order = self.orders[indexPath.section];
         [cell.sponsorNameButton setTitle:order.sponsorName forState:UIControlStateNormal];
-        NSArray *states = @[@"所有状态", @"待付款", @"待参与", @"待评价", @"已过期", @"已取消", @"退款中", @"已退款", @"已完成"];
+        NSArray *states = @[@"待付款", @"待参与", @"待评价", @"已过期", @"已取消", @"退款中", @"已退款", @"已完成", @"所有状态"];
         cell.orderStateLabel.text = states[order.orderState];
         cell.eventAvatarImageView.image = [UIImage imageNamed:order.eventAvatar];
         cell.eventTitleLabel.text = order.eventTitle;
         cell.priceAndCountLabel.text = [NSString stringWithFormat:@"¥ %@\nx %@", order.eventPrice, order.purchaseCount];
         cell.eventSeasonLabel.text = order.eventSeason;
-        cell.orderAmountLabel.text = [NSString stringWithFormat:@"实付款：¥ %@", order.orderAmount];
+        cell.orderAmountLabel.text = [NSString stringWithFormat:@"实付款：¥ %@", order.actualAmount];
         return cell;
     } else {
         WZOrderActionTableViewCell *cell;

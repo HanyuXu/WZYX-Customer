@@ -104,14 +104,20 @@
 
 - (void)pressesTestPrepareDataButton:(UIBarButtonItem *)barButton {
     [WZOrder prepareTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
 }
 
 - (void)pressesTestAddOrderButton:(UIBarButtonItem *)barButton {
     [WZOrder addTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
 }
 
 - (void)pressesTestDropDataButton:(UIBarButtonItem *)barButton {
     [WZOrder dropTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
 }
 
 - (void)pressesTitleButton:(UIButton *)button {

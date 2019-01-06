@@ -55,7 +55,7 @@
         if (!cell) {
             cell = [[WZOrderStateTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderStateCell"];
         }
-        NSArray *states = @[@"所有状态", @"待付款", @"待参与", @"待评价", @"已过期", @"已取消", @"退款中", @"已退款", @"已完成"];
+        NSArray *states = @[@"待付款", @"待参与", @"待评价", @"已过期", @"已取消", @"退款中", @"已退款", @"已完成", @"所有状态"];
         cell.orderStateLabel.text = states[self.order.orderState];
         return cell;
     } else if (indexPath.section == 1) {
@@ -77,7 +77,7 @@
             }
             cell.totalPriceLabel.text = [NSString stringWithFormat:@"¥ %@", self.order.orderAmount];
             cell.discountLabel.text = [NSString stringWithFormat:@"- ¥ %@", self.order.orderDiscount];
-            cell.actualPaymentLabel.text = [NSString stringWithFormat:@"¥ %@", self.order.orderAmount];
+            cell.actualPaymentLabel.text = [NSString stringWithFormat:@"¥ %@", self.order.actualAmount];
             return cell;
         } else {
             WZOrderActionTableViewCell *cell;
@@ -129,7 +129,7 @@
             cell.paymentMethodLabel.text = @"支付宝";
         } else if (self.order.paymentMethod == WZOrderPaymentMethodWeChatPay) {
             cell.paymentMethodLabel.text = @"微信支付";
-        } else {
+        } else if (self.order.paymentMethod == WZOrderPaymentMethodUnionPay) {
             cell.paymentMethodLabel.text = @"银联支付";
         }
         cell.paymentTimeStampLabel.text = self.order.paymentTimeStamp;

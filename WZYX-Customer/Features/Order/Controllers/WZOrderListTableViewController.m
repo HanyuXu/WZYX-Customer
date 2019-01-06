@@ -11,10 +11,11 @@
 #import "WZOrderActionTableViewCell.h"
 #import "WZOrderDetailTableViewController.h"
 #import "WZCertificationViewController.h"
+#import "WZPayTableViewController.h"
 
 #import "MBProgressHUD.h"
 
-@interface WZOrderListTableViewController () <WZOrderDetailTableViewControllerDelegate>
+@interface WZOrderListTableViewController () <WZOrderDetailTableViewControllerDelegate, WZPayTableViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *orders;
 
@@ -122,8 +123,16 @@
 
 #pragma mark - WZOrderDetailTableViewControllerDelegate
 
-- (void)orderStateDidUpdate {
+- (void)orderDetailTableViewControllerDidUpdateOrderState:(WZOrderDetailTableViewController *)orderDetailVC {
     [self loadOrderListData];
+}
+
+#pragma mark - WZPayTableViewControllerDelegate
+
+- (void)payTableViewController:(WZPayTableViewController *)payVC didFinishPaySuccess:(BOOL)success userInfo:(NSString *)userInfo {
+    if (success) {
+        [self loadOrderListData];
+    }
 }
 
 #pragma mark - Methods
@@ -160,46 +169,65 @@
 #pragma mark - EventHandlers
 
 - (void)pressesOrderActionButton:(UIButton *)button {
+    WZOrder *order = self.orders[button.tag];
     if ([button.titleLabel.text isEqualToString:@"立即支付"]) {
-        [WZOrder payOrder:self.orders[button.tag] success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self loadOrderListData];
-            });
-        } failure:^(NSString * _Nonnull userInfo) {
-            NSLog(@"%@", userInfo);
-        }];
+        WZPayTableViewController *payVC = [[WZPayTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        payVC.order = order;
+        payVC.delegate = self;
+        payVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:payVC animated:YES];
     } else if ([button.titleLabel.text isEqualToString:@"取消订单"]) {
-        [WZOrder cancelOrder:self.orders[button.tag] success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self loadOrderListData];
-            });
-        } failure:^(NSString * _Nonnull userInfo) {
-            NSLog(@"%@", userInfo);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定要取消订单吗？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [WZOrder cancelOrder:order.orderId success:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadOrderListData];
+                });
+            } failure:^(NSString * _Nonnull userInfo) {
+                NSLog(@"%@", userInfo);
+            }];
         }];
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     } else if ([button.titleLabel.text isEqualToString:@"查看凭证"]) {
         WZCertificationViewController *certificationVC = [[WZCertificationViewController alloc] init];
-        WZOrder *order = self.orders[button.tag];
         certificationVC.certificationNumber = order.certificationNumber;
         certificationVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:certificationVC animated:YES];
     } else if ([button.titleLabel.text isEqualToString:@"申请退款"]) {
-        [WZOrder applyRefundWithOrder:self.orders[button.tag] success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self loadOrderListData];
-            });
-        } failure:^(NSString * _Nonnull userInfo) {
-            NSLog(@"%@", userInfo);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定要申请退款吗？" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [WZOrder refundOrder:order.orderId success:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadOrderListData];
+                });
+            } failure:^(NSString * _Nonnull userInfo) {
+                NSLog(@"%@", userInfo);
+            }];
         }];
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     } else if ([button.titleLabel.text isEqualToString:@"立即评价"]) {
         
     } else if ([button.titleLabel.text isEqualToString:@"删除订单"]) {
-        [WZOrder deleteOrder:self.orders[button.tag] success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self loadOrderListData];
-            });
-        } failure:^(NSString * _Nonnull userInfo) {
-            NSLog(@"%@", userInfo);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定要永久删除订单吗？" message:@"删除后不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [WZOrder deleteOrder:order.orderId success:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadOrderListData];
+                });
+            } failure:^(NSString * _Nonnull userInfo) {
+                NSLog(@"%@", userInfo);
+            }];
         }];
+        [alert addAction:cancelAction];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     } else if ([button.titleLabel.text isEqualToString:@"正在退款"]) {
         
     }

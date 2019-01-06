@@ -57,15 +57,15 @@ typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
 
 + (void)loadOrderListWithOrderState:(WZOrderState)orderState success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)loadOrderWithId:(NSString *)orderId success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)loadOrder:(NSString *)orderId success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)payOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)payOrder:(NSString *)orderId withPaymentMethod:(WZOrderPaymentMethod)method success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)cancelOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)cancelOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)applyRefundWithOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)refundOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
-+ (void)deleteOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
++ (void)deleteOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
 // 仅测试用
 + (void)prepareTestData;

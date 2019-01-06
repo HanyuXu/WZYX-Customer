@@ -8,6 +8,8 @@
 
 #import "WZOrder.h"
 #import "WZObjectDictionaryConverter.h"
+#import "WZDateStringConverter.h"
+#import "WZRandomStringGenerator.h"
 
 #import "AFNetworking.h"
 #import "FMDatabase.h"
@@ -30,7 +32,7 @@
     return self;
 }
 
-#pragma mark -NSCoding
+#pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
@@ -78,7 +80,7 @@
     });
 }
 
-+ (void)loadOrderWithId:(NSString *)orderId success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
++ (void)loadOrder:(NSString *)orderId success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [NSThread sleepForTimeInterval:0.5];
@@ -90,36 +92,18 @@
         }
         FMResultSet *results;
         results = [db executeQuery:@"SELECT * FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]];
-        while ([results next]) {
+        if ([results next]) {
             NSData *orderInfo = [results objectForColumn:@"orderInfo"];
             WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];
             successBlock(order);
-        }
-        [db close];
-    });
-}
-
-+ (void)payOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
-        FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-        if (![db open]) {
-            failureBlock(@"数据库打开失败");
-            return;
-        }
-        order.orderState = WZOrderStateWaitingParticipation;
-        NSData *orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
-        if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
-            successBlock();
         } else {
-            failureBlock(@"支付失败");
+            failureBlock(@"未找到订单");
         }
         [db close];
     });
 }
 
-+ (void)cancelOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
++ (void)payOrder:(NSString *)orderId withPaymentMethod:(WZOrderPaymentMethod)method success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
@@ -128,18 +112,29 @@
             failureBlock(@"数据库打开失败");
             return;
         }
-        order.orderState = WZOrderStateCanceled;
-        NSData *orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
-        if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
-            successBlock();
+        FMResultSet *results;
+        results = [db executeQuery:@"SELECT * FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]];
+        if ([results next]) {
+            NSData *orderInfo = [results objectForColumn:@"orderInfo"];
+            WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];
+            order.orderState = WZOrderStateWaitingParticipation;
+            order.paymentMethod = method;
+            order.paymentTimeStamp = [WZDateStringConverter stringFromDate:[NSDate date]];
+            order.certificationNumber = [WZRandomStringGenerator randomStringFromSourceString:@"0123456789" length:16];
+            orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
+            if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
+                successBlock();
+            } else {
+                failureBlock(@"支付失败");
+            }
         } else {
-            failureBlock(@"取消订单失败");
+            failureBlock(@"未找到订单");
         }
         [db close];
     });
 }
 
-+ (void)applyRefundWithOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
++ (void)cancelOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
@@ -148,18 +143,26 @@
             failureBlock(@"数据库打开失败");
             return;
         }
-        order.orderState = WZOrderStateRefunding;
-        NSData *orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
-        if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
-            successBlock();
+        FMResultSet *results;
+        results = [db executeQuery:@"SELECT * FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]];
+        if ([results next]) {
+            NSData *orderInfo = [results objectForColumn:@"orderInfo"];
+            WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];
+            order.orderState = WZOrderStateCanceled;
+            orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
+            if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
+                successBlock();
+            } else {
+                failureBlock(@"取消订单失败");
+            }
         } else {
-            failureBlock(@"申请退款失败");
+            failureBlock(@"未找到订单");
         }
         [db close];
     });
 }
 
-+ (void)deleteOrder:(WZOrder *)order success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
++ (void)refundOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
@@ -168,7 +171,35 @@
             failureBlock(@"数据库打开失败");
             return;
         }
-        if ([db executeUpdate:@"DELETE FROM test_order WHERE orderId = ?" withArgumentsInArray:@[order.orderId]]) {
+        FMResultSet *results;
+        results = [db executeQuery:@"SELECT * FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]];
+        if ([results next]) {
+            NSData *orderInfo = [results objectForColumn:@"orderInfo"];
+            WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];
+            order.orderState = WZOrderStateRefunding;
+            orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
+            if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
+                successBlock();
+            } else {
+                failureBlock(@"申请退款失败");
+            }
+        } else {
+            failureBlock(@"未找到订单");
+        }
+        [db close];
+    });
+}
+
++ (void)deleteOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
+        FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+        if (![db open]) {
+            failureBlock(@"数据库打开失败");
+            return;
+        }
+        if ([db executeUpdate:@"DELETE FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]]) {
             successBlock();
         } else {
             failureBlock(@"删除订单失败");

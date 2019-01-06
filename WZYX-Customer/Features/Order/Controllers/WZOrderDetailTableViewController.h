@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class WZOrder;
+@class WZOrderDetailTableViewController;
 
 @protocol WZOrderDetailTableViewControllerDelegate <NSObject>
 
-- (void)orderStateDidUpdate;
+- (void)orderDetailTableViewControllerDidUpdateOrderState:(WZOrderDetailTableViewController *)orderDetailVC;
 
 @end
 

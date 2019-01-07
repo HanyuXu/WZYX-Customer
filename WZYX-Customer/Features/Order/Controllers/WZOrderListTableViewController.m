@@ -12,6 +12,7 @@
 #import "WZOrderDetailTableViewController.h"
 #import "WZCertificationViewController.h"
 #import "WZPayTableViewController.h"
+#import "WZNoContentView.h"
 
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *orders;
 
 @property (strong, nonatomic) MBProgressHUD *progressHUD;
+@property (strong, nonatomic) WZNoContentView *noContentView;
 
 @end
 
@@ -47,11 +49,19 @@
     MJRefreshNormalHeader *normalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self pullDownRefreshOrderListData];
     }];
+    [normalHeader setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+    [normalHeader setTitle:@"松开立即刷新" forState:MJRefreshStatePulling];
+    [normalHeader setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
     normalHeader.lastUpdatedTimeLabel.hidden = YES;
     self.tableView.mj_header = normalHeader;
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshBackNormalFooter *normalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self loadMoreOrderListDataFromOffset:self.orders.count];
     }];
+    [normalFooter setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
+    [normalFooter setTitle:@"松开立即加载" forState:MJRefreshStatePulling];
+    [normalFooter setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+    [normalFooter setTitle:@"已加载所有订单" forState:MJRefreshStateNoMoreData];
+    self.tableView.mj_footer = normalFooter;
 }
 
 #pragma mark - UITableViewDataSource
@@ -149,13 +159,19 @@
 #pragma mark - Methods
 
 - (void)loadOrderListData {
+    [self.noContentView removeFromSuperview];
+    self.noContentView = nil;
     [self.view addSubview:self.progressHUD];
     [self.progressHUD showAnimated:YES];
-    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:(self.orders.count == 0 ? 5 : self.orders.count) success:^(NSMutableArray * _Nonnull orders) {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:(self.orders.count < 5 ? 5 : self.orders.count) success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.progressHUD hideAnimated:YES];
+            [self.tableView.mj_footer resetNoMoreData];
             self.orders = orders;
             [self.tableView reloadData];
+            if (self.orders.count == 0) {
+                [self showNoContentViewWithType:WZNoContentViewTypeOrder];
+            }
         });
     } failure:^(NSString * _Nonnull userInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -171,6 +187,10 @@
 - (void)wipeOrderListData {
     [self.orders removeAllObjects];
     [self.tableView reloadData];
+    if (self.noContentView) {
+        [self.noContentView removeFromSuperview];
+        self.noContentView = nil;
+    }
 }
 
 #pragma mark - PrivateMethods
@@ -179,8 +199,13 @@
     [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:5 success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer resetNoMoreData];
             self.orders = orders;
             [self.tableView reloadData];
+            if (self.orders.count != 0) {
+                [self.noContentView removeFromSuperview];
+                self.noContentView = nil;
+            }
         });
     } failure:^(NSString * _Nonnull userInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -196,9 +221,17 @@
 - (void)loadMoreOrderListDataFromOffset:(NSUInteger)offset {
     [WZOrder loadOrderListWithOrderState:self.orderState offset:offset limit:5 success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.orders addObjectsFromArray:orders];
-            [self.tableView reloadData];
-            [self.tableView.mj_footer endRefreshing];
+            if (orders.count == 0) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            } else {
+                [self.tableView.mj_footer endRefreshing];
+                [self.orders addObjectsFromArray:orders];
+                [self.tableView reloadData];
+            }
+            if (self.orders.count != 0) {
+                [self.noContentView removeFromSuperview];
+                self.noContentView = nil;
+            }
         });
     } failure:^(NSString * _Nonnull userInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -209,6 +242,12 @@
             [self presentViewController:alert animated:YES completion:nil];
         });
     }];
+}
+
+- (void)showNoContentViewWithType:(WZNoContentViewType)type {
+    self.noContentView = [[WZNoContentView alloc] initWithFrame:self.view.bounds];
+    self.noContentView.type = type;
+    [self.view addSubview:self.noContentView];
 }
 
 #pragma mark - EventHandlers

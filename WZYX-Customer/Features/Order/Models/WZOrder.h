@@ -11,22 +11,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WZOrderState) {
-    WZOrderStateWaitingPayment,         // 待付款
-    WZOrderStateWaitingParticipation,   // 待参与
-    WZOrderStateWaitingComment,         // 待评价
-    WZOrderStateOverdue,                // 已过期
-    WZOrderStateCanceled,               // 已取消
-    WZOrderStateRefunding,              // 退款中
-    WZOrderStateRefunded,               // 已退款
-    WZOrderStateFinished,               // 已完成
-    WZOrderStateAllState,               // 所有状态
+    WZOrderStateWaitingPayment          =   0,  // 待付款
+    WZOrderStateWaitingParticipation    =   1,  // 待参与
+    WZOrderStateWaitingComment          =   2,  // 待评价
+    WZOrderStateOverdue                 =   3,  // 已过期
+    WZOrderStateCanceled                =   4,  // 已取消
+    WZOrderStateRefunding               =   5,  // 退款中
+    WZOrderStateRefunded                =   6,  // 已退款
+    WZOrderStateFinished                =   7,  // 已完成
+    WZOrderStateAllState                =   99, // 所有状态
 };
 
 typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
-    WZOrderPaymentMethodNone,           // 未支付
-    WZOrderPaymentMethodAlipay,         // 支付宝
-    WZOrderPaymentMethodWeChatPay,      // 微信支付
-    WZOrderPaymentMethodUnionPay,       // 银联支付
+    WZOrderPaymentMethodNone            =   0,  // 未支付
+    WZOrderPaymentMethodAlipay          =   1,  // 支付宝
+    WZOrderPaymentMethodWeChatPay       =   2,  // 微信支付
+    WZOrderPaymentMethodUnionPay        =   3,  // 银联支付
 };
 
 @interface WZOrder : NSObject <NSCoding>

@@ -33,7 +33,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [WZUserInfoManager saveUserInfo];
+//    //未登录时会崩溃
+//    [WZUserInfoManager saveUserInfo];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -46,6 +46,9 @@
 		3B96DF6821B11C6A007DC72B /* WZOrderListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */; };
 		3BB4ECD921E1A76500E84669 /* WZDateStringConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECD821E1A76500E84669 /* WZDateStringConverter.m */; };
 		3BB4ECDC21E1A9CB00E84669 /* WZRandomStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECDB21E1A9CB00E84669 /* WZRandomStringGenerator.m */; };
+		3BB4ECDF21E2F22200E84669 /* WZNoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */; };
+		3BB4ECE121E2FE3700E84669 /* Order.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB4ECE021E2FE3700E84669 /* Order.png */; };
+		3BB4ECE521E3202B00E84669 /* Network.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB4ECE421E3202B00E84669 /* Network.png */; };
 		3BC20C8021BB9873002A31EC /* WZObjectDictionaryConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */; };
 		3BC20C8321BE02BA002A31EC /* WZOrderActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8221BE02BA002A31EC /* WZOrderActionTableViewCell.m */; };
 		3BC20C8621BE359F002A31EC /* WZOrderDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8521BE359F002A31EC /* WZOrderDetailTableViewController.m */; };
@@ -163,6 +166,10 @@
 		3BB4ECD821E1A76500E84669 /* WZDateStringConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZDateStringConverter.m; sourceTree = "<group>"; };
 		3BB4ECDA21E1A9CB00E84669 /* WZRandomStringGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZRandomStringGenerator.h; sourceTree = "<group>"; };
 		3BB4ECDB21E1A9CB00E84669 /* WZRandomStringGenerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZRandomStringGenerator.m; sourceTree = "<group>"; };
+		3BB4ECDD21E2F22200E84669 /* WZNoContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZNoContentView.h; sourceTree = "<group>"; };
+		3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZNoContentView.m; sourceTree = "<group>"; };
+		3BB4ECE021E2FE3700E84669 /* Order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Order.png; sourceTree = "<group>"; };
+		3BB4ECE421E3202B00E84669 /* Network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Network.png; sourceTree = "<group>"; };
 		3BC20C7E21BB9873002A31EC /* WZObjectDictionaryConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZObjectDictionaryConverter.h; sourceTree = "<group>"; };
 		3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZObjectDictionaryConverter.m; sourceTree = "<group>"; };
 		3BC20C8121BE02BA002A31EC /* WZOrderActionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderActionTableViewCell.h; sourceTree = "<group>"; };
@@ -436,8 +443,10 @@
 			isa = PBXGroup;
 			children = (
 				3BF205A021DF3664009C1D56 /* AliPay.png */,
-				3BF2059F21DF3664009C1D56 /* UnionPay.png */,
 				3BF205A121DF3665009C1D56 /* WeixinPay.png */,
+				3BF2059F21DF3664009C1D56 /* UnionPay.png */,
+				3BB4ECE421E3202B00E84669 /* Network.png */,
+				3BB4ECE021E2FE3700E84669 /* Order.png */,
 				3B96DF0421AC2A5A007DC72B /* cities.plist */,
 			);
 			path = Resources;
@@ -504,6 +513,8 @@
 				3BF205A621DF37DB009C1D56 /* WZPayMethodTableViewCell.m */,
 				3BF205A821DF55ED009C1D56 /* WZSubmitButtonView.h */,
 				3BF205A921DF55ED009C1D56 /* WZSubmitButtonView.m */,
+				3BB4ECDD21E2F22200E84669 /* WZNoContentView.h */,
+				3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -634,8 +645,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB4ECE521E3202B00E84669 /* Network.png in Resources */,
 				3BF205A421DF3665009C1D56 /* WeixinPay.png in Resources */,
 				3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */,
+				3BB4ECE121E2FE3700E84669 /* Order.png in Resources */,
 				3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */,
 				3BF205A221DF3665009C1D56 /* UnionPay.png in Resources */,
 				3BF205A321DF3665009C1D56 /* AliPay.png in Resources */,
@@ -773,6 +786,7 @@
 				3B96DEEF21AC17C0007DC72B /* WZMyProfileTableViewController.m in Sources */,
 				3B96DEE521AC09BE007DC72B /* WZMineNavigationController.m in Sources */,
 				3B96DE2C21A662A1007DC72B /* main.m in Sources */,
+				3BB4ECDF21E2F22200E84669 /* WZNoContentView.m in Sources */,
 				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
 				3BC20C8C21BE42C8002A31EC /* WZOrderPriceTableViewCell.m in Sources */,
 				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,

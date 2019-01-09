@@ -208,6 +208,35 @@
     });
 }
 
++ (void)commentOrder:(NSString *)orderId withCommentText:(NSString *)commentText commentlevel:(NSInteger)commentLevel success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSString *dbPath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"TestOrder.db"];
+        FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+        if (![db open]) {
+            failureBlock(@"数据库打开失败");
+            return;
+        }
+        FMResultSet *results;
+        results = [db executeQuery:@"SELECT * FROM test_order WHERE orderId = ?" withArgumentsInArray:@[orderId]];
+        if ([results next]) {
+            NSData *orderInfo = [results objectForColumn:@"orderInfo"];
+            WZOrder *order = [NSKeyedUnarchiver unarchiveObjectWithData:orderInfo];
+            order.orderState = WZOrderStateFinished;
+            order.myCommentId = @"C000000";
+            orderInfo = [NSKeyedArchiver archivedDataWithRootObject:order];
+            if ([db executeUpdate:@"UPDATE test_order SET orderState = ?, orderInfo = ? WHERE orderId = ?" withArgumentsInArray:@[[NSNumber numberWithUnsignedInteger:order.orderState], orderInfo, order.orderId]]) {
+                successBlock();
+            } else {
+                failureBlock(@"评价失败");
+            }
+        } else {
+            failureBlock(@"未找到订单");
+        }
+        [db close];
+    });
+}
+
 #pragma mark - Test
 
 + (void)prepareTestData {
@@ -262,7 +291,7 @@
     }
     WZOrder *testOrder = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201901061404080001",
                                                                    @"orderTimeStamp" : @"2019-01-06 14:04:08",
-                                                                   @"orderState" : [NSNumber numberWithUnsignedInteger:WZOrderStateRefunded],
+                                                                   @"orderState" : [NSNumber numberWithUnsignedInteger:WZOrderStateWaitingComment],
                                                                    @"sponsorId" : @"S000002",
                                                                    @"sponsorName" : @"一个名字很长很长很长很长很长很长很长很长很长的主办方",
                                                                    @"eventId" : @"E000002",

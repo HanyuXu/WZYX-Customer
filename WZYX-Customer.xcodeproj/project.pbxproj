@@ -11,6 +11,10 @@
 		1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */; };
 		1F188CE021AF957B00985A57 /* WZCenterLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDF21AF957B00985A57 /* WZCenterLabelTableViewCell.m */; };
 		1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA340C21B2768C00CF8F54 /* WZUser.m */; };
+		3B1258CB21E4600500BFD388 /* WZStarLevelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1258CA21E4600500BFD388 /* WZStarLevelTableViewCell.m */; };
+		3B1258CF21E4637A00BFD388 /* WhiteStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1258CC21E4637A00BFD388 /* WhiteStar.png */; };
+		3B1258D021E4637A00BFD388 /* DarkStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1258CD21E4637A00BFD388 /* DarkStar.png */; };
+		3B1258D121E4637A00BFD388 /* GoldStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1258CE21E4637A00BFD388 /* GoldStar.png */; };
 		3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE1D21A662A0007DC72B /* AppDelegate.m */; };
 		3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2521A662A1007DC72B /* Assets.xcassets */; };
 		3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2721A662A1007DC72B /* LaunchScreen.storyboard */; };
@@ -49,6 +53,9 @@
 		3BB4ECDF21E2F22200E84669 /* WZNoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */; };
 		3BB4ECE121E2FE3700E84669 /* Order.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB4ECE021E2FE3700E84669 /* Order.png */; };
 		3BB4ECE521E3202B00E84669 /* Network.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB4ECE421E3202B00E84669 /* Network.png */; };
+		3BB4ECE821E324A800E84669 /* WZCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECE721E324A800E84669 /* WZCommentTableViewController.m */; };
+		3BB4ECEB21E327C500E84669 /* WZOrderTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECEA21E327C500E84669 /* WZOrderTitleTableViewCell.m */; };
+		3BB4ECEE21E32D2100E84669 /* WZCommentInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECED21E32D2100E84669 /* WZCommentInputTableViewCell.m */; };
 		3BC20C8021BB9873002A31EC /* WZObjectDictionaryConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */; };
 		3BC20C8321BE02BA002A31EC /* WZOrderActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8221BE02BA002A31EC /* WZOrderActionTableViewCell.m */; };
 		3BC20C8621BE359F002A31EC /* WZOrderDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC20C8521BE359F002A31EC /* WZOrderDetailTableViewController.m */; };
@@ -96,6 +103,11 @@
 		1FFA340B21B2768C00CF8F54 /* WZUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUser.h; sourceTree = "<group>"; };
 		1FFA340C21B2768C00CF8F54 /* WZUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUser.m; sourceTree = "<group>"; };
 		30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerUITests/Pods-WZYX-CustomerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B1258C921E4600500BFD388 /* WZStarLevelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZStarLevelTableViewCell.h; sourceTree = "<group>"; };
+		3B1258CA21E4600500BFD388 /* WZStarLevelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZStarLevelTableViewCell.m; sourceTree = "<group>"; };
+		3B1258CC21E4637A00BFD388 /* WhiteStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteStar.png; sourceTree = "<group>"; };
+		3B1258CD21E4637A00BFD388 /* DarkStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DarkStar.png; sourceTree = "<group>"; };
+		3B1258CE21E4637A00BFD388 /* GoldStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GoldStar.png; sourceTree = "<group>"; };
 		3B96DE1921A662A0007DC72B /* WZYX-Customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WZYX-Customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B96DE1C21A662A0007DC72B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B96DE1D21A662A0007DC72B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -170,6 +182,12 @@
 		3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZNoContentView.m; sourceTree = "<group>"; };
 		3BB4ECE021E2FE3700E84669 /* Order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Order.png; sourceTree = "<group>"; };
 		3BB4ECE421E3202B00E84669 /* Network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Network.png; sourceTree = "<group>"; };
+		3BB4ECE621E324A800E84669 /* WZCommentTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZCommentTableViewController.h; sourceTree = "<group>"; };
+		3BB4ECE721E324A800E84669 /* WZCommentTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZCommentTableViewController.m; sourceTree = "<group>"; };
+		3BB4ECE921E327C500E84669 /* WZOrderTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderTitleTableViewCell.h; sourceTree = "<group>"; };
+		3BB4ECEA21E327C500E84669 /* WZOrderTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderTitleTableViewCell.m; sourceTree = "<group>"; };
+		3BB4ECEC21E32D2100E84669 /* WZCommentInputTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZCommentInputTableViewCell.h; sourceTree = "<group>"; };
+		3BB4ECED21E32D2100E84669 /* WZCommentInputTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZCommentInputTableViewCell.m; sourceTree = "<group>"; };
 		3BC20C7E21BB9873002A31EC /* WZObjectDictionaryConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZObjectDictionaryConverter.h; sourceTree = "<group>"; };
 		3BC20C7F21BB9873002A31EC /* WZObjectDictionaryConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZObjectDictionaryConverter.m; sourceTree = "<group>"; };
 		3BC20C8121BE02BA002A31EC /* WZOrderActionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderActionTableViewCell.h; sourceTree = "<group>"; };
@@ -442,6 +460,9 @@
 		3B96DEFC21AC27E8007DC72B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B1258CD21E4637A00BFD388 /* DarkStar.png */,
+				3B1258CE21E4637A00BFD388 /* GoldStar.png */,
+				3B1258CC21E4637A00BFD388 /* WhiteStar.png */,
 				3BF205A021DF3664009C1D56 /* AliPay.png */,
 				3BF205A121DF3665009C1D56 /* WeixinPay.png */,
 				3BF2059F21DF3664009C1D56 /* UnionPay.png */,
@@ -492,6 +513,8 @@
 				3BF2059D21DF2D03009C1D56 /* WZPayTableViewController.m */,
 				3BF205AB21DF6433009C1D56 /* WZThirdPayMockViewController.h */,
 				3BF205AC21DF6433009C1D56 /* WZThirdPayMockViewController.m */,
+				3BB4ECE621E324A800E84669 /* WZCommentTableViewController.h */,
+				3BB4ECE721E324A800E84669 /* WZCommentTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -515,6 +538,12 @@
 				3BF205A921DF55ED009C1D56 /* WZSubmitButtonView.m */,
 				3BB4ECDD21E2F22200E84669 /* WZNoContentView.h */,
 				3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */,
+				3BB4ECE921E327C500E84669 /* WZOrderTitleTableViewCell.h */,
+				3BB4ECEA21E327C500E84669 /* WZOrderTitleTableViewCell.m */,
+				3BB4ECEC21E32D2100E84669 /* WZCommentInputTableViewCell.h */,
+				3BB4ECED21E32D2100E84669 /* WZCommentInputTableViewCell.m */,
+				3B1258C921E4600500BFD388 /* WZStarLevelTableViewCell.h */,
+				3B1258CA21E4600500BFD388 /* WZStarLevelTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -647,8 +676,11 @@
 			files = (
 				3BB4ECE521E3202B00E84669 /* Network.png in Resources */,
 				3BF205A421DF3665009C1D56 /* WeixinPay.png in Resources */,
+				3B1258CF21E4637A00BFD388 /* WhiteStar.png in Resources */,
 				3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */,
 				3BB4ECE121E2FE3700E84669 /* Order.png in Resources */,
+				3B1258D021E4637A00BFD388 /* DarkStar.png in Resources */,
+				3B1258D121E4637A00BFD388 /* GoldStar.png in Resources */,
 				3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */,
 				3BF205A221DF3665009C1D56 /* UnionPay.png in Resources */,
 				3BF205A321DF3665009C1D56 /* AliPay.png in Resources */,
@@ -773,6 +805,7 @@
 				3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */,
 				3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */,
 				3B96DF6221B10205007DC72B /* WZOrderNavigationController.m in Sources */,
+				3BB4ECEE21E32D2100E84669 /* WZCommentInputTableViewCell.m in Sources */,
 				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
 				1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */,
 				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
@@ -788,6 +821,7 @@
 				3B96DE2C21A662A1007DC72B /* main.m in Sources */,
 				3BB4ECDF21E2F22200E84669 /* WZNoContentView.m in Sources */,
 				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
+				3B1258CB21E4600500BFD388 /* WZStarLevelTableViewCell.m in Sources */,
 				3BC20C8C21BE42C8002A31EC /* WZOrderPriceTableViewCell.m in Sources */,
 				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,
 				1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */,
@@ -808,12 +842,14 @@
 				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
 				1F188CE021AF957B00985A57 /* WZCenterLabelTableViewCell.m in Sources */,
 				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
+				3BB4ECEB21E327C500E84669 /* WZOrderTitleTableViewCell.m in Sources */,
 				3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */,
 				3BB4ECDC21E1A9CB00E84669 /* WZRandomStringGenerator.m in Sources */,
 				3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */,
 				3B96DF6521B10DD4007DC72B /* WZBaseScrollViewController.m in Sources */,
 				3B96DEFB21AC270A007DC72B /* WZAvatarViewController.m in Sources */,
 				3B96DE9321A6B6A2007DC72B /* WZLoginViewController.m in Sources */,
+				3BB4ECE821E324A800E84669 /* WZCommentTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

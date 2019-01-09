@@ -15,10 +15,11 @@
 #import "WZOrderInfoTableViewCell.h"
 #import "WZCertificationViewController.h"
 #import "WZPayTableViewController.h"
+#import "WZCommentTableViewController.h"
 
 #import "MBProgressHUD.h"
 
-@interface WZOrderDetailTableViewController () <WZPayTableViewControllerDelegate>
+@interface WZOrderDetailTableViewController () <WZPayTableViewControllerDelegate, WZCommentTableViewControllerDelegate>
 
 @end
 
@@ -146,6 +147,15 @@
     }
 }
 
+#pragma mark - WZCommentTableViewControllerDelegate
+
+- (void)commentTableViewController:(WZCommentTableViewController *)commentVC didFinishCommentSuccess:(BOOL)success userInfo:(NSString *)userInfo {
+    if (success) {
+        [self loadOrderData];
+        [self.delegate orderDetailTableViewControllerDidUpdateOrderState:self];
+    }
+}
+
 #pragma mark - PrivateMethods
 
 - (void)loadOrderData {
@@ -219,7 +229,11 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     } else if ([button.titleLabel.text isEqualToString:@"立即评价"]) {
-        
+        WZCommentTableViewController *commentVC = [[WZCommentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        commentVC.order = self.order;
+        commentVC.delegate = self;
+        commentVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:commentVC animated:YES];
     } else if ([button.titleLabel.text isEqualToString:@"删除订单"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定要永久删除订单吗？" message:@"删除后不可恢复" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

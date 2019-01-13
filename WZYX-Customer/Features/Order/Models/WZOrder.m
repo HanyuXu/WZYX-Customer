@@ -289,22 +289,22 @@
         NSLog(@"数据库打开失败");
         return;
     }
-    WZOrder *testOrder = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201901061404080001",
-                                                                   @"orderTimeStamp" : @"2019-01-06 14:04:08",
+    WZOrder *testOrder = [[WZOrder alloc] initWithDataDictionary:@{@"orderId" : @"201901111404080001",
+                                                                   @"orderTimeStamp" : @"2019-01-11 14:04:08",
                                                                    @"orderState" : [NSNumber numberWithUnsignedInteger:WZOrderStateWaitingComment],
                                                                    @"sponsorId" : @"S000002",
                                                                    @"sponsorName" : @"一个名字很长很长很长很长很长很长很长很长很长的主办方",
                                                                    @"eventId" : @"E000002",
                                                                    @"eventAvatar" : @"Setting",
                                                                    @"eventTitle" : @"一个名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的活动",
-                                                                   @"eventSeason" : @"2018-12-14 18:00:00\n一个名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的地点",
+                                                                   @"eventSeason" : @"2019-01-11 18:00:00\n一个名字很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的地点",
                                                                    @"eventPrice" : @"1000.00",
                                                                    @"purchaseCount" : @"1",
                                                                    @"orderAmount" : @"1000.00",
                                                                    @"orderDiscount" : @"100.00",
                                                                    @"actualAmount" : @"900.00",
                                                                    @"paymentMethod" : [NSNumber numberWithUnsignedInteger:WZOrderPaymentMethodAlipay],
-                                                                   @"paymentTimeStamp" : @"2019-01-06 14:04:42",
+                                                                   @"paymentTimeStamp" : @"2019-01-11 14:04:42",
                                                                    @"certificationNumber" : @"1229809587909639",
                                                                    @"myCommentId" : @"C000002"}];
     NSData *orderInfo = [NSKeyedArchiver archivedDataWithRootObject:testOrder];

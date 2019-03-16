@@ -8,12 +8,12 @@
 
 #import "WZLogin.h"
 #import "WZUserInfoManager.h"
-#import "AFNetworking.h"
+#import "WZHTTPSessionManager.h"
 
 @implementation WZLogin
 
 + (void)loginWithPhoneNumber:(NSString *)phoneNumber password:(NSString *)password success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber, @"password" : password};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/login" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
@@ -33,7 +33,7 @@
 }
 
 + (void)logoutSuccess:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (![userDefaults objectForKey:@"authToken"]) {
         failureBlock(@"用户未登录");
@@ -55,7 +55,7 @@
 }
 
 + (void)sendVerificationCodeToPhoneNumber:(NSString *)phoneNumber success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/sendVerificationCode" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
@@ -70,7 +70,7 @@
 }
 
 + (void)registerWithPhoneNumber:(NSString *)phoneNumber password:(NSString *)password verificationCode:(NSString *)verificationCode success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber, @"password" : password, @"verificationCode" : verificationCode};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/register" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
@@ -85,7 +85,7 @@
 }
 
 + (void)resetPasswordWithPhoneNumber:(NSString *)phoneNumber verificationCode:(NSString *)verificationCode newPassword:(NSString *)newPassword success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber, @"verificationCode" : verificationCode, @"newPassword" : newPassword};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/forget_reset_password" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
@@ -100,7 +100,7 @@
 }
 
 + (void)modifyPassword:(NSString *)password toNewPassword:(NSString *)newPassword success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSString *authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"];
     NSDictionary *paramsDictionary = @{@"authToken" : authToken, @"oldPassword" : password, @"newPassword" : newPassword};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/reset_password" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

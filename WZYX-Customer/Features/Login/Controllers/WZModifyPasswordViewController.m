@@ -138,27 +138,32 @@
     
     [self.progressHUD showAnimated:YES];
     [WZLogin modifyPassword:self.oldPasswordTextField.text toNewPassword:self.passwordTextField.text success:^{
-        [self.progressHUD hideAnimated:YES];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"密码修改成功" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.progressHUD hideAnimated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"密码修改成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     } failure:^(NSString *userInfo) {
-        [self.progressHUD hideAnimated:YES];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            self.oldPasswordTextField.text = @"";
-            self.passwordTextField.text = @"";
-            [self submitButtonCanPressed:NO];
-        }];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.progressHUD hideAnimated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                self.oldPasswordTextField.text = @"";
+                self.passwordTextField.text = @"";
+                [self submitButtonCanPressed:NO];
+            }];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     }];
 }
 
 - (void)pressesNavDismissButton:(UIBarButtonItem *)button {
+    [self.tableView endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

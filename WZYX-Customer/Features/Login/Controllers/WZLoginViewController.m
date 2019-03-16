@@ -146,19 +146,23 @@
     if ([WZDataFormatChecker isPhoneNumberString:self.phoneNumberTextField.text]) {
         [self.progressHUD showAnimated:YES];
         [WZLogin loginWithPhoneNumber:self.phoneNumberTextField.text password:self.passwordTextField.text success:^{
-            [self.progressHUD hideAnimated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressHUD hideAnimated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
         } failure:^(NSString *userInfo) {
-            [self.progressHUD hideAnimated:YES];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                self.phoneNumberTextField.text = @"";
-                self.passwordTextField.text = @"";
-                [self.phoneNumberTextField becomeFirstResponder];
-                [self loginButtonCanPressed:NO];
-            }];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressHUD hideAnimated:YES];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                    self.phoneNumberTextField.text = @"";
+                    self.passwordTextField.text = @"";
+                    [self.phoneNumberTextField becomeFirstResponder];
+                    [self loginButtonCanPressed:NO];
+                }];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
         }];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"请填写正确的手机号码" preferredStyle:UIAlertControllerStyleAlert];
@@ -180,6 +184,7 @@
 }
 
 - (void)pressesNavDismissButton:(UIBarButtonItem *)button {
+    [self.tableView endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

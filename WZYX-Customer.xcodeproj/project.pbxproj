@@ -70,6 +70,7 @@
 		3BF205A721DF37DB009C1D56 /* WZPayMethodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF205A621DF37DB009C1D56 /* WZPayMethodTableViewCell.m */; };
 		3BF205AA21DF55ED009C1D56 /* WZSubmitButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF205A921DF55ED009C1D56 /* WZSubmitButtonView.m */; };
 		3BF205AD21DF6433009C1D56 /* WZThirdPayMockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF205AC21DF6433009C1D56 /* WZThirdPayMockViewController.m */; };
+		3BFC81CE222FA53800E20EA9 /* WZHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC81CD222FA53800E20EA9 /* WZHTTPSessionManager.m */; };
 		4410F969BE01C12EE4B287EC /* libPods-WZYX-CustomerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */; };
 		55458D95B0F617FAEFF3F2F0 /* libPods-WZYX-CustomerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */; };
 		CDDCAF79B2D05B4069998630 /* libPods-WZYX-Customer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 574557591493654341966A29 /* libPods-WZYX-Customer.a */; };
@@ -213,6 +214,8 @@
 		3BF205A921DF55ED009C1D56 /* WZSubmitButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSubmitButtonView.m; sourceTree = "<group>"; };
 		3BF205AB21DF6433009C1D56 /* WZThirdPayMockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZThirdPayMockViewController.h; sourceTree = "<group>"; };
 		3BF205AC21DF6433009C1D56 /* WZThirdPayMockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZThirdPayMockViewController.m; sourceTree = "<group>"; };
+		3BFC81CC222FA53800E20EA9 /* WZHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHTTPSessionManager.h; sourceTree = "<group>"; };
+		3BFC81CD222FA53800E20EA9 /* WZHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZHTTPSessionManager.m; sourceTree = "<group>"; };
 		516EA8A330BB1BB32C8A2FFB /* libPods-WZYX-CustomerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528167EA6683A41A180B57B0 /* Pods-WZYX-Customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-Customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer.release.xcconfig"; sourceTree = "<group>"; };
 		574557591493654341966A29 /* libPods-WZYX-Customer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-Customer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -373,6 +376,8 @@
 				3BB4ECD821E1A76500E84669 /* WZDateStringConverter.m */,
 				3BB4ECDA21E1A9CB00E84669 /* WZRandomStringGenerator.h */,
 				3BB4ECDB21E1A9CB00E84669 /* WZRandomStringGenerator.m */,
+				3BFC81CC222FA53800E20EA9 /* WZHTTPSessionManager.h */,
+				3BFC81CD222FA53800E20EA9 /* WZHTTPSessionManager.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -808,6 +813,7 @@
 				3BB4ECEE21E32D2100E84669 /* WZCommentInputTableViewCell.m in Sources */,
 				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
 				1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */,
+				3BFC81CE222FA53800E20EA9 /* WZHTTPSessionManager.m in Sources */,
 				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
 				3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */,
 				3BF205AA21DF55ED009C1D56 /* WZSubmitButtonView.m in Sources */,

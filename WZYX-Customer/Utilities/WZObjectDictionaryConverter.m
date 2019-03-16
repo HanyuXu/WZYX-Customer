@@ -20,6 +20,7 @@
         const char *propertyName = property_getName(property);
         [propertiesArray addObject:[NSString stringWithUTF8String:propertyName]];
     }
+    free(properties);
     return propertiesArray;
 }
 

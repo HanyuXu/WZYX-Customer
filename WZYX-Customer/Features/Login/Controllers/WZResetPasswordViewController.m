@@ -128,17 +128,21 @@
     if ([WZDataFormatChecker isPhoneNumberString:self.phoneNumberTextField.text]) {
         [self.progressHUD showAnimated:YES];
         [WZLogin sendVerificationCodeToPhoneNumber:self.phoneNumberTextField.text success:^{
-            [self.progressHUD hideAnimated:YES];
-            [button countDownWithDuration:60 interval:1 countDownTitle:@"秒后重发" canInteraction:NO finishedBlock:^{
-                [self.verifyButton setTitle:@"重发验证码" forState:UIControlStateNormal];
-                self.verifyButton.enabled = YES;
-            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressHUD hideAnimated:YES];
+                [button countDownWithDuration:60 interval:1 countDownTitle:@"秒后重发" canInteraction:NO finishedBlock:^{
+                    [self.verifyButton setTitle:@"重发验证码" forState:UIControlStateNormal];
+                    self.verifyButton.enabled = YES;
+                }];
+            });
         } failure:^(NSString *userInfo) {
-            [self.progressHUD hideAnimated:YES];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressHUD hideAnimated:YES];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
+                [alert addAction:okAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
         }];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:@"请填写正确的手机号码" preferredStyle:UIAlertControllerStyleAlert];
@@ -184,24 +188,28 @@
     
     [self.progressHUD showAnimated:YES];
     [WZLogin resetPasswordWithPhoneNumber:self.phoneNumberTextField.text verificationCode:self.verificationCodeTextField.text newPassword:self.passwordTextField.text success:^{
-        [self.progressHUD hideAnimated:YES];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"密码重置成功" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.progressHUD hideAnimated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"信息" message:@"密码重置成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     } failure:^(NSString *userInfo) {
-        [self.progressHUD hideAnimated:YES];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            self.phoneNumberTextField.text = @"";
-            self.passwordTextField.text = @"";
-            self.verificationCodeTextField.text = @"";
-            [self submitButtonCanPressed:NO];
-        }];
-        [alert addAction:okAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.progressHUD hideAnimated:YES];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:userInfo preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                self.phoneNumberTextField.text = @"";
+                self.passwordTextField.text = @"";
+                self.verificationCodeTextField.text = @"";
+                [self submitButtonCanPressed:NO];
+            }];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
     }];
 }
 

@@ -47,22 +47,6 @@
     self.tableView.sectionHeaderHeight = 5;
     self.tableView.sectionFooterHeight = 5;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    MJRefreshNormalHeader *normalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self pullDownRefreshOrderListData];
-    }];
-    [normalHeader setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
-    [normalHeader setTitle:@"松开立即刷新" forState:MJRefreshStatePulling];
-    [normalHeader setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
-    normalHeader.lastUpdatedTimeLabel.hidden = YES;
-    self.tableView.mj_header = normalHeader;
-    MJRefreshBackNormalFooter *normalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [self loadMoreOrderListDataFromOffset:self.orders.count];
-    }];
-    [normalFooter setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
-    [normalFooter setTitle:@"松开立即加载" forState:MJRefreshStatePulling];
-    [normalFooter setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
-    [normalFooter setTitle:@"已加载所有订单" forState:MJRefreshStateNoMoreData];
-    self.tableView.mj_footer = normalFooter;
 }
 
 #pragma mark - UITableViewDataSource
@@ -175,6 +159,22 @@
     [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:(self.orders.count < 5 ? 5 : self.orders.count) success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.progressHUD hideAnimated:YES];
+            MJRefreshNormalHeader *normalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                [self pullDownRefreshOrderListData];
+            }];
+            [normalHeader setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+            [normalHeader setTitle:@"松开立即刷新" forState:MJRefreshStatePulling];
+            [normalHeader setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+            normalHeader.lastUpdatedTimeLabel.hidden = YES;
+            self.tableView.mj_header = normalHeader;
+            MJRefreshBackNormalFooter *normalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+                [self loadMoreOrderListDataFromOffset:self.orders.count];
+            }];
+            [normalFooter setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
+            [normalFooter setTitle:@"松开立即加载" forState:MJRefreshStatePulling];
+            [normalFooter setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+            [normalFooter setTitle:@"已加载所有订单" forState:MJRefreshStateNoMoreData];
+            self.tableView.mj_footer = normalFooter;
             [self.tableView.mj_footer resetNoMoreData];
             self.orders = orders;
             [self.tableView reloadData];

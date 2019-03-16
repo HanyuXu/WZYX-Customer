@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarItem.title = @"订单";
+    self.tabBarItem.image = [UIImage imageNamed:@"order"];
 }
 
 @end

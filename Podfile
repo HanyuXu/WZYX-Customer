@@ -8,6 +8,7 @@ target 'WZYX-Customer' do
   pod 'MBProgressHUD', '1.1.0'
   pod 'FMDB', '2.7.5'
   pod 'MJRefresh', '3.1.15.7'
+  pod 'SVPullToRefresh', '0.4.1'
 
   target 'WZYX-CustomerTests' do
     inherit! :search_paths

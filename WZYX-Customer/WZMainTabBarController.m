@@ -9,6 +9,7 @@
 #import "WZMainTabBarController.h"
 #import "WZMineNavigationController.h"
 #import "WZOrderNavigationController.h"
+#import "WZActivityNavigationController.h"
 
 @interface WZMainTabBarController ()
 
@@ -18,10 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    WZActivityNavigationController *activityNavigationController = [WZActivityNavigationController defaultActivityNavigationController];
     WZOrderNavigationController *orderNavigationController = [WZOrderNavigationController defaultOrderNavigationController];
     WZMineNavigationController *mineNavigationController = [WZMineNavigationController defaultMineNavigationController];
-    self.viewControllers = @[orderNavigationController, mineNavigationController];
+    self.viewControllers = @[activityNavigationController, orderNavigationController, mineNavigationController];
 }
 
 @end

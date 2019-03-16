@@ -7,9 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F17DFC72226A5AC00482EA1 /* WZCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFC62226A5AC00482EA1 /* WZCategoryTableViewController.m */; };
+		1F17E001222A536200482EA1 /* JFCityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFEC222A536200482EA1 /* JFCityCollectionViewCell.m */; };
+		1F17E002222A536200482EA1 /* JFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFEE222A536200482EA1 /* JFLocation.m */; };
+		1F17E003222A536200482EA1 /* JFAreaDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF2222A536200482EA1 /* JFAreaDataManager.m */; };
+		1F17E004222A536200482EA1 /* JFCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF4222A536200482EA1 /* JFCityHeaderView.m */; };
+		1F17E005222A536200482EA1 /* JFSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF5222A536200482EA1 /* JFSearchView.m */; };
+		1F17E006222A536200482EA1 /* JFCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF6222A536200482EA1 /* JFCityViewController.m */; };
+		1F17E007222A536200482EA1 /* JFCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF7222A536200482EA1 /* JFCityTableViewCell.m */; };
+		1F17E008222A536200482EA1 /* JFCityCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFF8222A536200482EA1 /* JFCityCollectionFlowLayout.m */; };
+		1F17E009222A536200482EA1 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F17DFFA222A536200482EA1 /* JFButton.m */; };
+		1F17E00A222A536200482EA1 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1F17DFFE222A536200482EA1 /* shop_area.sqlite */; };
 		1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */; };
 		1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */; };
 		1F188CE021AF957B00985A57 /* WZSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */; };
+		1FABAF5C21C0E11F00AD0FE9 /* WZActivityBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABAF5B21C0E11F00AD0FE9 /* WZActivityBaseTableView.m */; };
+		1FABAF5F21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABAF5E21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.m */; };
+		1FABAF6221C1F38400AD0FE9 /* WZActivityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABAF6121C1F38400AD0FE9 /* WZActivityCollectionViewCell.m */; };
+		1FABAF6521C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABAF6421C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.m */; };
+		1FABAF6921C236CF00AD0FE9 /* FSSegmentTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FABAF6821C236CF00AD0FE9 /* FSSegmentTitleView.m */; };
+		1FB6BDF2221E5F61008DBE2A /* WZActivitySubmitOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB6BDF1221E5F61008DBE2A /* WZActivitySubmitOrderButton.m */; };
+		1FCCF98A21C9F6DE00ABAA70 /* WZActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCF98921C9F6DE00ABAA70 /* WZActivityDetailTableViewController.m */; };
+		1FCCF99321CA12DC00ABAA70 /* WZActivityDetailImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCF99221CA12DC00ABAA70 /* WZActivityDetailImageCell.m */; };
+		1FCDF7B521B8F49000260F94 /* WZActivityNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDF7B421B8F49000260F94 /* WZActivityNavigationController.m */; };
+		1FCDF7B821B8F4D800260F94 /* WZActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FCDF7B721B8F4D800260F94 /* WZActivityViewController.m */; };
+		1FD7DB5B21C887F4000B298A /* FSPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD7DB5A21C887F4000B298A /* FSPageContentView.m */; };
+		1FD84D4E221509570077C079 /* WZActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD84D4D221509570077C079 /* WZActivityTableViewCell.m */; };
+		1FEE57BA22237A5600ABD729 /* WZActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57B922237A5600ABD729 /* WZActivity.m */; };
+		1FEE57BD22237A6900ABD729 /* WZActivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57BC22237A6900ABD729 /* WZActivityManager.m */; };
+		1FEE57C02223817F00ABD729 /* WZDateAndTimeStampConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57BF2223817F00ABD729 /* WZDateAndTimeStampConverter.m */; };
+		1FEE57CC222386DA00ABD729 /* UIView+DWQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57C2222386DA00ABD729 /* UIView+DWQExtension.m */; };
+		1FEE57CD222386DA00ABD729 /* DWQSelectAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57C5222386DA00ABD729 /* DWQSelectAttributes.m */; };
+		1FEE57CE222386DA00ABD729 /* DWQ-LOGO.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1FEE57C6222386DA00ABD729 /* DWQ-LOGO.jpeg */; };
+		1FEE57CF222386DA00ABD729 /* 凯迪拉克.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1FEE57C8222386DA00ABD729 /* 凯迪拉克.jpg */; };
+		1FEE57D0222386DA00ABD729 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEE57C9222386DA00ABD729 /* 取消.png */; };
+		1FEE57D1222386DA00ABD729 /* DWQSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57CB222386DA00ABD729 /* DWQSelectView.m */; };
+		1FEE57D82223991300ABD729 /* WZActivitySearchingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEE57D72223991300ABD729 /* WZActivitySearchingTableViewController.m */; };
 		1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA340C21B2768C00CF8F54 /* WZUser.m */; };
 		3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DE1D21A662A0007DC72B /* AppDelegate.m */; };
 		3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B96DE2521A662A1007DC72B /* Assets.xcassets */; };
@@ -62,13 +95,77 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F17DFC52226A5AC00482EA1 /* WZCategoryTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZCategoryTableViewController.h; sourceTree = "<group>"; };
+		1F17DFC62226A5AC00482EA1 /* WZCategoryTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZCategoryTableViewController.m; sourceTree = "<group>"; };
+		1F17DFEB222A536200482EA1 /* JFCityCollectionFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityCollectionFlowLayout.h; sourceTree = "<group>"; };
+		1F17DFEC222A536200482EA1 /* JFCityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityCollectionViewCell.m; sourceTree = "<group>"; };
+		1F17DFEE222A536200482EA1 /* JFLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFLocation.m; sourceTree = "<group>"; };
+		1F17DFEF222A536200482EA1 /* JFLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFLocation.h; sourceTree = "<group>"; };
+		1F17DFF1222A536200482EA1 /* JFAreaDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAreaDataManager.h; sourceTree = "<group>"; };
+		1F17DFF2222A536200482EA1 /* JFAreaDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAreaDataManager.m; sourceTree = "<group>"; };
+		1F17DFF3222A536200482EA1 /* JFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFButton.h; sourceTree = "<group>"; };
+		1F17DFF4222A536200482EA1 /* JFCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityHeaderView.m; sourceTree = "<group>"; };
+		1F17DFF5222A536200482EA1 /* JFSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSearchView.m; sourceTree = "<group>"; };
+		1F17DFF6222A536200482EA1 /* JFCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityViewController.m; sourceTree = "<group>"; };
+		1F17DFF7222A536200482EA1 /* JFCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityTableViewCell.m; sourceTree = "<group>"; };
+		1F17DFF8222A536200482EA1 /* JFCityCollectionFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityCollectionFlowLayout.m; sourceTree = "<group>"; };
+		1F17DFF9222A536200482EA1 /* JFCityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityCollectionViewCell.h; sourceTree = "<group>"; };
+		1F17DFFA222A536200482EA1 /* JFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFButton.m; sourceTree = "<group>"; };
+		1F17DFFB222A536200482EA1 /* JFCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityViewController.h; sourceTree = "<group>"; };
+		1F17DFFC222A536200482EA1 /* JFCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityTableViewCell.h; sourceTree = "<group>"; };
+		1F17DFFE222A536200482EA1 /* shop_area.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_area.sqlite; sourceTree = "<group>"; };
+		1F17DFFF222A536200482EA1 /* JFSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSearchView.h; sourceTree = "<group>"; };
+		1F17E000222A536200482EA1 /* JFCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityHeaderView.h; sourceTree = "<group>"; };
 		1F188CD821AD5F0D00985A57 /* WZUserInfoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUserInfoManager.h; sourceTree = "<group>"; };
 		1F188CD921AD5F0D00985A57 /* WZUserInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUserInfoManager.m; sourceTree = "<group>"; };
 		1F188CDB21AF93FF00985A57 /* WZSettingsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewController.h; sourceTree = "<group>"; };
 		1F188CDC21AF93FF00985A57 /* WZSettingsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewController.m; sourceTree = "<group>"; };
 		1F188CDE21AF957B00985A57 /* WZSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZSettingsTableViewCell.h; sourceTree = "<group>"; };
 		1F188CDF21AF957B00985A57 /* WZSettingsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZSettingsTableViewCell.m; sourceTree = "<group>"; };
+		1FABAF5A21C0E11F00AD0FE9 /* WZActivityBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityBaseTableView.h; sourceTree = "<group>"; };
+		1FABAF5B21C0E11F00AD0FE9 /* WZActivityBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityBaseTableView.m; sourceTree = "<group>"; };
+		1FABAF5D21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivitySearchBarCell.h; sourceTree = "<group>"; };
+		1FABAF5E21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivitySearchBarCell.m; sourceTree = "<group>"; };
+		1FABAF6021C1F38400AD0FE9 /* WZActivityCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityCollectionViewCell.h; sourceTree = "<group>"; };
+		1FABAF6121C1F38400AD0FE9 /* WZActivityCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityCollectionViewCell.m; sourceTree = "<group>"; };
+		1FABAF6321C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityCategoryTableViewCell.h; sourceTree = "<group>"; };
+		1FABAF6421C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityCategoryTableViewCell.m; sourceTree = "<group>"; };
+		1FABAF6721C236CF00AD0FE9 /* FSSegmentTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSegmentTitleView.h; sourceTree = "<group>"; };
+		1FABAF6821C236CF00AD0FE9 /* FSSegmentTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSegmentTitleView.m; sourceTree = "<group>"; };
+		1FB6BDEF221E51DD008DBE2A /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		1FB6BDF0221E5F61008DBE2A /* WZActivitySubmitOrderButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivitySubmitOrderButton.h; sourceTree = "<group>"; };
+		1FB6BDF1221E5F61008DBE2A /* WZActivitySubmitOrderButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivitySubmitOrderButton.m; sourceTree = "<group>"; };
 		1FB7CED8D7487397563EAAF2 /* libPods-WZYX-CustomerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WZYX-CustomerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FCCF98821C9F6DE00ABAA70 /* WZActivityDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityDetailTableViewController.h; sourceTree = "<group>"; };
+		1FCCF98921C9F6DE00ABAA70 /* WZActivityDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityDetailTableViewController.m; sourceTree = "<group>"; };
+		1FCCF99121CA12DC00ABAA70 /* WZActivityDetailImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityDetailImageCell.h; sourceTree = "<group>"; };
+		1FCCF99221CA12DC00ABAA70 /* WZActivityDetailImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityDetailImageCell.m; sourceTree = "<group>"; };
+		1FCDF7B321B8F49000260F94 /* WZActivityNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityNavigationController.h; sourceTree = "<group>"; };
+		1FCDF7B421B8F49000260F94 /* WZActivityNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityNavigationController.m; sourceTree = "<group>"; };
+		1FCDF7B621B8F4D800260F94 /* WZActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityViewController.h; sourceTree = "<group>"; };
+		1FCDF7B721B8F4D800260F94 /* WZActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityViewController.m; sourceTree = "<group>"; };
+		1FD7DB5921C887F4000B298A /* FSPageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPageContentView.h; sourceTree = "<group>"; };
+		1FD7DB5A21C887F4000B298A /* FSPageContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPageContentView.m; sourceTree = "<group>"; };
+		1FD84D4C221509570077C079 /* WZActivityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityTableViewCell.h; sourceTree = "<group>"; };
+		1FD84D4D221509570077C079 /* WZActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityTableViewCell.m; sourceTree = "<group>"; };
+		1FEE57B822237A5600ABD729 /* WZActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivity.h; sourceTree = "<group>"; };
+		1FEE57B922237A5600ABD729 /* WZActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivity.m; sourceTree = "<group>"; };
+		1FEE57BB22237A6900ABD729 /* WZActivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivityManager.h; sourceTree = "<group>"; };
+		1FEE57BC22237A6900ABD729 /* WZActivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivityManager.m; sourceTree = "<group>"; };
+		1FEE57BE2223817F00ABD729 /* WZDateAndTimeStampConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZDateAndTimeStampConverter.h; sourceTree = "<group>"; };
+		1FEE57BF2223817F00ABD729 /* WZDateAndTimeStampConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZDateAndTimeStampConverter.m; sourceTree = "<group>"; };
+		1FEE57C2222386DA00ABD729 /* UIView+DWQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DWQExtension.m"; sourceTree = "<group>"; };
+		1FEE57C3222386DA00ABD729 /* UIView+DWQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DWQExtension.h"; sourceTree = "<group>"; };
+		1FEE57C5222386DA00ABD729 /* DWQSelectAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWQSelectAttributes.m; sourceTree = "<group>"; };
+		1FEE57C6222386DA00ABD729 /* DWQ-LOGO.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DWQ-LOGO.jpeg"; sourceTree = "<group>"; };
+		1FEE57C7222386DA00ABD729 /* DWQSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWQSelectView.h; sourceTree = "<group>"; };
+		1FEE57C8222386DA00ABD729 /* 凯迪拉克.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "凯迪拉克.jpg"; sourceTree = "<group>"; };
+		1FEE57C9222386DA00ABD729 /* 取消.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "取消.png"; sourceTree = "<group>"; };
+		1FEE57CA222386DA00ABD729 /* DWQSelectAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWQSelectAttributes.h; sourceTree = "<group>"; };
+		1FEE57CB222386DA00ABD729 /* DWQSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWQSelectView.m; sourceTree = "<group>"; };
+		1FEE57D22223876800ABD729 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		1FEE57D62223991300ABD729 /* WZActivitySearchingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZActivitySearchingTableViewController.h; sourceTree = "<group>"; };
+		1FEE57D72223991300ABD729 /* WZActivitySearchingTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZActivitySearchingTableViewController.m; sourceTree = "<group>"; };
 		1FFA340B21B2768C00CF8F54 /* WZUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZUser.h; sourceTree = "<group>"; };
 		1FFA340C21B2768C00CF8F54 /* WZUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZUser.m; sourceTree = "<group>"; };
 		30E8862241FC2CEC8D533B54 /* Pods-WZYX-CustomerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WZYX-CustomerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WZYX-CustomerUITests/Pods-WZYX-CustomerUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +262,153 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F17DFEA222A536200482EA1 /* JFCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F17DFEB222A536200482EA1 /* JFCityCollectionFlowLayout.h */,
+				1F17DFEC222A536200482EA1 /* JFCityCollectionViewCell.m */,
+				1F17DFED222A536200482EA1 /* Location */,
+				1F17DFF0222A536200482EA1 /* AreaDataManager */,
+				1F17DFF3222A536200482EA1 /* JFButton.h */,
+				1F17DFF4222A536200482EA1 /* JFCityHeaderView.m */,
+				1F17DFF5222A536200482EA1 /* JFSearchView.m */,
+				1F17DFF6222A536200482EA1 /* JFCityViewController.m */,
+				1F17DFF7222A536200482EA1 /* JFCityTableViewCell.m */,
+				1F17DFF8222A536200482EA1 /* JFCityCollectionFlowLayout.m */,
+				1F17DFF9222A536200482EA1 /* JFCityCollectionViewCell.h */,
+				1F17DFFA222A536200482EA1 /* JFButton.m */,
+				1F17DFFB222A536200482EA1 /* JFCityViewController.h */,
+				1F17DFFC222A536200482EA1 /* JFCityTableViewCell.h */,
+				1F17DFFD222A536200482EA1 /* AreaDB */,
+				1F17DFFF222A536200482EA1 /* JFSearchView.h */,
+				1F17E000222A536200482EA1 /* JFCityHeaderView.h */,
+			);
+			path = JFCityViewController;
+			sourceTree = "<group>";
+		};
+		1F17DFED222A536200482EA1 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				1F17DFEE222A536200482EA1 /* JFLocation.m */,
+				1F17DFEF222A536200482EA1 /* JFLocation.h */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		1F17DFF0222A536200482EA1 /* AreaDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				1F17DFF1222A536200482EA1 /* JFAreaDataManager.h */,
+				1F17DFF2222A536200482EA1 /* JFAreaDataManager.m */,
+			);
+			path = AreaDataManager;
+			sourceTree = "<group>";
+		};
+		1F17DFFD222A536200482EA1 /* AreaDB */ = {
+			isa = PBXGroup;
+			children = (
+				1F17DFFE222A536200482EA1 /* shop_area.sqlite */,
+			);
+			path = AreaDB;
+			sourceTree = "<group>";
+		};
+		1FABAF6621C236BB00AD0FE9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				1F17DFEA222A536200482EA1 /* JFCityViewController */,
+				1FEE57C1222386DA00ABD729 /* DWQExtension */,
+				1FEE57C4222386DA00ABD729 /* DWQSelectAttributesView */,
+				1FABAF6721C236CF00AD0FE9 /* FSSegmentTitleView.h */,
+				1FD7DB5921C887F4000B298A /* FSPageContentView.h */,
+				1FD7DB5A21C887F4000B298A /* FSPageContentView.m */,
+				1FABAF6821C236CF00AD0FE9 /* FSSegmentTitleView.m */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		1FCDF7AF21B8F38400260F94 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				1FCDF7B221B8F3BC00260F94 /* Controller */,
+				1FCDF7B121B8F3B200260F94 /* View */,
+				1FCDF7B021B8F3AB00260F94 /* Model */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		1FCDF7B021B8F3AB00260F94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FEE57B822237A5600ABD729 /* WZActivity.h */,
+				1FEE57B922237A5600ABD729 /* WZActivity.m */,
+				1FEE57BB22237A6900ABD729 /* WZActivityManager.h */,
+				1FEE57BC22237A6900ABD729 /* WZActivityManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1FCDF7B121B8F3B200260F94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FABAF6621C236BB00AD0FE9 /* lib */,
+				1FABAF5A21C0E11F00AD0FE9 /* WZActivityBaseTableView.h */,
+				1FABAF5B21C0E11F00AD0FE9 /* WZActivityBaseTableView.m */,
+				1FABAF5D21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.h */,
+				1FABAF5E21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.m */,
+				1FABAF6021C1F38400AD0FE9 /* WZActivityCollectionViewCell.h */,
+				1FABAF6121C1F38400AD0FE9 /* WZActivityCollectionViewCell.m */,
+				1FABAF6321C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.h */,
+				1FABAF6421C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.m */,
+				1FCCF99121CA12DC00ABAA70 /* WZActivityDetailImageCell.h */,
+				1FCCF99221CA12DC00ABAA70 /* WZActivityDetailImageCell.m */,
+				1FD84D4C221509570077C079 /* WZActivityTableViewCell.h */,
+				1FD84D4D221509570077C079 /* WZActivityTableViewCell.m */,
+				1FB6BDF0221E5F61008DBE2A /* WZActivitySubmitOrderButton.h */,
+				1FB6BDF1221E5F61008DBE2A /* WZActivitySubmitOrderButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1FCDF7B221B8F3BC00260F94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FCDF7B321B8F49000260F94 /* WZActivityNavigationController.h */,
+				1FCDF7B421B8F49000260F94 /* WZActivityNavigationController.m */,
+				1FCDF7B621B8F4D800260F94 /* WZActivityViewController.h */,
+				1FCDF7B721B8F4D800260F94 /* WZActivityViewController.m */,
+				1FCCF98821C9F6DE00ABAA70 /* WZActivityDetailTableViewController.h */,
+				1FCCF98921C9F6DE00ABAA70 /* WZActivityDetailTableViewController.m */,
+				1FEE57D62223991300ABD729 /* WZActivitySearchingTableViewController.h */,
+				1FEE57D72223991300ABD729 /* WZActivitySearchingTableViewController.m */,
+				1F17DFC52226A5AC00482EA1 /* WZCategoryTableViewController.h */,
+				1F17DFC62226A5AC00482EA1 /* WZCategoryTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1FEE57C1222386DA00ABD729 /* DWQExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1FEE57C2222386DA00ABD729 /* UIView+DWQExtension.m */,
+				1FEE57C3222386DA00ABD729 /* UIView+DWQExtension.h */,
+			);
+			path = DWQExtension;
+			sourceTree = "<group>";
+		};
+		1FEE57C4222386DA00ABD729 /* DWQSelectAttributesView */ = {
+			isa = PBXGroup;
+			children = (
+				1FEE57C5222386DA00ABD729 /* DWQSelectAttributes.m */,
+				1FEE57C6222386DA00ABD729 /* DWQ-LOGO.jpeg */,
+				1FEE57C7222386DA00ABD729 /* DWQSelectView.h */,
+				1FEE57C8222386DA00ABD729 /* 凯迪拉克.jpg */,
+				1FEE57C9222386DA00ABD729 /* 取消.png */,
+				1FEE57CA222386DA00ABD729 /* DWQSelectAttributes.h */,
+				1FEE57CB222386DA00ABD729 /* DWQSelectView.m */,
+			);
+			path = DWQSelectAttributesView;
+			sourceTree = "<group>";
+		};
 		2AFE1139CD29D5C0EF37FDDD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +452,7 @@
 				3B96DEAB21A7E84A007DC72B /* Categories */,
 				3B96DEFC21AC27E8007DC72B /* Resources */,
 				3B96DEDB21AC06C3007DC72B /* AppEntry */,
+				1FEE57D22223876800ABD729 /* PrefixHeader.pch */,
 			);
 			path = "WZYX-Customer";
 			sourceTree = "<group>";
@@ -282,6 +527,8 @@
 			children = (
 				3B96DEB021A7FB27007DC72B /* WZDataFormatChecker.h */,
 				3B96DEB121A7FB27007DC72B /* WZDataFormatChecker.m */,
+				1FEE57BE2223817F00ABD729 /* WZDateAndTimeStampConverter.h */,
+				1FEE57BF2223817F00ABD729 /* WZDateAndTimeStampConverter.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -344,6 +591,7 @@
 		3B96DEDC21AC0737007DC72B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				1FCDF7AF21B8F38400260F94 /* Activity */,
 				3B96DED921AC0655007DC72B /* Mine */,
 				3B96DE8D21A6B638007DC72B /* Login */,
 			);
@@ -368,6 +616,7 @@
 		3B96DEFC21AC27E8007DC72B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FB6BDEF221E51DD008DBE2A /* iconfont.ttf */,
 				3B96DF0421AC2A5A007DC72B /* cities.plist */,
 			);
 			path = Resources;
@@ -407,6 +656,7 @@
 				3B96DE1521A662A0007DC72B /* Sources */,
 				3B96DE1621A662A0007DC72B /* Frameworks */,
 				3B96DE1721A662A0007DC72B /* Resources */,
+				273C0035C43BB72929785F6B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -503,8 +753,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B96DF0521AC2A5A007DC72B /* cities.plist in Resources */,
+				1FEE57CF222386DA00ABD729 /* 凯迪拉克.jpg in Resources */,
 				3B96DE2921A662A1007DC72B /* LaunchScreen.storyboard in Resources */,
+				1FEE57D0222386DA00ABD729 /* 取消.png in Resources */,
 				3B96DE2621A662A1007DC72B /* Assets.xcassets in Resources */,
+				1F17E00A222A536200482EA1 /* shop_area.sqlite in Resources */,
+				1FEE57CE222386DA00ABD729 /* DWQ-LOGO.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +799,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		273C0035C43BB72929785F6B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WZYX-Customer/Pods-WZYX-Customer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		80A08E858856583C14071AD1 /* [CP] Check Pods Manifest.lock */ = {
@@ -600,31 +876,60 @@
 			files = (
 				3B96DEA521A6E39B007DC72B /* WZLoginNavigationController.m in Sources */,
 				3B96DE9921A6DA42007DC72B /* WZRegisterViewController.m in Sources */,
+				1FEE57D1222386DA00ABD729 /* DWQSelectView.m in Sources */,
 				3B96DEF821AC251B007DC72B /* WZGenderTableViewController.m in Sources */,
 				1F188CDA21AD5F0D00985A57 /* WZUserInfoManager.m in Sources */,
 				3B96DEEC21AC0DF7007DC72B /* WZUserPortraitTableViewCell.m in Sources */,
+				1FEE57D82223991300ABD729 /* WZActivitySearchingTableViewController.m in Sources */,
 				3B96DF0821AC3ED9007DC72B /* WZSubmitButtonTableViewCell.m in Sources */,
 				3B96DF0321AC289A007DC72B /* WZCityInfo.m in Sources */,
 				3B96DE9F21A6E0DA007DC72B /* WZLoginTableView.m in Sources */,
 				3B96DEDF21AC07CC007DC72B /* WZMainTabBarController.m in Sources */,
 				3B96DEB221A7FB27007DC72B /* WZDataFormatChecker.m in Sources */,
+				1FABAF6521C1F73B00AD0FE9 /* WZActivityCategoryTableViewCell.m in Sources */,
 				3B96DEEF21AC17C0007DC72B /* WZMyProfileTableViewController.m in Sources */,
 				3B96DEE521AC09BE007DC72B /* WZMineNavigationController.m in Sources */,
+				1FCDF7B821B8F4D800260F94 /* WZActivityViewController.m in Sources */,
 				3B96DE2C21A662A1007DC72B /* main.m in Sources */,
+				1FD7DB5B21C887F4000B298A /* FSPageContentView.m in Sources */,
+				1FCCF99321CA12DC00ABAA70 /* WZActivityDetailImageCell.m in Sources */,
 				3B96DEE821AC0B3A007DC72B /* WZMineTableViewController.m in Sources */,
+				1F17E003222A536200482EA1 /* JFAreaDataManager.m in Sources */,
+				1F17E002222A536200482EA1 /* JFLocation.m in Sources */,
+				1F17E006222A536200482EA1 /* JFCityViewController.m in Sources */,
+				1F17E005222A536200482EA1 /* JFSearchView.m in Sources */,
+				1FABAF6921C236CF00AD0FE9 /* FSSegmentTitleView.m in Sources */,
+				1F17E009222A536200482EA1 /* JFButton.m in Sources */,
+				1FABAF5F21C0E5CC00AD0FE9 /* WZActivitySearchBarCell.m in Sources */,
+				1FEE57C02223817F00ABD729 /* WZDateAndTimeStampConverter.m in Sources */,
 				3B96DE1E21A662A0007DC72B /* AppDelegate.m in Sources */,
+				1FCCF98A21C9F6DE00ABAA70 /* WZActivityDetailTableViewController.m in Sources */,
+				1F17E008222A536200482EA1 /* JFCityCollectionFlowLayout.m in Sources */,
 				1F188CDD21AF93FF00985A57 /* WZSettingsTableViewController.m in Sources */,
 				1FFA340D21B2768C00CF8F54 /* WZUser.m in Sources */,
 				3B96DEAE21A7E8B8007DC72B /* UIButton+WZCountDownButton.m in Sources */,
 				3B96DED121AA9553007DC72B /* WZModifyPasswordViewController.m in Sources */,
+				1F17DFC72226A5AC00482EA1 /* WZCategoryTableViewController.m in Sources */,
+				1FEE57CD222386DA00ABD729 /* DWQSelectAttributes.m in Sources */,
 				3B96DEB621A94440007DC72B /* WZLogin.m in Sources */,
+				1F17E007222A536200482EA1 /* JFCityTableViewCell.m in Sources */,
+				1FB6BDF2221E5F61008DBE2A /* WZActivitySubmitOrderButton.m in Sources */,
 				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
 				1F188CE021AF957B00985A57 /* WZSettingsTableViewCell.m in Sources */,
 				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
+				1FCDF7B521B8F49000260F94 /* WZActivityNavigationController.m in Sources */,
+				1F17E001222A536200482EA1 /* JFCityCollectionViewCell.m in Sources */,
+				1F17E004222A536200482EA1 /* JFCityHeaderView.m in Sources */,
 				3B96DEF221AC1D7D007DC72B /* WZNameTableViewController.m in Sources */,
+				1FABAF5C21C0E11F00AD0FE9 /* WZActivityBaseTableView.m in Sources */,
+				1FEE57BD22237A6900ABD729 /* WZActivityManager.m in Sources */,
+				1FEE57CC222386DA00ABD729 /* UIView+DWQExtension.m in Sources */,
 				3B96DE8C21A6A630007DC72B /* WZLoginTableViewCell.m in Sources */,
 				3B96DEFB21AC270A007DC72B /* WZAvatarViewController.m in Sources */,
+				1FABAF6221C1F38400AD0FE9 /* WZActivityCollectionViewCell.m in Sources */,
+				1FEE57BA22237A5600ABD729 /* WZActivity.m in Sources */,
 				3B96DE9321A6B6A2007DC72B /* WZLoginViewController.m in Sources */,
+				1FD84D4E221509570077C079 /* WZActivityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

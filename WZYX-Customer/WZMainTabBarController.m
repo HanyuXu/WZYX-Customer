@@ -8,6 +8,7 @@
 
 #import "WZMainTabBarController.h"
 #import "WZMineNavigationController.h"
+#import "WZActivityNavigationController.h"
 
 @interface WZMainTabBarController ()
 
@@ -19,7 +20,8 @@
     [super viewDidLoad];
     
     WZMineNavigationController *mineNavigationController = [WZMineNavigationController defaultMineNavigationController];
-    self.viewControllers = @[mineNavigationController];
+    WZActivityNavigationController *ActivityNavigationController = [WZActivityNavigationController defaultActivityNavigationController];
+    self.viewControllers = @[ActivityNavigationController,mineNavigationController];
 }
 
 @end

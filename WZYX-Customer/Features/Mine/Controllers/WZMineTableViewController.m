@@ -144,5 +144,6 @@
 - (void)shouldLoadUserInfo:(NSNotification *) notificaiton {
     [WZUserInfoManager loadUserInfo];
     [WZUserInfoManager downloadPortrait];
+    [self.tableView reloadData];
 }
 @end

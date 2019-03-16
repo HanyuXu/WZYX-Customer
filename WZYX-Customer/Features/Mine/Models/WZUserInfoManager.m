@@ -51,7 +51,7 @@
     } else {
         gender = ([userInfo[@"gender"] intValue] == 0) ? @"男" : @"女";
     }
-    if (userInfo[@"userName"] == nil) {
+    if (userInfo[@"userName"] == [NSNull null]) {
         userName = [NSString stringWithFormat:@"用户%@",userInfo[@"userId"]];
     } else {
         userName = userInfo[@"userName"];
@@ -113,6 +113,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
     [downloader downloadImageForURLRequest:request success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
         [self saveImage:responseObject];
+        
     } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
     }];
 }

@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarItem.title = @"活动";
-    self.tabBarItem.image = [UIImage imageNamed:@"Setting"];
+    self.tabBarItem.image = [UIImage imageNamed:@"activity"];
     // Do any additional setup after loading the view.
 }
 

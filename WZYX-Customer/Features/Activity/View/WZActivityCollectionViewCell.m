@@ -25,14 +25,10 @@
 
 - (void) layoutSubviews {
     [self.topImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        //make.size.mas_equalTo(kWZActivityCollectionViewCellTopImageSize);
         make.top.left.right.equalTo(self.contentView).insets(kWZActivityCollectionViewCellTopImageEdgeInsets);
         make.centerX.equalTo(self.contentView);
     }];
     [self.bottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        //make.size.mas_equalTo(kWZActivityCollectionViewCellBottomLabelSize);
-        //make.left.right.equalTo(self.contentView).insets(kWZActivityCollectionViewCellTopImageEdgeInsets);
-//       make.top.equalTo(self.contentView).offset(45);
         make.bottom.equalTo(self.contentView).offset(-5);
         make.centerX.equalTo(self.contentView);
     }];
@@ -43,7 +39,6 @@
 - (UIImageView *) topImage {
     if (!_topImage) {
         _topImage = [[UIImageView alloc] init];
-        _topImage.image = [UIImage imageNamed:@"Setting"];
     }
     return _topImage;
 }
@@ -51,7 +46,7 @@
 - (UILabel *) bottomLabel {
     if (!_bottomLabel) {
         _bottomLabel = [[UILabel alloc] init];
-        _bottomLabel.text = @"测试";
+        _bottomLabel.font = [UIFont systemFontOfSize:14];
     }
     //_bottomLabel.backgroundColor = [UIColor yellowColor];
     return _bottomLabel;

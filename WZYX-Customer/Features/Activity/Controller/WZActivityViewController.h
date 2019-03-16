@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WZActivity.h"
 @class WZActivityBaseTableView;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WZActivityViewController : UIViewController
 @property(strong, nonatomic) WZActivityBaseTableView *baseTableView;
-
+@property(strong, nonatomic) NSMutableArray<WZActivity*> *activityList;
+@property(strong, nonatomic) NSMutableArray<WZActivity*> *activitySortedByHeatRate;
+@property(strong, nonatomic) NSMutableArray<WZActivity*> *activitySortedByDate;
 @end
 NS_ASSUME_NONNULL_END

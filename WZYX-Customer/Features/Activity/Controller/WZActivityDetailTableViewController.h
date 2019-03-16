@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class WZActivity;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WZActivityDetailTableViewController : UITableViewController
-
+@interface WZActivityDetailTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property(nonatomic, strong) WZActivity *activity;
 @end
 
 NS_ASSUME_NONNULL_END

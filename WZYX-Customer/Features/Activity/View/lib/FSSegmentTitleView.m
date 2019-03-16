@@ -41,7 +41,7 @@
 - (void)initWithProperty
 {
     self.itemMargin = 20;
-    self.selectIndex = 0;
+    //self.selectIndex = 0;
     self.titleNormalColor = [UIColor blackColor];
     self.titleSelectColor = [UIColor redColor];
     self.titleFont = [UIFont systemFontOfSize:15];

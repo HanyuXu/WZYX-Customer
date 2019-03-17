@@ -23,6 +23,8 @@
 #import "JFCityViewController.h"
 #import <MJRefresh.h>
 #import <Masonry.h>
+#import <MBProgressHUD.h>
+
 
 #define KSCREEN_WIDTH               [UIScreen mainScreen].bounds.size.width
 #define KSCREEN_HEIGHT              [UIScreen mainScreen].bounds.size.height
@@ -43,7 +45,8 @@
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger currentPageNumber;
 @property (nonatomic, assign) NSUInteger sortType;
-
+/** Loading动画*/
+@property(nonatomic, strong) MBProgressHUD *progressHUB;
 @end
 
 @implementation WZActivityViewController
@@ -253,12 +256,16 @@
 #pragma mark - DownloadDateFromInternet
 
 - (void)loadData {
+    [self.baseTableView addSubview:self.progressHUB];
+    [self.progressHUB showAnimated:YES];
     [WZActivityManager downLoadActivityListWithSortType:self.sortType success:^(NSMutableArray<WZActivity *> * _Nonnull activities) {
         [self.activityList removeAllObjects];
         self.activityList = activities;
         NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
         [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.progressHUB hideAnimated:YES];
     } faliure:^{
+        [self.progressHUB hideAnimated:YES];
         NSLog(@"failure!");
     }];
 }
@@ -424,4 +431,13 @@
     return _titleView;
 }
 
+- (MBProgressHUD *)progressHUB {
+    if (!_progressHUB) {
+        _progressHUB = [[MBProgressHUD alloc] initWithView:self.baseTableView];
+        _progressHUB.label.text = @"加载中";
+        _progressHUB.alpha = 0.5;
+        _progressHUB.removeFromSuperViewOnHide = NO;
+    }
+    return _progressHUB;
+}
 @end

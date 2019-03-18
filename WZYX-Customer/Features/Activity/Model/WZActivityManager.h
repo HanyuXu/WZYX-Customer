@@ -11,11 +11,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class WZActivity;
+typedef NS_ENUM(NSUInteger, WZActivitySortType) {
+    WZActivitySortTypeDefault = 0,
+    WZActivitySortTypeByHeat,
+    WZActivitySortTypeByDate
+};
+typedef NS_ENUM(NSUInteger, WZActivityCategoty) {
+    WZActivityCategotyBook = 0,
+    WZActivityCategotyComic,
+    WZActivityCategotyMusic,
+    WZActivityCategotySports
+};
 
 @interface WZActivityManager : NSObject
 
 // 根据定位获取附近活动
-+ (void)downLoadActivityListWithSortType:(NSUInteger) sortType
++ (void)downLoadActivityListWithSortType:(WZActivitySortType) sortType
                                  success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities)) successBlock
                                  faliure:(void (^_Nullable)(void)) failureBlock;
 
@@ -23,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)searchActivityNearBy:(NSString *)str
                     success:(void (^_Nullable)(NSMutableArray<WZActivity*>*)) successBlock
                     failure:(void (^_Nullable)(void)) failureBlock;
+// 根据类别查看活动
++ (void)browseActivityWith:(WZActivityCategoty) category
+                   success:(void (^_Nullable)(NSMutableArray<WZActivity*>*)) successBlock
+                   failure:(void (^_Nullable)(void)) failureBlock;
 @end
+
+
 
 NS_ASSUME_NONNULL_END

@@ -8,9 +8,11 @@
 
 #import "WZCategoryTableViewController.h"
 #import "WZactivityTableViewCell.h"
+#import <MJRefresh.h>
+#import <MBProgressHUD.h>
 
 @interface WZCategoryTableViewController ()
-
+@property(nonatomic, strong) MBProgressHUD *progressHUD;
 @end
 
 @implementation WZCategoryTableViewController
@@ -20,6 +22,14 @@
     self.tableView.estimatedRowHeight = 44;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // MJRefresh
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"上拉加载更多" forState:MJRefreshStatePulling];
+    self.tableView.mj_footer = footer;
+    [self.tableView addSubview:self.progressHUD];
+    [self.progressHUD showAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -46,6 +56,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
+}
+
+#pragma mark - load data
+- (void)loadMoreData {
+    [self.progressHUD showAnimated:YES];
+}
+#pragma mark - lazy load
+- (MBProgressHUD *)progressHUD {
+    if (!_progressHUD) {
+        _progressHUD = [[MBProgressHUD alloc] initWithView:self.tableView];
+        _progressHUD.label.text = @"加载中";
+        _progressHUD.alpha = 0.5;
+        _progressHUD.removeFromSuperViewOnHide = NO;
+    }
+    return _progressHUD;
 }
 
 @end

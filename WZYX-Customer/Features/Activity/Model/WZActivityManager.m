@@ -21,11 +21,11 @@
     return manager;
 }
 
-+ (void)downLoadActivityListWithSortType:(NSUInteger) sortType
++ (void)downLoadActivityListWithSortType:(WZActivitySortType) sortType
                                    success:(void (^_Nullable)(NSMutableArray<WZActivity*>*))successBlock
-                                   faliure:(void (^_Nullable)(void))failureBlock{
+                                   faliure:(void (^_Nullable)(void))failureBlock {
     NSDictionary *param = @{@"pcate":@0, @"psort":@0, @"latitude":@100.0, @"longgitude":@100, @"distance":@5000.0, @"pageNumber": @1, @"pageSize": @10 };
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [self sharedManager];
     NSMutableArray<WZActivity *> *activities = [[NSMutableArray alloc] init];
     [manager POST:@"http://120.79.10.184:8080/product/list" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dict = ((NSDictionary* )responseObject)[@"data"];
@@ -48,6 +48,12 @@
                     success:(void (^_Nullable)(NSMutableArray<WZActivity*>*))successBlock
                     failure:(void (^_Nullable)(void))failureBlock {
     failureBlock();
+}
+
+// 根据类别查看活动
++ (void)browseActivityWith:(WZActivityCategoty)category
+                   success:(void (^)(NSMutableArray<WZActivity *> * _Nonnull))successBlock failure:(void (^)(void))failureBlock {
+    
 }
 
 @end

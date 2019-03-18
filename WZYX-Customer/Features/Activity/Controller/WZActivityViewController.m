@@ -44,9 +44,11 @@
 @property (nonatomic, strong) UILabel *promptLabel;
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger currentPageNumber;
-@property (nonatomic, assign) NSUInteger sortType;
+@property (nonatomic, assign) WZActivitySortType sortType;
 /** Loading动画*/
 @property(nonatomic, strong) MBProgressHUD *progressHUB;
+/** 定位对象*/
+@property(nonatomic, strong) CLPlacemark *placemark;
 @end
 
 @implementation WZActivityViewController
@@ -70,10 +72,10 @@
 
 - (void)FSSegmentTitleView:(FSSegmentTitleView *)titleView startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex {
     if (endIndex == 0 || endIndex == 2) {
-        self.sortType = 1;
+        self.sortType = WZActivitySortTypeDefault;
     }
     else {
-        self.sortType = 0;
+        self.sortType = WZActivitySortTypeByDate;
     }
     if (self.currentCity) {
         [self loadData];
@@ -236,9 +238,20 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    WZActivityCollectionViewCell *cell = (WZActivityCollectionViewCell *)[self.categoryCell.categoryCollectionView cellForItemAtIndexPath:indexPath];
     WZCategoryTableViewController *vc = [[WZCategoryTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    vc.navigationItem.title = cell.bottomLabel.text;
+    if (indexPath.row == 0) {
+        vc.category = WZActivityCategotyBook;
+        vc.navigationItem.title = @"书展";
+    } else if (indexPath.row == 1) {
+        vc.category = WZActivityCategotyComic;
+        vc.navigationItem.title = @"漫展";
+    } else if (indexPath.row == 2) {
+        vc.category = WZActivityCategotyMusic;
+        vc.navigationItem.title = @"音乐";
+    } else {
+        vc.category = WZActivityCategotySports;
+        vc.navigationItem.title = @"运动";
+    }
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -325,6 +338,10 @@
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];
     }
+}
+
+- (void)currentPlacemark:(CLPlacemark *)placemark {
+    self.placemark = placemark;
 }
 
 //拒绝定位

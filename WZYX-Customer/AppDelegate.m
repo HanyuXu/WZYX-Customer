@@ -25,6 +25,8 @@
     self.window.rootViewController = [[WZMainTabBarController alloc] init];
     [self.window makeKeyAndVisible];
     NSLog(@"%@", SANDBOX_DOCUMENT_PATH);
+    // 解决tabbat图标偏移问题
+    [[UITabBar appearance] setTranslucent:NO];
     return YES;
 }
 

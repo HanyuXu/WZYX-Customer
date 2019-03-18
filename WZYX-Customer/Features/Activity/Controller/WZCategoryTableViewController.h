@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WZActivityManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WZCategoryTableViewController : UITableViewController
-
+@property(nonatomic, assign) WZActivityCategoty category;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -281,6 +281,9 @@
     self.submitButton.titleLabel.text = @"参加活动";
     self.submitButton.enabled = YES;
 }
+- (void)submitOrder {
+    
+}
 
 #pragma mark - wzactivity amount delegate
 - (void)addActivityAmount {
@@ -307,6 +310,7 @@
         _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
         _submitButton.enabled = NO;
         _submitButton.backgroundColor = [UIColor grayColor];
+        [_submitButton addTarget:self action:@selector(submitOrder) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitButton;
 }

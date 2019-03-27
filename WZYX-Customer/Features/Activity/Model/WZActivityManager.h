@@ -16,30 +16,36 @@ typedef NS_ENUM(NSUInteger, WZActivitySortType) {
     WZActivitySortTypeByHeat,
     WZActivitySortTypeByDate
 };
-typedef NS_ENUM(NSUInteger, WZActivityCategoty) {
-    WZActivityCategotyBook = 0,
-    WZActivityCategotyComic,
-    WZActivityCategotyMusic,
-    WZActivityCategotySports
+typedef NS_ENUM(NSUInteger, WZActivityCategory) {
+    WZActivityCategoryAll = 0,
+    WZActivityCategoryBook,
+    WZActivityCategoryComic,
+    WZActivityCategoryMusic,
+    WZActivityCategorySports
 };
 
 @interface WZActivityManager : NSObject
 
 // 根据定位获取附近活动
-+ (void)downLoadActivityListWithSortType:(WZActivitySortType) sortType
-                                 success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities)) successBlock
++ (void)downLoadActivityListWithLatitude:(double) latitude
+                               Longitude:(double) longitude
+                                Category:(NSUInteger) category
+                                SortType:(WZActivitySortType) sortType
+                                 success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities, BOOL hasNextPage)) successBlock
                                  faliure:(void (^_Nullable)(void)) failureBlock;
 
 // 搜索附近活动
 + (void)searchActivityNearBy:(NSString *)str
-                    success:(void (^_Nullable)(NSMutableArray<WZActivity*>*)) successBlock
-                    failure:(void (^_Nullable)(void)) failureBlock;
+                  PageNumber:(NSUInteger)pageNumber
+                     success:(void (^_Nullable)(NSMutableArray<WZActivity *> *, BOOL))
+                                 successBlock
+                     failure:(void (^_Nullable)(void))failureBlock;
 // 根据类别查看活动
-+ (void)browseActivityWith:(WZActivityCategoty) category
-                   success:(void (^_Nullable)(NSMutableArray<WZActivity*>*)) successBlock
-                   failure:(void (^_Nullable)(void)) failureBlock;
++ (void)browseActivityWith:(WZActivityCategory)category
+                PageNumber:(NSUInteger)pageNumber
+                   success:(void (^)(NSMutableArray<WZActivity *> *_Nonnull, BOOL))
+                               successBlock
+                   failure:(void (^)(void))failureBlock;
 @end
 
-
-
-NS_ASSUME_NONNULL_END
+    NS_ASSUME_NONNULL_END

@@ -11,12 +11,13 @@
 #import "WZActivitySubmitOrderButton.h"
 #import "DWQSelectAttributes.h"
 #import "DWQSelectView.h"
+#import "WZActivityAmountCell.h"
 #import <Masonry.h>
 
 #define screen_Width    [UIScreen mainScreen].bounds.size.width
 #define screen_Height   [UIScreen mainScreen].bounds.size.height
 
-@interface WZActivityDetailTableViewController () <SelectAttributesDelegate>
+@interface WZActivityDetailTableViewController () <SelectAttributesDelegate, WZActivityAmountButtonDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (nonatomic,strong) DWQSelectView *selectView;//规格属性选择控件
@@ -84,6 +85,8 @@
         return 1;
     } else if (section == 1) {
         return 4;
+    } else if (section == 2) {
+        return 2;
     }
     return 1;
 }
@@ -120,11 +123,11 @@
         } else if (indexPath.row == 2) {//活动时间
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TimeCell"];
             if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TimeCell"];
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TimeCell"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.textLabel.text = @"活动时间";
-            cell.detailTextLabel.text = @"2018.12.19";
+            cell.detailTextLabel.text = @"2019-2-1";
             cell.detailTextLabel.textColor = [UIColor blackColor];
             return cell;
         } else if (indexPath.row == 3){
@@ -139,14 +142,24 @@
             return cell;
         }
     } else if (indexPath.section == 2) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SelectDateCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"SelectDateCell"];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"选择时间";
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if(indexPath.row == 0) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SelectDateCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"SelectDateCell"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.textLabel.text = @"选择时间";
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            return cell;
+        } else {
+            WZActivityAmountCell *cell = [tableView dequeueReusableCellWithIdentifier:@"amountCell"];
+            if (!cell) {
+                cell = [[WZActivityAmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"amountCell"];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            return cell;
         }
-        return cell;
+        
     } else {
         WZActivityDetailImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
         if (!cell) {
@@ -172,7 +185,7 @@
     if (indexPath.section == 0 || indexPath.section == 3) {
         return self.view.bounds.size.width;
     }
-    return UITableViewAutomaticDimension;
+    return 44;
 }
 
 #pragma mark - SelectView
@@ -244,6 +257,11 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:path];
     cell.detailTextLabel.text = self.attributesArray[0];
     
+    NSIndexPath *path2 = [NSIndexPath indexPathForRow:1 inSection:2];
+    WZActivityAmountCell *amountCell = [self.tableView cellForRowAtIndexPath:path2];
+    [amountCell add];
+    
+    
     [self.submitButton setTitle:@"参加活动" forState:UIControlStateNormal];
     [self.submitButton layoutIfNeeded];
     [self dismiss];
@@ -262,6 +280,14 @@
     self.submitButton.backgroundColor = [UIColor redColor];
     self.submitButton.titleLabel.text = @"参加活动";
     self.submitButton.enabled = YES;
+}
+
+#pragma mark - wzactivity amount delegate
+- (void)addActivityAmount {
+    
+}
+- (void)subActivityAmount {
+    
 }
 
 # pragma mark - LazyLoad

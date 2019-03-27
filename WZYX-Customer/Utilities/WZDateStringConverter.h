@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSDate *)dateFromString:(NSString *)string;
++ (NSArray<NSDate *> *)datePeriod:(NSString *)start EndDate:(NSString *)end;
 
 @end
 

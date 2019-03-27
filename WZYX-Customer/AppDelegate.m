@@ -24,7 +24,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[WZMainTabBarController alloc] init];
     [self.window makeKeyAndVisible];
-    NSLog(@"%@", SANDBOX_DOCUMENT_PATH);
     // 解决tabbat图标偏移问题
     [[UITabBar appearance] setTranslucent:NO];
     return YES;
@@ -35,8 +34,9 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-//    //未登录时会崩溃
-//    [WZUserInfoManager saveUserInfo];
+    if ([WZUserInfoManager userIsLoggedIn]) {
+        [WZUserInfoManager saveUserInfo];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

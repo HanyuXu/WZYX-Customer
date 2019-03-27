@@ -53,6 +53,28 @@
 
 #pragma mark - Methods
 
++ (void)createOrderWithEventId:(NSString *)eventId eventSeason:(NSString *)eventSeason purchaseCount:(NSUInteger)purchaseCount success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
+    AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
+    NSString *authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"];
+    NSDictionary *paramsDictionary = @{@"authToken" : authToken,
+                                       @"eventId" : eventId,
+                                       @"eventSeason" : eventSeason,
+                                       @"eventSeason" : [NSNumber numberWithUnsignedInteger:purchaseCount]};
+    [manager POST:@"http://120.79.10.184:8080/wzyx_war/order/gen_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+        if ([responseDictionary[@"status"] intValue] == 0) {
+            NSDictionary *dataDictionary = responseDictionary[@"data"];
+            WZOrder *order = [[WZOrder alloc] initWithDataDictionary:dataDictionary];
+            [NSThread sleepForTimeInterval:0.5];
+            successBlock(order);
+        } else {
+            failureBlock(responseDictionary[@"msg"]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failureBlock(@"服务器未响应，请稍后重试");
+    }];
+}
+
 + (void)loadOrderListWithOrderState:(WZOrderState)orderState offset:(NSUInteger)offset limit:(NSUInteger)limit success:(void (^)(NSMutableArray *orders))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     if (![WZUserInfoManager userIsLoggedIn]) {
         failureBlock(@"用户未登录");

@@ -62,7 +62,7 @@
 - (UIImageView *)activityImageView {
     if (!_activityImageView) {
         _activityImageView = [[UIImageView alloc] init];
-        _activityImageView.image = [UIImage imageNamed:@"Setting"];
+        _activityImageView.image = [UIImage imageNamed:@"book"];
     }
     return _activityImageView;
 }

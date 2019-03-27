@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WZActivityManager.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WZCategoryTableViewController : UITableViewController
+@class WZActivity;
 
+@interface WZCategoryTableViewController : UITableViewController
+@property(nonatomic, assign) WZActivityCategory category;
+@property(nonatomic, assign) NSArray<WZActivity *> *activities;
+@property(nonatomic, assign) CGFloat latitude;
+@property(nonatomic, assign) CGFloat longitude;
 @end
 
 NS_ASSUME_NONNULL_END

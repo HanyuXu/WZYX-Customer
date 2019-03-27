@@ -10,7 +10,7 @@
 #import <Masonry.h>
 
 #define kWZActivityCollectionViewCellTopImageSize       CGSizeMake(30, 30)
-#define kWZActivityCollectionViewCellBottomLabelSize    CGSizeMake(30, 10)
+#define kWZActivityCollectionViewCellBottomLabelSize CGSizeMake(30, 10)
 #define kWZActivityCollectionViewCellTopImageEdgeInsets UIEdgeInsetsMake(5, 5, 20, 5)
 
 @implementation WZActivityCollectionViewCell

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class CLPlacemark;
 @protocol JFLocationDelegate <NSObject>
 
 /// 定位中
@@ -20,11 +20,6 @@
  */
 - (void)currentLocation:(NSDictionary *)locationDictionary;
 
-/**
- 拒绝定位后回调的代理
-
- @param message 提示信息
- */
 - (void)refuseToUsePositioningSystem:(NSString *)message;
 
 /**
@@ -34,6 +29,11 @@
  */
 - (void)locateFailure:(NSString *)message;
 
+@optional
+/**
+ @param placemark 经纬度信息
+*/
+- (void)currentPlacemark:(CLPlacemark *) placemark;
 @end
 
 @interface JFLocation : NSObject

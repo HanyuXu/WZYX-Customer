@@ -91,7 +91,7 @@ JFSearchViewDelegate>
 - (void)backBarButtonItem {
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     [leftButton addTarget:self action:@selector(backrootTableViewController) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setTitle:@"Back" forState:UIControlStateNormal];
+    [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
 }

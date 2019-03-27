@@ -21,8 +21,12 @@
 #import "JFLocation.h"
 #import "JFAreaDataManager.h"
 #import "JFCityViewController.h"
+#import "WZDateStringConverter.h"
 #import <MJRefresh.h>
 #import <Masonry.h>
+#import <MBProgressHUD.h>
+#import <CoreLocation/CoreLocation.h>
+
 
 #define KSCREEN_WIDTH               [UIScreen mainScreen].bounds.size.width
 #define KSCREEN_HEIGHT              [UIScreen mainScreen].bounds.size.height
@@ -42,8 +46,14 @@
 @property (nonatomic, strong) UILabel *promptLabel;
 @property (nonatomic, assign) NSUInteger count;
 @property (nonatomic, assign) NSUInteger currentPageNumber;
-@property (nonatomic, assign) NSUInteger sortType;
-
+@property(nonatomic, assign) WZActivitySortType sortType;
+@property(nonatomic, strong) CLPlacemark *placeMark;
+/** Loading动画*/
+@property(nonatomic, strong) MBProgressHUD *progressHUB;
+@property(nonatomic, assign) BOOL hasMoreData;
+/** 经纬度信息*/
+@property(nonatomic, assign) CGFloat latitude;
+@property(nonatomic, assign) CGFloat longitude;
 @end
 
 @implementation WZActivityViewController
@@ -67,10 +77,10 @@
 
 - (void)FSSegmentTitleView:(FSSegmentTitleView *)titleView startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex {
     if (endIndex == 0 || endIndex == 2) {
-        self.sortType = 1;
+        self.sortType = WZActivitySortTypeDefault;
     }
     else {
-        self.sortType = 0;
+        self.sortType = WZActivitySortTypeByDate;
     }
     if (self.currentCity) {
         [self loadData];
@@ -189,6 +199,7 @@
     [footer setTitle:@"" forState:MJRefreshStateIdle];
     [footer setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
     [footer setTitle:@"上拉加载更多" forState:MJRefreshStatePulling];
+    [footer setTitle:@"无更多活动" forState:MJRefreshStateNoMoreData];
     self.baseTableView.mj_footer = footer;
 }
 
@@ -233,9 +244,22 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    WZActivityCollectionViewCell *cell = (WZActivityCollectionViewCell *)[self.categoryCell.categoryCollectionView cellForItemAtIndexPath:indexPath];
     WZCategoryTableViewController *vc = [[WZCategoryTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    vc.navigationItem.title = cell.bottomLabel.text;
+    if (indexPath.row == 0) {
+        vc.category = WZActivityCategoryBook;
+        vc.navigationItem.title = @"书展";
+    } else if (indexPath.row == 1) {
+        vc.category = WZActivityCategoryComic;
+        vc.navigationItem.title = @"漫展";
+    } else if (indexPath.row == 2) {
+        vc.category = WZActivityCategoryMusic;
+        vc.navigationItem.title = @"音乐";
+    } else {
+        vc.category = WZActivityCategorySports;
+        vc.navigationItem.title = @"运动";
+    }
+    vc.latitude = self.latitude;
+    vc.longitude = self.longitude;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -253,18 +277,31 @@
 #pragma mark - DownloadDateFromInternet
 
 - (void)loadData {
-    [WZActivityManager downLoadActivityListWithSortType:self.sortType success:^(NSMutableArray<WZActivity *> * _Nonnull activities) {
+    [self.baseTableView addSubview:self.progressHUB];
+    [self.progressHUB showAnimated:YES];
+    NSLog(@"%f\t%f",self.latitude, self.longitude);
+    [WZActivityManager downLoadActivityListWithLatitude:self.latitude
+                                              Longitude:self.longitude
+                                               Category:WZActivityCategoryAll
+                                               SortType:self.sortType success:^(NSMutableArray<WZActivity *> * _Nonnull activities, BOOL hasNextPage) {
         [self.activityList removeAllObjects];
         self.activityList = activities;
+        self.hasMoreData = hasNextPage;
         NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
         [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.progressHUB hideAnimated:YES];
     } faliure:^{
+        [self.progressHUB hideAnimated:YES];
         NSLog(@"failure!");
     }];
 }
 
 - (void)loadMoreData {
     if (self.activityList.count == 0) {
+        return;
+    }
+    if (!self.hasMoreData) {
+        [self.baseTableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
     WZActivity *activity = [[WZActivity alloc] init];
@@ -285,12 +322,26 @@
     NSLog(@"定位成功");
     self.currentCity = name;
     self.LocationCell.textLabel.text = name;
-    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
-    [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.promptLabel removeFromSuperview];
-    [self initTableViewRefreshFooter];
-    // load data
-    [self loadData];
+    // 获取经纬度
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        CLPlacemark *placemark = [placemarks firstObject];
+        if (placemark) {
+            NSLog(@"%@", [NSThread currentThread]);
+            self.latitude = placemark.location.coordinate.latitude;
+            self.longitude = placemark.location.coordinate.longitude;
+            NSLog(@"%f\t%f",self.latitude, self.longitude);
+            NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
+            [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.promptLabel removeFromSuperview];
+            [self initTableViewRefreshFooter];
+            // load data
+            [self loadData];
+        }
+    }];
+    
+    // 更新数据
+    
 }
 
 //定位中...
@@ -320,6 +371,7 @@
     }
 }
 
+
 //拒绝定位
 - (void)refuseToUsePositioningSystem:(NSString *)message {
     NSLog(@"%@",message);
@@ -334,6 +386,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Layout
 
@@ -368,13 +421,6 @@
     }
     return _categoryCell;
 }
-
-//- (NSMutableArray<WZActivity*> *)activityList {
-//    if (!_activityList) {
-//        _activityList = self.activitySortedByHeatRate; //默认为按热度排序
-//    }
-//    return _activityList;
-//}
 
 - (NSMutableArray<WZActivity*> *)activitySortedByHeatRate {
     if(!_activitySortedByHeatRate) {
@@ -424,4 +470,13 @@
     return _titleView;
 }
 
+- (MBProgressHUD *)progressHUB {
+    if (!_progressHUB) {
+        _progressHUB = [[MBProgressHUD alloc] initWithView:self.baseTableView];
+        _progressHUB.label.text = @"加载中";
+        _progressHUB.alpha = 0.5;
+        _progressHUB.removeFromSuperViewOnHide = NO;
+    }
+    return _progressHUB;
+}
 @end

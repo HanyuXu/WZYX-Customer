@@ -22,6 +22,7 @@
         self.pLocation = dict[@"pLocation"];
         self.pStarttime = [dict[@"pStarttime"] unsignedIntegerValue];
         self.pEndtime = [dict[@"pEndtime"] unsignedIntegerValue];
+        self.pImageList = (NSArray *)dict[@"pImagelist"];
     }
     return self;
 }

@@ -35,7 +35,7 @@
         searchField.backgroundColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.3];
         [_searchBar setBackgroundImage:[UIImage new]];
         [_searchBar setTranslucent:YES];
-        _searchBar.placeholder = @"请输入商品名称";
+        _searchBar.placeholder = @"搜索活动";
     }
     return _searchBar;
 }

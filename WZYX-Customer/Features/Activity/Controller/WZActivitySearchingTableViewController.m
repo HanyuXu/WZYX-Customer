@@ -11,11 +11,15 @@
 #import "WZActivityManager.h"
 #import "WZActivityTableViewCell.h"
 #import <Masonry.h>
+#import <MJRefresh.h>
+#import <MBProgressHUD.h>
 
 @interface WZActivitySearchingTableViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic, strong) NSMutableArray<WZActivity*> *result;
-
+@property(nonatomic, assign) NSUInteger pageNumber;
+@property(nonatomic, assign) BOOL hasMoreData;
+@property(nonatomic, strong) MBProgressHUD *progressHUD;
 @end
 
 @implementation WZActivitySearchingTableViewController
@@ -27,7 +31,6 @@
     
     [self.view addSubview:self.searchBar];
     self.searchBar.delegate = self;
-    
     
     [self.view addSubview:self.backButton];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -45,12 +48,8 @@
     NSString *str = searchBar.text;
     [searchBar resignFirstResponder];
     if (str) {
-        [WZActivityManager searchActivityNearBy:str
-                                        success:^(NSMutableArray<WZActivity *>* _Nonnull activities) {
-            [self.view addSubview:self.tableView];
-        } failure:^{
-            [self layoutNoResultLabel];
-        }];
+        [self.progressHUD showAnimated:YES];
+        [self loadDataWithSearchtring:str];
     }
 }
 
@@ -97,8 +96,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //return self.result.count;
-    return 10;
+    if (self.result.count == 0) {
+        [self layoutNoResultLabel];
+        return 0;
+    }else {
+        [self.noResultLabel removeFromSuperview];
+        return self.result.count;
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -115,12 +119,38 @@
     return 120;
 }
 
+#pragma mark - load data
+- (void)loadDataWithSearchtring:(NSString *)str {
+  [WZActivityManager
+      searchActivityNearBy:str
+                PageNumber:self.pageNumber
+                   success:^(NSMutableArray<WZActivity *> *_Nonnull activities,
+                             BOOL hasNextPage) {
+                       self.pageNumber += 1;
+                       self.hasMoreData = hasNextPage;
+                       self.result = activities;
+                       [self.view addSubview:self.tableView];
+                       self.tableView.delegate = self;
+                       [self.progressHUD hideAnimated:YES];
+                   }
+                   failure:^{
+                   }];
+}
+
+- (void)loadMoreData {
+    if (!_hasMoreData) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+}
+
 #pragma mark - LazyLoad
 
 - (UISearchBar *)searchBar {
     if (!_searchBar) {
          CGRect statusRect = [[UIApplication sharedApplication] statusBarFrame];
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(30, statusRect.size.height, self.view.bounds.size.width-35, 44)];
+        _searchBar.placeholder = @"请输入活动名";
         _searchBar.delegate = self;
         UITextField *searchField=[_searchBar valueForKey:@"searchField"];
         searchField.backgroundColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.3];
@@ -146,7 +176,7 @@
         [_backButton setBackgroundImage:image forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _backButton;  
+    return _backButton;
 }
 
 - (UILabel *)noResultLabel {
@@ -173,8 +203,26 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.estimatedRowHeight = 44;
         _tableView.rowHeight = UITableViewAutomaticDimension;
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        [footer setTitle:@"" forState:MJRefreshStateIdle];
+        [footer setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+        [footer setTitle:@"上拉加载更多" forState:MJRefreshStatePulling];
+        [footer setTitle:@"无更多活动" forState:MJRefreshStateNoMoreData];
+        _tableView.mj_footer = footer;
+        
     }
     return _tableView;
 }
 
+#pragma mark - lazyload
+- (MBProgressHUD *)progressHUD {
+    if (!_progressHUD) {
+        _progressHUD = [[MBProgressHUD alloc] initWithView:self.tableView];
+        _progressHUD.label.text = @"加载中";
+        _progressHUD.alpha = 0.5;
+        _progressHUD.removeFromSuperViewOnHide = NO;
+        [self.view addSubview:_progressHUD];
+    }
+    return _progressHUD;
+}
 @end

@@ -59,7 +59,7 @@
     NSDictionary *paramsDictionary = @{@"authToken" : authToken,
                                        @"eventId" : eventId,
                                        @"eventSeason" : eventSeason,
-                                       @"eventSeason" : [NSNumber numberWithUnsignedInteger:purchaseCount]};
+                                       @"purchaseCount" : [NSNumber numberWithUnsignedInteger:purchaseCount]};
     [manager POST:@"http://120.79.10.184:8080/wzyx_war/order/gen_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {

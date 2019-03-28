@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WZCategoryTableViewController : UITableViewController
 @property(nonatomic, assign) WZActivityCategory category;
-@property(nonatomic, assign) NSArray<WZActivity *> *activities;
+@property(nonatomic, strong) NSMutableArray<WZActivity *> *activityList;
 @property(nonatomic, assign) CGFloat latitude;
 @property(nonatomic, assign) CGFloat longitude;
 @end

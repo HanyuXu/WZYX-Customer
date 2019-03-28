@@ -26,6 +26,7 @@
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 #import <CoreLocation/CoreLocation.h>
+#import <UIImageView+WebCache.h>
 
 
 #define KSCREEN_WIDTH               [UIScreen mainScreen].bounds.size.width
@@ -100,15 +101,14 @@
     else if(section == 1) {
         return 1;
     }
-    if (self.count == 0) {
-        [self layoutPromptLabel];
-    }
     if (self.activityList.count == 0) {
         [self layoutPromptLabel];
         self.promptLabel.text = @"附近暂无活动";
+        return 0;
     } else {
         [self.promptLabel removeFromSuperview];
     }
+    NSLog(@"列表中有%lu条数据\n",self.activityList.count);
     return self.activityList.count;
 }
 
@@ -137,6 +137,16 @@
         if (!cell) {
             cell = [[WZActivityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
+        cell.activityNameLabel.text = self.activityList[indexPath.row].pName;
+//        if (self.activityList[indexPath.row].pLocation){
+//            cell.activityLocationLabel.text = self.activityList[indexPath.row].pLocation;
+//        }
+        NSString *price = [NSString stringWithFormat:@"￥%f", self.activityList[indexPath.row].pPrice];
+        cell.activityPirceLabel.text = price;
+        NSURL *url = [NSURL URLWithString:self.activityList[indexPath.row].pImage];
+        [cell.activityImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        }];
+        
         return cell;
     }
     return nil;
@@ -188,6 +198,7 @@
         }
     }
     WZActivityDetailTableViewController *detailTVC = [[WZActivityDetailTableViewController alloc] init];
+    detailTVC.activity = self.activityList[indexPath.row];
     detailTVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailTVC animated:YES];
 }
@@ -277,16 +288,20 @@
 #pragma mark - DownloadDateFromInternet
 
 - (void)loadData {
+    self.currentPageNumber = 0;
     [self.baseTableView addSubview:self.progressHUB];
     [self.progressHUB showAnimated:YES];
     NSLog(@"%f\t%f",self.latitude, self.longitude);
     [WZActivityManager downLoadActivityListWithLatitude:self.latitude
                                               Longitude:self.longitude
                                                Category:WZActivityCategoryAll
-                                               SortType:self.sortType success:^(NSMutableArray<WZActivity *> * _Nonnull activities, BOOL hasNextPage) {
+                                               SortType:self.sortType
+                                             PageNumber:self.currentPageNumber
+                                                success:^(NSMutableArray<WZActivity *> * _Nonnull activities, BOOL hasNextPage) {
         [self.activityList removeAllObjects];
         self.activityList = activities;
         self.hasMoreData = hasNextPage;
+        self.currentPageNumber += 1;
         NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
         [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.progressHUB hideAnimated:YES];
@@ -304,16 +319,18 @@
         [self.baseTableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
-    WZActivity *activity = [[WZActivity alloc] init];
-    for(int i = 0; i < 5; ++i) {
-        [self.activityList addObject:activity];
-    }
-    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
-    //dispatch_time(DISPATCH_TIME_NOW, 3);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [WZActivityManager downLoadActivityListWithLatitude:self.latitude Longitude:self.longitude Category:WZActivityCategoryAll SortType:self.sortType PageNumber: self.currentPageNumber
+                                                success:^(NSMutableArray<WZActivity *> * _Nonnull activities, BOOL hasNextPage) {
+        for (WZActivity *activity in activities) {
+            [self.activityList addObject:activity];
+        }
+        self.currentPageNumber += 1;
+        self.hasMoreData = hasNextPage;
+        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
         [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.baseTableView.mj_footer endRefreshing];
-    });
+    } faliure:^{
+        
+    }];
 }
 
 #pragma mark - JFLocationDelagate

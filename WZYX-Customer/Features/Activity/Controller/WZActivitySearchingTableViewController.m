@@ -20,6 +20,7 @@
 @property(nonatomic, assign) NSUInteger pageNumber;
 @property(nonatomic, assign) BOOL hasMoreData;
 @property(nonatomic, strong) MBProgressHUD *progressHUD;
+@property(nonatomic, strong) NSString *searchString;
 @end
 
 @implementation WZActivitySearchingTableViewController
@@ -49,13 +50,15 @@
     [searchBar resignFirstResponder];
     if (str) {
         [self.progressHUD showAnimated:YES];
-        [self loadDataWithSearchtring:str];
+        self.searchString = str;
+        [self loadData];
     }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
         [self.noResultLabel removeFromSuperview];
+        [self.tableView removeFromSuperview];
     }
 }
 
@@ -120,28 +123,43 @@
 }
 
 #pragma mark - load data
-- (void)loadDataWithSearchtring:(NSString *)str {
-  [WZActivityManager
-      searchActivityNearBy:str
-                PageNumber:self.pageNumber
-                   success:^(NSMutableArray<WZActivity *> *_Nonnull activities,
-                             BOOL hasNextPage) {
-                       self.pageNumber += 1;
-                       self.hasMoreData = hasNextPage;
-                       self.result = activities;
-                       [self.view addSubview:self.tableView];
-                       self.tableView.delegate = self;
-                       [self.progressHUD hideAnimated:YES];
-                   }
-                   failure:^{
-                   }];
+- (void)loadData {
+    [WZActivityManager
+     searchActivityNearBy:self.searchString PageNumber:self.pageNumber
+     success:^(NSMutableArray<WZActivity *> *_Nonnull activities,
+               BOOL hasNextPage) {
+         self.pageNumber += 1;
+         self.hasMoreData = hasNextPage;
+         self.result = activities;
+         [self.progressHUD hideAnimated:YES];
+         [self.view addSubview:self.tableView];
+         [self.tableView reloadData];
+     }failure:^{
+         
+     }];
 }
 
 - (void)loadMoreData {
+    if (self.result.count == 0) {
+        return;
+    }
     if (!_hasMoreData) {
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
+    [WZActivityManager
+     searchActivityNearBy:self.searchString PageNumber:self.pageNumber
+     success:^(NSMutableArray<WZActivity *> *_Nonnull activities,
+               BOOL hasNextPage) {
+         self.pageNumber += 1;
+         self.hasMoreData = hasNextPage;
+         for (WZActivity *activity in activities) {
+             [self.result addObject:activity];
+         }
+         [self.tableView reloadData];
+     }failure:^{
+         
+     }];
 }
 
 #pragma mark - LazyLoad
@@ -156,6 +174,7 @@
         searchField.backgroundColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:0.3];
         [_searchBar setBackgroundImage:[UIImage new]];
         [_searchBar setTranslucent:YES];
+        _searchBar.keyboardType = UIKeyboardTypeDefault;
         for (UIView *view in _searchBar.subviews) {
             if ([view isKindOfClass:UITextField.class]) {
                 UITextField *textField = (UITextField *)view;
@@ -209,7 +228,7 @@
         [footer setTitle:@"上拉加载更多" forState:MJRefreshStatePulling];
         [footer setTitle:@"无更多活动" forState:MJRefreshStateNoMoreData];
         _tableView.mj_footer = footer;
-        
+        _tableView.delegate = self;
     }
     return _tableView;
 }

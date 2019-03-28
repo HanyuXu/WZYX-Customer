@@ -66,7 +66,7 @@
         _userNameLabel.text = @"这是用户名";
         _userNameLabel.font = [UIFont systemFontOfSize:15];
         _userNameLabel.textColor = [UIColor lightGrayColor];
-        _userNameLabel.backgroundColor = [UIColor greenColor];
+        //_userNameLabel.backgroundColor = [UIColor greenColor];
     }
     return _userNameLabel;
 }
@@ -76,7 +76,7 @@
         _timeLabel.text = @"2019-3-28";
         _timeLabel.font = [UIFont systemFontOfSize:15];
         _timeLabel.textColor = [UIColor lightGrayColor];
-        _timeLabel.backgroundColor = [UIColor blueColor];
+        //_timeLabel.backgroundColor = [UIColor blueColor];
     }
     return _timeLabel;
 }
@@ -84,7 +84,7 @@
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.backgroundColor = [UIColor redColor];
+        //_contentLabel.backgroundColor = [UIColor redColor];
        // [_contentLabel sizeToFit];
     }
     return _contentLabel;
@@ -95,6 +95,11 @@
         _rankView = [[WZActivityRankView alloc] init];
     }
     return _rankView;
+}
+- (void)commentRankLevelWith:(NSInteger) level {
+    for(int i = 0; i < level; ++i) {
+        self.rankView.rankImageArray[i].image = [UIImage imageNamed:@"GoldStar"];
+    }
 }
 
 @end

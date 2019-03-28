@@ -63,11 +63,6 @@
         } else {
             failureBlock(@"评价失败");
         }
-        [WZComment downloadCommentForEvent:eventId success:^(NSArray *comments) {
-            NSLog(@"%@", comments);
-        } failure:^(NSString *userInfo) {
-            NSLog(@"%@", userInfo);
-        }];
         [db close];
     });
 }
@@ -88,14 +83,9 @@
             WZComment *comment = [[WZComment alloc] initWithId:[results objectForColumn:@"eventId"] commenter:[results objectForColumn:@"commenter"] text:[results objectForColumn:@"commentText"] level:[results intForColumn:@"commentLevel"] date:[results objectForColumn:@"commentDate"]];
             [comments addObject:comment];
         }
-        [db close];
         successBlock(comments);
         [db close];
     });
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%@:%@ %ld %@", self.commenter, self.commentText, self.commentLevel, self.commentDate];
 }
 
 @end

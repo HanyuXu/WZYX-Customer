@@ -55,10 +55,10 @@
     self.selectedIndex = -1;
     [self pressesTitleButton:self.titleButtons[0]];
     
-//    UIBarButtonItem *testPrepareDataButton = [[UIBarButtonItem alloc] initWithTitle:@"初始化" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestPrepareDataButton:)];
-//    UIBarButtonItem *testAddOrderButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestAddOrderButton:)];
-//    UIBarButtonItem *testDropDataButton = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestDropDataButton:)];
-//    self.navigationItem.leftBarButtonItems = @[testPrepareDataButton, testAddOrderButton, testDropDataButton];
+    UIBarButtonItem *testPrepareDataButton = [[UIBarButtonItem alloc] initWithTitle:@"初始化" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestPrepareDataButton:)];
+    UIBarButtonItem *testAddOrderButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestAddOrderButton:)];
+    UIBarButtonItem *testDropDataButton = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestDropDataButton:)];
+    self.navigationItem.leftBarButtonItems = @[testPrepareDataButton, testAddOrderButton, testDropDataButton];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -102,23 +102,23 @@
 
 #pragma mark - EventHandlers
 
-//- (void)pressesTestPrepareDataButton:(UIBarButtonItem *)barButton {
-//    [WZOrder prepareTestData];
-//    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
-//    [orderListVC loadOrderListData];
-//}
-//
-//- (void)pressesTestAddOrderButton:(UIBarButtonItem *)barButton {
-//    [WZOrder addTestData];
-//    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
-//    [orderListVC loadOrderListData];
-//}
-//
-//- (void)pressesTestDropDataButton:(UIBarButtonItem *)barButton {
-//    [WZOrder dropTestData];
-//    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
-//    [orderListVC loadOrderListData];
-//}
+- (void)pressesTestPrepareDataButton:(UIBarButtonItem *)barButton {
+    [WZOrder prepareTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
+}
+
+- (void)pressesTestAddOrderButton:(UIBarButtonItem *)barButton {
+    [WZOrder addTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
+}
+
+- (void)pressesTestDropDataButton:(UIBarButtonItem *)barButton {
+    [WZOrder dropTestData];
+    WZOrderListTableViewController *orderListVC = self.childViewControllers[self.selectedIndex];
+    [orderListVC loadOrderListData];
+}
 
 - (void)pressesTitleButton:(UIButton *)button {
     if (button.tag != self.selectedIndex) {

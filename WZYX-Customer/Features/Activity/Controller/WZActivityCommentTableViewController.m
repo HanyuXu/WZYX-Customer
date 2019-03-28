@@ -56,7 +56,7 @@
     cell.userNameLabel.text = comment.commenter;
     cell.timeLabel.text = comment.commentDate;
     cell.contentLabel.text = comment.commentText;
-    
+    [cell commentRankLevelWith:comment.commentLevel];
     return cell;
 }
 

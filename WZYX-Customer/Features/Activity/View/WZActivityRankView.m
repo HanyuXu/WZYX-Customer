@@ -37,7 +37,7 @@
         for (int i = 0; i < 5; ++i) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
             [array addObject:imageView];
-            imageView.image = [UIImage imageNamed:@"GoldStar"];
+            imageView.image = [UIImage imageNamed:@"DarkStar"];
         }
         _rankImageArray = [array copy];
     }

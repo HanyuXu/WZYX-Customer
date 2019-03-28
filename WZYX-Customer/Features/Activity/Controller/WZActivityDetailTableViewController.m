@@ -194,7 +194,7 @@
         [self chooseViewClick];
     }
     if (indexPath.section == 3) {
-        WZActivityCommentTableViewController *cTVC = [[WZActivityCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        WZActivityCommentTableViewController *cTVC = [[WZActivityCommentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:cTVC animated:YES];
     }
 }

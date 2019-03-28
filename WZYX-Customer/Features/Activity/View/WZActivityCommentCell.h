@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UILabel *timeLabel;
 @property(nonatomic, strong) UILabel *contentLabel;
 @property(nonatomic, strong) WZActivityRankView *rankView;
+- (void)commentRankLevelWith:(NSInteger) level;
 @end
 
 NS_ASSUME_NONNULL_END

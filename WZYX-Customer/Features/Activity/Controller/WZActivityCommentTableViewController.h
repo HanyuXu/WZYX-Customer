@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WZActivityCommentTableViewController : UITableViewController
 
+@property (copy, nonatomic) NSString *eventId;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -50,6 +50,7 @@
 		3B96DF6221B10205007DC72B /* WZOrderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6121B10205007DC72B /* WZOrderNavigationController.m */; };
 		3B96DF6521B10DD4007DC72B /* WZBaseScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6421B10DD4007DC72B /* WZBaseScrollViewController.m */; };
 		3B96DF6821B11C6A007DC72B /* WZOrderListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */; };
+		3BA14BB2224C9E0A00DBE50E /* WZComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA14BB1224C9E0A00DBE50E /* WZComment.m */; };
 		3BB4ECD921E1A76500E84669 /* WZDateStringConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECD821E1A76500E84669 /* WZDateStringConverter.m */; };
 		3BB4ECDC21E1A9CB00E84669 /* WZRandomStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECDB21E1A9CB00E84669 /* WZRandomStringGenerator.m */; };
 		3BB4ECDF21E2F22200E84669 /* WZNoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4ECDE21E2F22200E84669 /* WZNoContentView.m */; };
@@ -212,6 +213,8 @@
 		3B96DF6421B10DD4007DC72B /* WZBaseScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZBaseScrollViewController.m; sourceTree = "<group>"; };
 		3B96DF6621B11C6A007DC72B /* WZOrderListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZOrderListTableViewController.h; sourceTree = "<group>"; };
 		3B96DF6721B11C6A007DC72B /* WZOrderListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZOrderListTableViewController.m; sourceTree = "<group>"; };
+		3BA14BB0224C9E0A00DBE50E /* WZComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZComment.h; sourceTree = "<group>"; };
+		3BA14BB1224C9E0A00DBE50E /* WZComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZComment.m; sourceTree = "<group>"; };
 		3BB4ECD721E1A76500E84669 /* WZDateStringConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZDateStringConverter.h; sourceTree = "<group>"; };
 		3BB4ECD821E1A76500E84669 /* WZDateStringConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZDateStringConverter.m; sourceTree = "<group>"; };
 		3BB4ECDA21E1A9CB00E84669 /* WZRandomStringGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZRandomStringGenerator.h; sourceTree = "<group>"; };
@@ -534,6 +537,7 @@
 		3B96DEDC21AC0737007DC72B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				3BA14BAF224C9DCB00DBE50E /* LocalTest */,
 				3BF6CDC0223CE358003DFEBF /* Activity */,
 				3B96DF5621B0F03B007DC72B /* Order */,
 				3B96DED921AC0655007DC72B /* Mine */,
@@ -648,6 +652,15 @@
 				3B96DF5B21B0F080007DC72B /* WZOrder.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3BA14BAF224C9DCB00DBE50E /* LocalTest */ = {
+			isa = PBXGroup;
+			children = (
+				3BA14BB0224C9E0A00DBE50E /* WZComment.h */,
+				3BA14BB1224C9E0A00DBE50E /* WZComment.m */,
+			);
+			path = LocalTest;
 			sourceTree = "<group>";
 		};
 		3BF6CDC0223CE358003DFEBF /* Activity */ = {
@@ -1104,6 +1117,7 @@
 				3BC20C8F21BE4B0B002A31EC /* WZOrderInfoTableViewCell.m in Sources */,
 				3BF6CE15223CE358003DFEBF /* FSSegmentTitleView.m in Sources */,
 				3B96DEF521AC22DD007DC72B /* WZTextFieldTableViewCell.m in Sources */,
+				3BA14BB2224C9E0A00DBE50E /* WZComment.m in Sources */,
 				1F188CE021AF957B00985A57 /* WZCenterLabelTableViewCell.m in Sources */,
 				3B96DECE21AA94A5007DC72B /* WZResetPasswordViewController.m in Sources */,
 				3BF6CE13223CE358003DFEBF /* WZActivityCategoryTableViewCell.m in Sources */,

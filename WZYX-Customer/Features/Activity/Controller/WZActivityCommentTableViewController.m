@@ -8,8 +8,11 @@
 
 #import "WZActivityCommentTableViewController.h"
 #import "WZActivityCommentCell.h"
+#import "WZComment.h"
 
 @interface WZActivityCommentTableViewController ()
+
+@property (strong, nonatomic) NSArray *comments;
 
 @end
 
@@ -17,6 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [WZComment downloadCommentForEvent:@"E000002" success:^(NSArray * _Nonnull comments) {
+        self.comments = comments;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } failure:^(NSString * _Nonnull userInfo) {
+        // do nothing
+    }];
     //self.tableView.estimatedRowHeight = 44;
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -34,14 +45,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.comments.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WZActivityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell"];
     if (!cell) {
         cell = [[WZActivityCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"commentCell"];
     }
-    cell.contentLabel.text = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    WZComment *comment = [self.comments objectAtIndex:indexPath.row];
+    cell.userNameLabel.text = comment.commenter;
+    cell.timeLabel.text = comment.commentDate;
+    cell.contentLabel.text = comment.commentText;
+    
     return cell;
 }
 

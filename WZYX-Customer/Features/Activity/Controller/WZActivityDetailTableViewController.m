@@ -17,6 +17,7 @@
 #import "WZUserInfoManager.h"
 #import "WZPayTableViewController.h"
 #import "WZDateStringConverter.h"
+#import "WZActivityCommentTableViewController.h"
 #import <Masonry.h>
 
 #define screen_Width    [UIScreen mainScreen].bounds.size.width
@@ -49,7 +50,7 @@
     [self.view addSubview:self.submitButton];
     
     self.standardList = @[@"日期",@"场次"];
-    self.standardValueList = @[@[@"2019-2-25"],@[@"早上",@"下午",@"晚上"]];
+    self.standardValueList = @[@[@"2019-2-25"],@[@"早上",@"下午",@"晚上"]]; 
     [self initSelectView];
 }
 
@@ -68,7 +69,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 3) {
+    if (section == 4) {
         return 10;
     }
     return 0.01;
@@ -82,7 +83,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -166,13 +167,22 @@
             return cell;
         }
         
-    } else {
+    } else if (indexPath.section == 4){
         WZActivityDetailImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell"];
         if (!cell) {
             cell = [[WZActivityDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ImageCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.textLabel.text = @"假装这是一张图片";
+        return cell;
+    } else if (indexPath.section == 3){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commmentCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"commentCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = @"查看评价";
+        }
         return cell;
     }
     return nil;
@@ -183,12 +193,16 @@
     if(indexPath.section == 2) {
         [self chooseViewClick];
     }
+    if (indexPath.section == 3) {
+        WZActivityCommentTableViewController *cTVC = [[WZActivityCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:cTVC animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 || indexPath.section == 3) {
+    if (indexPath.section == 0 || indexPath.section == 4) {
         return self.view.bounds.size.width;
     }
     return 44;

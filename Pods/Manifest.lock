@@ -20,6 +20,9 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
@@ -28,6 +31,7 @@ DEPENDENCIES:
   - Masonry (= 1.1.0)
   - MBProgressHUD (= 1.1.0)
   - MJRefresh (= 3.1.15.7)
+  - SDWebImage (= 4.4.2)
   - SVPullToRefresh (= 0.4.1)
 
 SPEC REPOS:
@@ -37,6 +41,7 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - SDWebImage
     - SVPullToRefresh
 
 SPEC CHECKSUMS:
@@ -45,8 +50,9 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: caaa3f91a5411c07f81303351b4c1ec93a08e477
+PODFILE CHECKSUM: cfd1e764fb6046eb9e47719766fb72d1a8bc7476
 
 COCOAPODS: 1.5.3

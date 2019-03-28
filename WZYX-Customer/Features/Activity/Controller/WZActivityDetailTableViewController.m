@@ -12,6 +12,11 @@
 #import "DWQSelectAttributes.h"
 #import "DWQSelectView.h"
 #import "WZActivityAmountCell.h"
+#import "WZActivity.h"
+#import "WZOrder.h"
+#import "WZUserInfoManager.h"
+#import "WZPayTableViewController.h"
+#import "WZDateStringConverter.h"
 #import <Masonry.h>
 
 #define screen_Width    [UIScreen mainScreen].bounds.size.width
@@ -86,7 +91,8 @@
     } else if (section == 1) {
         return 4;
     } else if (section == 2) {
-        return 2;
+        //@"%@",self.activity.pImageList);
+        //return self.activity.pImageList.count;
     }
     return 1;
 }
@@ -224,7 +230,7 @@
 }
 
 - (void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn {
-    //NSLog(@"%@", title);
+    ////@"%@", title);
 }
 
 - (void)dismiss {
@@ -282,6 +288,24 @@
     self.submitButton.enabled = YES;
 }
 - (void)submitOrder {
+    if (![WZUserInfoManager userIsLoggedIn]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"错误" message:@"您尚未登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:confirmAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+    WZActivityAmountCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //@"%@", self.attributesArray);
+    [WZOrder createOrderWithEventId:self.activity.pId eventSeason:self.attributesArray[0] purchaseCount:cell.amount success:^(WZOrder * _Nonnull order) {
+        WZPayTableViewController *ptVC = [[WZPayTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        ptVC.order = order;
+        [self.navigationController pushViewController:ptVC animated:YES];
+    } failure:^(NSString * _Nonnull userInfo) {
+        //@"支付失败!");
+    }];
     
 }
 

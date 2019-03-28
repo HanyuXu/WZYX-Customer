@@ -25,37 +25,39 @@
                                Longitude:(double) longitude
                                 Category:(NSUInteger) category
                                 SortType:(WZActivitySortType) sortType
+                              PageNumber:(NSUInteger) pageNumber
                                  success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities, BOOL hasNextPage)) successBlock
                                  faliure:(void (^_Nullable)(void)) failureBlock {
   NSDictionary *param = @{
-    @"pcate" : [NSNumber numberWithUnsignedInteger:category],
-    @"psort" : [NSNumber numberWithUnsignedInteger:sortType],
-    @"latitude" : [NSNumber numberWithDouble:100],
-    @"longitude" : [NSNumber numberWithDouble:100],
-    @"distance" : @5000.0,
-    @"pageNumber" : @1,
+    @"p_cate" : [NSNumber numberWithUnsignedInteger:sortType],
+    @"p_sort" : [NSNumber numberWithUnsignedInteger:category],
+    @"latitude" : [NSNumber numberWithDouble:30],
+    @"longgitude" : [NSNumber numberWithDouble:20],
+    @"distance" : @500000000.0,
+    @"pageNumber" : [NSNumber numberWithUnsignedInteger:pageNumber],
     @"pageSize" : @10
   };
+    
   AFHTTPSessionManager *manager = [self sharedManager];
   NSMutableArray<WZActivity *> *activities = [[NSMutableArray alloc] init];
-  [manager POST:@"http://120.79.10.184:8080/product/list"
+    [manager POST:@"http://120.79.10.184:8080/product/list"
       parameters:param
       progress:nil
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
           BOOL hasNextPage;
-          NSString *boolStr = ((NSDictionary *)responseObject)[@"hasNextPage"];
-          if ([boolStr isEqualToString:@"true"]) {
+          NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
+          NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];
+          NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
+          if (boolValue != 0) {
               hasNextPage = YES;
           } else {
               hasNextPage = NO;
           }
-          NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
-          NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
+         
           for (id d in activityDict) {
             WZActivity *activity =
                 [[WZActivity alloc] initWithDictionary:(NSDictionary *)d];
-             NSLog(@"活动地址%f\t%f", activity.pLoggititute, activity.pLatitute);
             [activities addObject:activity];
         }
         successBlock(activities, hasNextPage);
@@ -84,14 +86,14 @@
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
           BOOL hasNextPage;
-          NSString *boolStr = ((NSDictionary *)responseObject)[@"hasNextPage"];
-          if ([boolStr isEqualToString:@"true"]) {
+          NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
+          NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];
+          NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
+          if (boolValue != 0) {
               hasNextPage = YES;
           } else {
               hasNextPage = NO;
           }
-        NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
-        NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
         for (id d in activityDict) {
           WZActivity *activity =
               [[WZActivity alloc] initWithDictionary:(NSDictionary *)d];
@@ -107,6 +109,8 @@
 
 // 根据类别查看活动
 + (void)browseActivityWith:(WZActivityCategory)category
+                  Latitude:(double) latitude
+                 Longitude:(double) longitude
                 PageNumber:(NSUInteger)pageNumber
                    success:(void (^)(NSMutableArray<WZActivity *> *_Nonnull, BOOL))
                                successBlock
@@ -123,14 +127,14 @@
           success:^(NSURLSessionDataTask *_Nonnull task,
                     id _Nullable responseObject) {
               BOOL hasNextPage;
-              NSString *boolStr = ((NSDictionary *)responseObject)[@"hasNextPage"];
-              if ([boolStr isEqualToString:@"true"]) {
+              NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
+              NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];
+              NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
+              if (boolValue != 0) {
                   hasNextPage = YES;
               } else {
                   hasNextPage = NO;
               }
-              NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
-              NSDictionary *activityDict = (NSDictionary *)(dict[@"list"]);
               for (id d in activityDict) {
                   WZActivity *activity =
                   [[WZActivity alloc] initWithDictionary:(NSDictionary *)d];

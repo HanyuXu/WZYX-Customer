@@ -37,9 +37,6 @@
         [res addObject:dateString];
         date = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];
     }
-    for (NSDate *d in res) {
-        NSLog(@"%@", d);
-    }
-    return  nil;
+    return [res copy];
 }
 @end

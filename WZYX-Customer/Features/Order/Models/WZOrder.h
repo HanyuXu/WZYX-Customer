@@ -71,6 +71,8 @@ typedef NS_ENUM(NSUInteger, WZOrderPaymentMethod) {
 
 + (void)commentOrder:(NSString *)orderId withCommentText:(NSString *)commentText commentlevel:(NSInteger)commentLevel success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
 
++ (void)createOrderWithEventId:(NSString *)eventId eventSeason:(NSString *)eventSeason purchaseCount:(NSUInteger)purchaseCount success:(void (^)(WZOrder *order))successBlock failure:(void (^)(NSString *userInfo))failureBlock;
+
 // 仅测试用
 //+ (void)prepareTestData;
 //+ (void)addTestData;

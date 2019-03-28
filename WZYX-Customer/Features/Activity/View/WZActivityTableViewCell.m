@@ -62,7 +62,8 @@
 - (UIImageView *)activityImageView {
     if (!_activityImageView) {
         _activityImageView = [[UIImageView alloc] init];
-        _activityImageView.image = [UIImage imageNamed:@"book"];
+        _activityImageView.contentMode = UIViewContentModeScaleAspectFit;
+        // _activityImageView.image = [UIImage imageNamed:@"book"];
     }
     return _activityImageView;
 }

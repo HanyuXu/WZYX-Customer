@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, WZActivityCategory) {
                                Longitude:(double) longitude
                                 Category:(NSUInteger) category
                                 SortType:(WZActivitySortType) sortType
+                              PageNumber:(NSUInteger) pageNumber
                                  success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities, BOOL hasNextPage)) successBlock
                                  faliure:(void (^_Nullable)(void)) failureBlock;
 
@@ -41,11 +42,13 @@ typedef NS_ENUM(NSUInteger, WZActivityCategory) {
                                  successBlock
                      failure:(void (^_Nullable)(void))failureBlock;
 // 根据类别查看活动
-+ (void)browseActivityWith:(WZActivityCategory)category
-                PageNumber:(NSUInteger)pageNumber
-                   success:(void (^)(NSMutableArray<WZActivity *> *_Nonnull, BOOL))
-                               successBlock
-                   failure:(void (^)(void))failureBlock;
+//+ (void)browseActivityWith:(WZActivityCategory)category
+//                  Latitude:(double) latitude
+//                 Longitude:(double) longitude
+//                PageNumber:(NSUInteger)pageNumber
+//                   success:(void (^)(NSMutableArray<WZActivity *> *_Nonnull, BOOL))
+//                               successBlock
+//                   failure:(void (^)(void))failureBlock;
 @end
 
     NS_ASSUME_NONNULL_END

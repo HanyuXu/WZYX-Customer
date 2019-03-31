@@ -60,6 +60,7 @@
 @implementation WZActivityViewController
 
 - (void)viewDidLoad {
+    self.currentPageNumber = 1;
     [super viewDidLoad];
     [self.view addSubview:self.baseTableView];
     self.baseTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -290,7 +291,7 @@
 #pragma mark - DownloadDateFromInternet
 
 - (void)loadData {
-    self.currentPageNumber = 0;
+    self.currentPageNumber = 1;
     [self.baseTableView addSubview:self.progressHUB];
     [self.progressHUB showAnimated:YES];
     [WZActivityManager downLoadActivityListWithLatitude:self.latitude
@@ -371,7 +372,7 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.LocationCell.textLabel.text = city;
+            [self cityName:city];
             [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"locationCity"];
             [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"currentCity"];
             [self.manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {

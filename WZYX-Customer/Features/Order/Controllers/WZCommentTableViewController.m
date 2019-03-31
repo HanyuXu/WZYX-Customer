@@ -14,6 +14,7 @@
 #import "WZSubmitButtonView.h"
 #import "WZComment.h"
 #import "WZUser.h"
+#import "UIImageView+WebCache.h"
 
 @interface WZCommentTableViewController () <WZStarLevelTableViewCellDelegate>
 
@@ -58,7 +59,9 @@
         if (!cell) {
             cell = [[WZOrderTitleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderTitleCell"];
         }
-        cell.eventAvatarImageView.image = [UIImage imageNamed:@"Setting"];
+        // cell.eventAvatarImageView.image = [UIImage imageNamed:@"Setting"];
+        [cell.eventAvatarImageView sd_setImageWithURL:[NSURL URLWithString:self.order.eventAvatar]];
+        
         cell.eventTitleLabel.text = self.order.eventTitle;
         cell.eventSeasonLabel.text = self.order.eventSeason;
         return cell;

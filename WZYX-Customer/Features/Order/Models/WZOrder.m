@@ -182,8 +182,8 @@
 + (void)cancelOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSString *authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"];
-    NSDictionary *paramsDictionary = @{@"authToken" : authToken, @"orderId" : orderId};
-    [manager POST:@"http://120.79.10.184:8080/wzyx_war/order/delete_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *paramsDictionary = @{@"authToken" : authToken, @"oId" : orderId};
+    [manager POST:@"http://120.79.10.184:8080/order/cancel_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
             [NSThread sleepForTimeInterval:0.5];
@@ -217,8 +217,8 @@
 + (void)deleteOrder:(NSString *)orderId success:(void (^)(void))successBlock failure:(void (^)(NSString *userInfo))failureBlock {
     AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSString *authToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"authToken"];
-    NSDictionary *paramsDictionary = @{@"authToken" : authToken, @"orderId" : orderId};
-    [manager POST:@"http://120.79.10.184:8080/wzyx_war/order/delete_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *paramsDictionary = @{@"authToken" : authToken, @"oId" : orderId};
+    [manager POST:@"http://120.79.10.184:8080/order/delete_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
             [NSThread sleepForTimeInterval:0.5];

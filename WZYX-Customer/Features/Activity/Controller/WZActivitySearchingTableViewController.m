@@ -28,6 +28,7 @@
 @implementation WZActivitySearchingTableViewController
 
 - (void)viewDidLoad {
+    self.pageNumber = 1;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = YES;

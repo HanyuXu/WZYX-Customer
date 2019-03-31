@@ -138,10 +138,13 @@
             cell = [[WZActivityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
         cell.activityNameLabel.text = self.activityList[indexPath.row].pName;
-//        if (self.activityList[indexPath.row].pLocation){
-//            cell.activityLocationLabel.text = self.activityList[indexPath.row].pLocation;
-//        }
-        NSString *price = [NSString stringWithFormat:@"￥%f", self.activityList[indexPath.row].pPrice];
+        if (self.activityList[indexPath.row].pLocation){
+            cell.activityLocationLabel.text = self.activityList[indexPath.row].pLocation;
+        }
+        NSString *startTime = [WZDateStringConverter stringFromDateString:self.activityList[indexPath.row].pStarttime];
+        NSString *endTime = [WZDateStringConverter stringFromDateString:self.activityList[indexPath.row].pEndtime];
+        cell.activityDateLabel.text = [NSString stringWithFormat:@"%@-%@", startTime, endTime];
+        NSString *price = [NSString stringWithFormat:@"￥%.2f", self.activityList[indexPath.row].pPrice];
         cell.activityPirceLabel.text = price;
         NSURL *url = [NSURL URLWithString:self.activityList[indexPath.row].pImage];
         [cell.activityImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {

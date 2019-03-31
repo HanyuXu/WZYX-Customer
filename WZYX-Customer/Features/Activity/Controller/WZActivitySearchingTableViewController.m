@@ -10,9 +10,11 @@
 #import "WZActivity.h"
 #import "WZActivityManager.h"
 #import "WZActivityTableViewCell.h"
+#import "WZDateStringConverter.h"
 #import <Masonry.h>
 #import <MJRefresh.h>
 #import <MBProgressHUD.h>
+#import <UIImageView+WebCache.h>
 
 @interface WZActivitySearchingTableViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -115,6 +117,20 @@
     if (!cell) {
         cell = [[WZActivityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.activityNameLabel.text = self.result[indexPath.row].pName;
+    if (self.result[indexPath.row].pLocation){
+        cell.activityLocationLabel.text = self.result[indexPath.row].pLocation;
+    }
+    NSLog(@"%@",self.result[indexPath.row].pStarttime);
+    NSString *startTime = [WZDateStringConverter stringFromDateString:self.result[indexPath.row].pStarttime];
+    NSString *endTime = [WZDateStringConverter stringFromDateString:self.result[indexPath.row].pEndtime];
+    cell.activityDateLabel.text = [NSString stringWithFormat:@"%@-%@", startTime, endTime];
+    NSString *price = [NSString stringWithFormat:@"￥%.2f", self.result[indexPath.row].pPrice];
+    cell.activityPirceLabel.text = price;
+    NSURL *url = [NSURL URLWithString:self.result[indexPath.row].pImage];
+    [cell.activityImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    }];
+    
     return cell;
 }
 

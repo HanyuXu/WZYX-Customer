@@ -20,10 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)   double      pLoggititute;
 @property (nonatomic, assign)   double      pLatitute;
 @property(nonatomic, copy)      NSString    *pLocation;
-@property (nonatomic, assign)   NSUInteger  pStarttime;
-@property (nonatomic, assign)   NSUInteger  pEndtime;
+@property (nonatomic, strong)   NSString    *pStarttime;
+@property (nonatomic, strong)   NSString     *pEndtime;
 @property (nonatomic, strong)   NSArray     *pImageList;
-
+@property(nonatomic, assign)    NSInteger    hasAdded;
 - (instancetype) initWithDictionary: (NSDictionary *)dict;
 
 @end

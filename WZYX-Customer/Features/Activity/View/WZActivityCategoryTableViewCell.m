@@ -7,6 +7,7 @@
 //
 
 #import "WZActivityCategoryTableViewCell.h"
+
 #import <Masonry.h>
 
 #define kWZActivityCategoryTableViewCellInsets UIEdgeInsetsMake(5, 5, 5, 5)

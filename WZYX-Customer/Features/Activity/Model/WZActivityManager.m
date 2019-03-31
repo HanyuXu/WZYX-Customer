@@ -29,8 +29,8 @@
                                  success:(void (^_Nullable)(NSMutableArray<WZActivity*>* activities, BOOL hasNextPage)) successBlock
                                  faliure:(void (^_Nullable)(void)) failureBlock {
   NSDictionary *param = @{
-    @"p_cate" : [NSNumber numberWithUnsignedInteger:sortType],
-    @"p_sort" : [NSNumber numberWithUnsignedInteger:category],
+    @"p_cate" : [NSNumber numberWithUnsignedInteger:category],
+    @"p_sort" : [NSNumber numberWithUnsignedInteger:sortType],
     @"latitude" : [NSNumber numberWithDouble:30],
     @"longgitude" : [NSNumber numberWithDouble:20],
     @"distance" : @500000000.0,
@@ -45,6 +45,7 @@
       progress:nil
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
+          NSLog(@"%@", responseObject);
           BOOL hasNextPage;
           NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
           NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];
@@ -76,8 +77,9 @@
                      failure:(void (^_Nullable)(void))failureBlock {
   NSDictionary *param =
       @{ @"pName" : str,
-         @"pageNumber" : [NSNumber numberWithUnsignedInteger:pageNumber],
-         @"pageSize" : @10 };
+         //@"pageNumber" : [NSNumber numberWithUnsignedInteger:pageNumber],
+        // @"pageSize" : @10
+         };
   AFHTTPSessionManager *manager = [self sharedManager];
   NSMutableArray<WZActivity *> *activities = [[NSMutableArray alloc] init];
   [manager POST:@"http://120.79.10.184:8080/product/search_byname"
@@ -85,6 +87,7 @@
       progress:nil
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
+          NSLog(@"%@", responseObject);
           BOOL hasNextPage;
           NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
           NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];

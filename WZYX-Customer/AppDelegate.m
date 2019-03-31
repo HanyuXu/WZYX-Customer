@@ -35,9 +35,9 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    if ([WZUserInfoManager userIsLoggedIn]) {
-        [WZUserInfoManager saveUserInfo];
-    }
+//    if ([WZUserInfoManager userIsLoggedIn]) {
+//        [WZUserInfoManager saveUserInfo];
+//    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

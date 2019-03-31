@@ -108,7 +108,6 @@
     } else {
         [self.promptLabel removeFromSuperview];
     }
-    NSLog(@"列表中有%lu条数据\n",self.activityList.count);
     return self.activityList.count;
 }
 
@@ -294,7 +293,6 @@
     self.currentPageNumber = 0;
     [self.baseTableView addSubview:self.progressHUB];
     [self.progressHUB showAnimated:YES];
-    NSLog(@"%f\t%f",self.latitude, self.longitude);
     [WZActivityManager downLoadActivityListWithLatitude:self.latitude
                                               Longitude:self.longitude
                                                Category:WZActivityCategoryAll
@@ -310,7 +308,6 @@
         [self.progressHUB hideAnimated:YES];
     } faliure:^{
         [self.progressHUB hideAnimated:YES];
-        NSLog(@"failure!");
     }];
 }
 
@@ -339,7 +336,6 @@
 #pragma mark - JFLocationDelagate
 
 - (void)cityName:(NSString *)name {
-    NSLog(@"定位成功");
     self.currentCity = name;
     self.LocationCell.textLabel.text = name;
     // 获取经纬度
@@ -347,10 +343,8 @@
     [geocoder geocodeAddressString:name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         CLPlacemark *placemark = [placemarks firstObject];
         if (placemark) {
-            NSLog(@"%@", [NSThread currentThread]);
             self.latitude = placemark.location.coordinate.latitude;
             self.longitude = placemark.location.coordinate.longitude;
-            NSLog(@"%f\t%f",self.latitude, self.longitude);
             NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
             [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.promptLabel removeFromSuperview];
@@ -366,7 +360,6 @@
 
 //定位中...
 - (void)locating {
-    NSLog(@"定位中...");
     self.LocationCell.textLabel.text = @"定位中...";
     self.promptLabel.text = @"正在定位，您可以手动选择定位";
 }

@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) NSMutableArray *titleButtons;
 @property (assign, nonatomic) NSInteger selectedIndex;
+@property (assign, nonatomic) BOOL shouldReload;
 
 @end
 
@@ -54,11 +55,26 @@
     
     self.selectedIndex = -1;
     [self pressesTitleButton:self.titleButtons[0]];
+    self.shouldReload = NO;
     
-    UIBarButtonItem *testPrepareDataButton = [[UIBarButtonItem alloc] initWithTitle:@"初始化" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestPrepareDataButton:)];
-    UIBarButtonItem *testAddOrderButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestAddOrderButton:)];
-    UIBarButtonItem *testDropDataButton = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestDropDataButton:)];
-    self.navigationItem.leftBarButtonItems = @[testPrepareDataButton, testAddOrderButton, testDropDataButton];
+//    UIBarButtonItem *testPrepareDataButton = [[UIBarButtonItem alloc] initWithTitle:@"初始化" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestPrepareDataButton:)];
+//    UIBarButtonItem *testAddOrderButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestAddOrderButton:)];
+//    UIBarButtonItem *testDropDataButton = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(pressesTestDropDataButton:)];
+//    self.navigationItem.leftBarButtonItems = @[testPrepareDataButton, testAddOrderButton, testDropDataButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.shouldReload) {
+        WZOrderListTableViewController *vc = self.childViewControllers[self.selectedIndex];
+        [vc loadOrderListData];
+    } else {
+        self.shouldReload = YES;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    WZOrderListTableViewController *vc = self.childViewControllers[self.selectedIndex];
+    [vc wipeOrderListData];
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -138,8 +138,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(searchResult:)]) {
         [self.delegate searchResult:searchBar.text];
     }
-
-    NSLog(@"点击搜索按钮编辑的结果是%@",searchBar.text);
 }
 
 //  点击searchBar取消按钮时调用

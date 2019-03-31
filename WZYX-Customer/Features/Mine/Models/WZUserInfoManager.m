@@ -25,7 +25,7 @@
     // 待实现：后台应提供心跳接口，验证登录状态是否过期
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"authToken"] != nil) {
-        NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
+        NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"CurrentUser.plist"];
         NSFileManager *manager = [NSFileManager defaultManager];
         return [manager fileExistsAtPath:filePath];
     } else {
@@ -53,8 +53,7 @@
 }
 
 + (void)loadUserInfo {
-    NSLog(@"%@", SANDBOX_DOCUMENT_PATH);
-    NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"currentUser.plist"];
+    NSString *filePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:@"CurrentUser.plist"];
     NSDictionary *userInfo = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     WZUser *currentUser = [WZUser sharedUser];
     currentUser.userName = userInfo[@"userName"];
@@ -62,7 +61,6 @@
     currentUser.imageName = userInfo[@"imageName"];
     currentUser.fileName = userInfo[@"fileName"];
     currentUser.imageURL = userInfo[@"imageURL"];
-    NSLog(@"%@", currentUser.imageURL);
     currentUser.phoneNumber = userInfo[@"phoneNumber"];
 }
 
@@ -78,7 +76,6 @@
         return [UIImage imageNamed:@"Person"];
     }
     WZUser *user = [WZUser sharedUser];
-    NSLog(@"%@", user.imageName);
     NSString *imagePath = [SANDBOX_DOCUMENT_PATH stringByAppendingPathComponent:user.imageName];
     if ([DEFAULT_FILE_MANAGER fileExistsAtPath:imagePath]) {
         return [UIImage imageWithContentsOfFile:imagePath];

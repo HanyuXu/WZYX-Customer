@@ -76,7 +76,6 @@
         [self.progressHUD hideAnimated:YES];
         self.imageView.image = newPhoto;
     } failure:^(NSString * _Nonnull msg) {
-        NSLog(@"fail");
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"错误" message:msg preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:nil];
         [alert addAction:okAction];

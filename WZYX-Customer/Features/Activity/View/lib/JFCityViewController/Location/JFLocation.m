@@ -51,7 +51,6 @@
             dispatch_once(&onceToken, ^{
                 if (self.delegate && [self.delegate respondsToSelector:@selector(currentLocation:)]) {
                     [self.delegate currentLocation:location];
-                    NSLog(@"%@", location);
                 }
                 if (self.delegate && [self.delegate respondsToSelector:@selector(currentPlacemark:)]) {
                     [self.delegate currentPlacemark:placemark];

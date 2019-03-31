@@ -121,7 +121,6 @@
     if (self.result[indexPath.row].pLocation){
         cell.activityLocationLabel.text = self.result[indexPath.row].pLocation;
     }
-    NSLog(@"%@",self.result[indexPath.row].pStarttime);
     NSString *startTime = [WZDateStringConverter stringFromDateString:self.result[indexPath.row].pStarttime];
     NSString *endTime = [WZDateStringConverter stringFromDateString:self.result[indexPath.row].pEndtime];
     cell.activityDateLabel.text = [NSString stringWithFormat:@"%@-%@", startTime, endTime];

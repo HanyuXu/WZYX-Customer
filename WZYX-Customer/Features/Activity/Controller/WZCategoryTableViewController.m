@@ -93,7 +93,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"selected");
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     WZActivityDetailTableViewController *vc = [[WZActivityDetailTableViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -126,7 +125,6 @@
          [self.progressHUD hideAnimated:YES];
      } faliure:^{
          [self.progressHUD hideAnimated:YES];
-         NSLog(@"failure!");
      }];
 }
 - (void)loadMoreData {

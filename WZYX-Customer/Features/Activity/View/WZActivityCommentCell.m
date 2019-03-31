@@ -35,7 +35,6 @@
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView).offset(10);
             make.right.equalTo(self.contentView).offset(-10);
-            // NSLog(@"%f", self.userNameLabel.bounds.size.height);
             make.top.equalTo(self.rankView.mas_bottom).offset(10);
             make.bottom.equalTo(self.contentView).offset(-10);
         }];

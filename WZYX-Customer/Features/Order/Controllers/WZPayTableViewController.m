@@ -13,6 +13,7 @@
 #import "WZOrder.h"
 #import "WZSubmitButtonView.h"
 #import "WZThirdPayMockViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface WZPayTableViewController () <WZThirdPayMockViewControllerDelegate>
 
@@ -59,7 +60,8 @@
                 cell = [[WZOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderCell"];
             }
             [cell.sponsorNameButton setTitle:self.order.sponsorName forState:UIControlStateNormal];
-            cell.eventAvatarImageView.image = [UIImage imageNamed:self.order.eventAvatar];
+            // cell.eventAvatarImageView.image = [UIImage imageNamed:self.order.eventAvatar];
+            [cell.eventAvatarImageView sd_setImageWithURL:[NSURL URLWithString:self.order.eventAvatar]];
             cell.eventTitleLabel.text = self.order.eventTitle;
             cell.priceAndCountLabel.text = [NSString stringWithFormat:@"¥ %@\nx %@", self.order.eventPrice, self.order.purchaseCount];
             cell.eventSeasonLabel.text = self.order.eventSeason;

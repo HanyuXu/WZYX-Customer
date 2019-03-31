@@ -15,14 +15,15 @@
         self.pId = dict[@"pId"];
         self.pName = dict[@"pName"];
         self.pPrice = [dict[@"pPrice"] doubleValue];
-        self.pCapacity = [dict[@"pCapcity"] unsignedIntegerValue];
+        self.pCapacity = [dict[@"pCapacity"] integerValue];
         self.pImage = dict[@"pImage"];
         self.pLoggititute = [dict[@"Longgitude"] doubleValue];
         self.pLatitute = [dict[@"pLatitude"] doubleValue];
         self.pLocation = dict[@"pLocation"];
-        self.pStarttime = [dict[@"pStarttime"] unsignedIntegerValue];
-        self.pEndtime = [dict[@"pEndtime"] unsignedIntegerValue];
+        self.pStarttime = dict[@"pStarttime"];
+        self.pEndtime = dict[@"pEndtime"];
         self.pImageList = (NSArray *)dict[@"pImagelist"];
+        self.hasAdded = [dict[@"pHasadded"] integerValue];
         
     }
     return self;

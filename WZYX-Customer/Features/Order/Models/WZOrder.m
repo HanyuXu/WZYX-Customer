@@ -60,7 +60,8 @@
                                        @"eventId" : eventId,
                                        @"eventSeason" : eventSeason,
                                        @"purchaseCount" : [NSNumber numberWithUnsignedInteger:purchaseCount]};
-    [manager POST:@"http://120.79.10.184:8080/wzyx_war/order/gen_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:@"http://120.79.10.184:8080/order/gen_order" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"订单：%@", responseObject);
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
             NSDictionary *dataDictionary = responseDictionary[@"data"];
@@ -71,6 +72,7 @@
             failureBlock(responseDictionary[@"msg"]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
         failureBlock(@"服务器未响应，请稍后重试");
     }];
 }

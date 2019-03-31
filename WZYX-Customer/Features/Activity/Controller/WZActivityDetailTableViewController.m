@@ -19,6 +19,7 @@
 #import "WZDateStringConverter.h"
 #import "WZActivityCommentTableViewController.h"
 #import <Masonry.h>
+#import <UIImageView+WebCache.h>
 
 #define screen_Width    [UIScreen mainScreen].bounds.size.width
 #define screen_Height   [UIScreen mainScreen].bounds.size.height
@@ -50,7 +51,11 @@
     [self.view addSubview:self.submitButton];
     
     self.standardList = @[@"日期",@"场次"];
-    self.standardValueList = @[@[@"2019-2-25"],@[@"早上",@"下午",@"晚上"]]; 
+    NSArray *array = [WZDateStringConverter datePeriod:self.activity.pStarttime EndDate:self.activity.pEndtime];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    [mutableArray addObject:array];
+    [mutableArray addObject:@[@"19：00"]];
+    self.standardValueList = [mutableArray copy];
     [self initSelectView];
 }
 
@@ -91,9 +96,10 @@
         return 1;
     } else if (section == 1) {
         return 4;
+    } else if (section == 4) {
+        return self.activity.pImageList.count;
     } else if (section == 2) {
-        //@"%@",self.activity.pImageList);
-        //return self.activity.pImageList.count;
+        return 2;
     }
     return 1;
 }
@@ -105,7 +111,8 @@
             cell = [[WZActivityDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ImageCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.textLabel.text = @"假装这是一张图片";
+        NSURL *url = [NSURL URLWithString:self.activity.pImage];
+        [cell.activityImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"]];
         return cell;
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {//价格
@@ -114,7 +121,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PriceCell"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            cell.textLabel.text = @"$XXX";
+            cell.textLabel.text = [NSString stringWithFormat:@"￥%.2f", self.activity.pPrice];
             cell.textLabel.font = [UIFont systemFontOfSize:22];
             cell.textLabel.textColor = [UIColor redColor];
             return cell;
@@ -124,7 +131,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ActivityNameCell"];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            cell.textLabel.text = @"这是一个测试活动";
+            cell.textLabel.text = self.activity.pName;
             cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
             return cell;
         } else if (indexPath.row == 2) {//活动时间
@@ -134,7 +141,9 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.textLabel.text = @"活动时间";
-            cell.detailTextLabel.text = @"2019-2-1";
+            NSString *startTime = [WZDateStringConverter stringFromDateString:self.activity.pStarttime];
+            NSString *endTime = [WZDateStringConverter stringFromDateString:self.activity.pEndtime];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@", startTime, endTime];
             cell.detailTextLabel.textColor = [UIColor blackColor];
             return cell;
         } else if (indexPath.row == 3){
@@ -144,7 +153,8 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.textLabel.text = @"活动地点";
-            cell.detailTextLabel.text = @"上海世博展览馆";
+            NSLog(@"%@", self.activity.pLocation);
+            cell.detailTextLabel.text = self.activity.pLocation;
             cell.detailTextLabel.textColor = [UIColor blackColor];
             return cell;
         }
@@ -173,7 +183,8 @@
             cell = [[WZActivityDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ImageCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.textLabel.text = @"假装这是一张图片";
+        NSURL *url = [NSURL URLWithString:self.activity.pImageList[indexPath.row]];
+        [cell.activityImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"]]   ;
         return cell;
     } else if (indexPath.section == 3){
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commmentCell"];
@@ -199,6 +210,8 @@
     }
 }
 
+
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -212,10 +225,11 @@
 
 - (void)initSelectView {
     self.selectView = [[DWQSelectView alloc] initWithFrame:CGRectMake(0, screen_Height, screen_Width, screen_Height)];
-    self.selectView.headImage.image = [UIImage imageNamed:@"duwenquan"];
-    self.selectView.LB_price.text = @"￥121.00";
-    self.selectView.LB_stock.text = [NSString stringWithFormat:@"库存%@件",@999];
-    self.selectView.LB_showSales.text=@"已销售40件";
+    NSURL *url = [NSURL URLWithString:self.activity.pImage];
+    [self.selectView.headImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"book"]];
+    self.selectView.LB_price.text = [NSString stringWithFormat:@"%.2f",self.activity.pPrice ];
+    self.selectView.LB_stock.text = [NSString stringWithFormat:@"剩余%ld张",self.activity.pCapacity-self.activity.hasAdded];
+    self.selectView.LB_showSales.text=[NSString stringWithFormat:@"已销售%ld张",self.activity.hasAdded];
     self.selectView.LB_detail.text = @"请选择日期与场次";
     [self.view addSubview:self.selectView];
     
@@ -342,7 +356,7 @@
 
 - (WZActivitySubmitOrderButton *)submitButton {
     if (!_submitButton) {
-        _submitButton = [[WZActivitySubmitOrderButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-80, self.view.bounds.size.width, 80)];
+        _submitButton = [[WZActivitySubmitOrderButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50)];
         [_submitButton setTitle:@"请选择参加时间" forState:UIControlStateNormal];
         [_submitButton.titleLabel setTextColor:[UIColor whiteColor]];
         _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];

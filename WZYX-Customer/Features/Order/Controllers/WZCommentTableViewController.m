@@ -14,6 +14,7 @@
 #import "WZSubmitButtonView.h"
 #import "WZComment.h"
 #import "WZUser.h"
+#import "UIImageView+WebCache.h"
 
 @interface WZCommentTableViewController () <WZStarLevelTableViewCellDelegate>
 
@@ -58,7 +59,9 @@
         if (!cell) {
             cell = [[WZOrderTitleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderTitleCell"];
         }
-        cell.eventAvatarImageView.image = [UIImage imageNamed:@"Setting"];
+        // cell.eventAvatarImageView.image = [UIImage imageNamed:@"Setting"];
+        [cell.eventAvatarImageView sd_setImageWithURL:[NSURL URLWithString:self.order.eventAvatar]];
+        
         cell.eventTitleLabel.text = self.order.eventTitle;
         cell.eventSeasonLabel.text = self.order.eventSeason;
         return cell;
@@ -102,25 +105,25 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         [self.commentTextView resignFirstResponder];
-        [WZComment commentEvent:self.order.eventId withCommenter:@"qiyue" commentText:self.commentTextView.text commentlevel:self.starLevel success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"评价成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self.delegate commentTableViewController:self didFinishCommentSuccess:YES userInfo:nil];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-        } failure:^(NSString * _Nonnull userInfo) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:userInfo message:nil preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-        }];
-        [WZOrder commentOrder:self.order.orderId withCommentText:self.commentTextView.text commentlevel:self.starLevel success:^{
+//        [WZComment commentEvent:self.order.eventId withCommenter:@"qiyue" commentText:self.commentTextView.text commentlevel:self.starLevel success:^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"评价成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                    [self.delegate commentTableViewController:self didFinishCommentSuccess:YES userInfo:nil];
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                }];
+//                [alert addAction:okAction];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//        } failure:^(NSString * _Nonnull userInfo) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                UIAlertController *alert = [UIAlertController alertControllerWithTitle:userInfo message:nil preferredStyle:UIAlertControllerStyleAlert];
+//                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//                [alert addAction:okAction];
+//                [self presentViewController:alert animated:YES completion:nil];
+//            });
+//        }];
+        [WZOrder commentOrder:self.order withCommentText:self.commentTextView.text commentlevel:self.starLevel success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"评价成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

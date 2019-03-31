@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [WZComment downloadCommentForEvent:@"E000002" success:^(NSArray * _Nonnull comments) {
+    [WZComment downloadCommentForEvent:self.eventId success:^(NSArray * _Nonnull comments) {
         self.comments = comments;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];

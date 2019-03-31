@@ -17,6 +17,7 @@
 
 #import "MBProgressHUD.h"
 #import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
 
 @interface WZOrderListTableViewController () <WZOrderDetailTableViewControllerDelegate, WZPayTableViewControllerDelegate, WZCommentTableViewControllerDelegate>
 
@@ -69,7 +70,8 @@
         [cell.sponsorNameButton setTitle:order.sponsorName forState:UIControlStateNormal];
         NSArray *states = @[@"待付款", @"待参与", @"待评价", @"已过期", @"已取消", @"退款中", @"已退款", @"已完成", @"所有状态"];
         cell.orderStateLabel.text = states[order.orderState];
-        cell.eventAvatarImageView.image = [UIImage imageNamed:order.eventAvatar];
+        // cell.eventAvatarImageView.image = [UIImage imageNamed:order.eventAvatar];
+        [cell.eventAvatarImageView sd_setImageWithURL:[NSURL URLWithString:order.eventAvatar]];
         cell.eventTitleLabel.text = order.eventTitle;
         cell.priceAndCountLabel.text = [NSString stringWithFormat:@"¥ %@\nx %@", order.eventPrice, order.purchaseCount];
         cell.eventSeasonLabel.text = order.eventSeason;
@@ -156,7 +158,7 @@
     self.noContentView = nil;
     [self.view addSubview:self.progressHUD];
     [self.progressHUD showAnimated:YES];
-    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:(self.orders.count < 5 ? 5 : self.orders.count) success:^(NSMutableArray * _Nonnull orders) {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:1 limit:5 success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.progressHUD hideAnimated:YES];
             MJRefreshNormalHeader *normalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -205,7 +207,7 @@
 #pragma mark - PrivateMethods
 
 - (void)pullDownRefreshOrderListData {
-    [WZOrder loadOrderListWithOrderState:self.orderState offset:0 limit:5 success:^(NSMutableArray * _Nonnull orders) {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:1 limit:5 success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer resetNoMoreData];
@@ -228,7 +230,7 @@
 }
 
 - (void)loadMoreOrderListDataFromOffset:(NSUInteger)offset {
-    [WZOrder loadOrderListWithOrderState:self.orderState offset:offset limit:5 success:^(NSMutableArray * _Nonnull orders) {
+    [WZOrder loadOrderListWithOrderState:self.orderState offset:self.orders.count / 5 + 2 limit:5 success:^(NSMutableArray * _Nonnull orders) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (orders.count == 0) {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];

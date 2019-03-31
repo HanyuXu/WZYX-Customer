@@ -16,7 +16,6 @@
     AFHTTPSessionManager *manager = [WZHTTPSessionManager sharedManager];
     NSDictionary *paramsDictionary = @{@"phoneNumber" : phoneNumber, @"password" : password};
     [manager POST:@"http://120.79.10.184:8080/mobile/user/login" parameters:paramsDictionary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
         if ([responseDictionary[@"status"] intValue] == 0) {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

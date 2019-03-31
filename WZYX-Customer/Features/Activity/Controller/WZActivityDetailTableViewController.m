@@ -153,7 +153,6 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.textLabel.text = @"活动地点";
-            NSLog(@"%@", self.activity.pLocation);
             cell.detailTextLabel.text = self.activity.pLocation;
             cell.detailTextLabel.textColor = [UIColor blackColor];
             return cell;
@@ -206,6 +205,7 @@
     }
     if (indexPath.section == 3) {
         WZActivityCommentTableViewController *cTVC = [[WZActivityCommentTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        cTVC.eventId = self.activity.pId;
         [self.navigationController pushViewController:cTVC animated:YES];
     }
 }
@@ -328,7 +328,7 @@
     WZActivityAmountCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     //@"%@", self.attributesArray);
     [WZOrder createOrderWithEventId:self.activity.pId eventSeason:self.attributesArray[0] purchaseCount:cell.amount success:^(WZOrder * _Nonnull order) {
-        WZPayTableViewController *ptVC = [[WZPayTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        WZPayTableViewController *ptVC = [[WZPayTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         ptVC.order = order;
         [self.navigationController pushViewController:ptVC animated:YES];
     } failure:^(NSString * _Nonnull userInfo) {

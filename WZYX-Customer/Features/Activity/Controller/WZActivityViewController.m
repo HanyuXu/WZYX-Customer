@@ -60,6 +60,7 @@
 @implementation WZActivityViewController
 
 - (void)viewDidLoad {
+    self.currentPageNumber = 1;
     [super viewDidLoad];
     [self.view addSubview:self.baseTableView];
     self.baseTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -108,7 +109,6 @@
     } else {
         [self.promptLabel removeFromSuperview];
     }
-    NSLog(@"列表中有%lu条数据\n",self.activityList.count);
     return self.activityList.count;
 }
 
@@ -291,10 +291,9 @@
 #pragma mark - DownloadDateFromInternet
 
 - (void)loadData {
-    self.currentPageNumber = 0;
+    self.currentPageNumber = 1;
     [self.baseTableView addSubview:self.progressHUB];
     [self.progressHUB showAnimated:YES];
-    NSLog(@"%f\t%f",self.latitude, self.longitude);
     [WZActivityManager downLoadActivityListWithLatitude:self.latitude
                                               Longitude:self.longitude
                                                Category:WZActivityCategoryAll
@@ -310,7 +309,6 @@
         [self.progressHUB hideAnimated:YES];
     } faliure:^{
         [self.progressHUB hideAnimated:YES];
-        NSLog(@"failure!");
     }];
 }
 
@@ -339,7 +337,7 @@
 #pragma mark - JFLocationDelagate
 
 - (void)cityName:(NSString *)name {
-    NSLog(@"定位成功");
+    NSLog(@"%@",name);
     self.currentCity = name;
     self.LocationCell.textLabel.text = name;
     // 获取经纬度
@@ -347,10 +345,8 @@
     [geocoder geocodeAddressString:name completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         CLPlacemark *placemark = [placemarks firstObject];
         if (placemark) {
-            NSLog(@"%@", [NSThread currentThread]);
             self.latitude = placemark.location.coordinate.latitude;
             self.longitude = placemark.location.coordinate.longitude;
-            NSLog(@"%f\t%f",self.latitude, self.longitude);
             NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:2];
             [self.baseTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.promptLabel removeFromSuperview];
@@ -366,7 +362,6 @@
 
 //定位中...
 - (void)locating {
-    NSLog(@"定位中...");
     self.LocationCell.textLabel.text = @"定位中...";
     self.promptLabel.text = @"正在定位，您可以手动选择定位";
 }
@@ -378,7 +373,7 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.LocationCell.textLabel.text = city;
+            [self cityName:city];
             [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"locationCity"];
             [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"currentCity"];
             [self.manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {

@@ -64,7 +64,6 @@
         successBlock(activities, hasNextPage);
       }
       failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
-        NSLog(@"faliure!");
         failureBlock();
       }];
 }
@@ -87,7 +86,6 @@
       progress:nil
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
-          NSLog(@"%@", responseObject);
           BOOL hasNextPage;
           NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
           NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];
@@ -105,7 +103,6 @@
         successBlock(activities, hasNextPage);
       }
       failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
-        NSLog(@"faliure!");
         failureBlock();
       }];
 }
@@ -146,7 +143,6 @@
               successBlock(activities, hasNextPage);
           }
           failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
-              NSLog(@"faliure!");
               failureBlock();
           }];
 }

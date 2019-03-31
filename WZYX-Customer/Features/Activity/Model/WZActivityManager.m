@@ -45,7 +45,6 @@
       progress:nil
       success:^(NSURLSessionDataTask *_Nonnull task,
                 id _Nullable responseObject) {
-          NSLog(@"%@", responseObject);
           BOOL hasNextPage;
           NSDictionary *dict = ((NSDictionary *)responseObject)[@"data"];
           NSUInteger boolValue = [dict[@"hasNextPage"] unsignedIntegerValue];

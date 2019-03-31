@@ -337,7 +337,6 @@
 #pragma mark - JFLocationDelagate
 
 - (void)cityName:(NSString *)name {
-    NSLog(@"%@",name);
     self.currentCity = name;
     self.LocationCell.textLabel.text = name;
     // 获取经纬度
